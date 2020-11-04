@@ -43,7 +43,7 @@ export const ProfilnaSlikaUpdate = (props: IProfilnaSlikaUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
-    values.created = convertDateTimeToServer(values.created);
+    values.datum = convertDateTimeToServer(values.datum);
 
     if (errors.length === 0) {
       const entity = {
@@ -83,22 +83,22 @@ export const ProfilnaSlikaUpdate = (props: IProfilnaSlikaUpdateProps) => {
                 </AvGroup>
               ) : null}
               <AvGroup>
-                <Label id="titleLabel" for="profilna-slika-title">
-                  <Translate contentKey="popraviApp.profilnaSlika.title">Title</Translate>
+                <Label id="imeLabel" for="profilna-slika-ime">
+                  <Translate contentKey="popraviApp.profilnaSlika.ime">Ime</Translate>
                 </Label>
-                <AvField id="profilna-slika-title" type="text" name="title" />
+                <AvField id="profilna-slika-ime" type="text" name="ime" />
               </AvGroup>
               <AvGroup>
-                <Label id="createdLabel" for="profilna-slika-created">
-                  <Translate contentKey="popraviApp.profilnaSlika.created">Created</Translate>
+                <Label id="datumLabel" for="profilna-slika-datum">
+                  <Translate contentKey="popraviApp.profilnaSlika.datum">Datum</Translate>
                 </Label>
                 <AvInput
-                  id="profilna-slika-created"
+                  id="profilna-slika-datum"
                   type="datetime-local"
                   className="form-control"
-                  name="created"
+                  name="datum"
                   placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.profilnaSlikaEntity.created)}
+                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.profilnaSlikaEntity.datum)}
                 />
               </AvGroup>
               <Button tag={Link} id="cancel-save" to="/profilna-slika" replace color="info">

@@ -76,10 +76,10 @@ export const MainSlika = (props: IMainSlikaProps) => {
                   <Translate contentKey="global.field.id">ID</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.mainSlika.title">Title</Translate>
+                  <Translate contentKey="popraviApp.mainSlika.ime">Ime</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.mainSlika.created">Created</Translate>
+                  <Translate contentKey="popraviApp.mainSlika.datum">Datum</Translate>
                 </th>
                 <th>
                   <Translate contentKey="popraviApp.mainSlika.artikl">Artikl</Translate>
@@ -95,8 +95,8 @@ export const MainSlika = (props: IMainSlikaProps) => {
                       {mainSlika.id}
                     </Button>
                   </td>
-                  <td>{mainSlika.title}</td>
-                  <td>{mainSlika.created ? <TextFormat type="date" value={mainSlika.created} format={APP_DATE_FORMAT} /> : null}</td>
+                  <td>{mainSlika.ime}</td>
+                  <td>{mainSlika.datum ? <TextFormat type="date" value={mainSlika.datum} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{mainSlika.artikl ? <Link to={`artikl/${mainSlika.artikl.id}`}>{mainSlika.artikl.ime}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">

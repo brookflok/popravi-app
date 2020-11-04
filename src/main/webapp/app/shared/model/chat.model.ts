@@ -4,7 +4,7 @@ import { IUcesnici } from 'app/shared/model/ucesnici.model';
 
 export interface IChat {
   id?: number;
-  date?: string;
+  datum?: string;
   postoji?: boolean;
   artikl?: IArtikl;
   ucesnici?: IUcesnici;

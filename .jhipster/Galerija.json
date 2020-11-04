@@ -2,11 +2,11 @@
   "name": "Galerija",
   "fields": [
     {
-      "fieldName": "title",
+      "fieldName": "ime",
       "fieldType": "String"
     },
     {
-      "fieldName": "created",
+      "fieldName": "datum",
       "fieldType": "Instant"
     }
   ],

@@ -76,10 +76,10 @@ export const ProfilnaSlika = (props: IProfilnaSlikaProps) => {
                   <Translate contentKey="global.field.id">ID</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.profilnaSlika.title">Title</Translate>
+                  <Translate contentKey="popraviApp.profilnaSlika.ime">Ime</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.profilnaSlika.created">Created</Translate>
+                  <Translate contentKey="popraviApp.profilnaSlika.datum">Datum</Translate>
                 </th>
                 <th />
               </tr>
@@ -92,10 +92,8 @@ export const ProfilnaSlika = (props: IProfilnaSlikaProps) => {
                       {profilnaSlika.id}
                     </Button>
                   </td>
-                  <td>{profilnaSlika.title}</td>
-                  <td>
-                    {profilnaSlika.created ? <TextFormat type="date" value={profilnaSlika.created} format={APP_DATE_FORMAT} /> : null}
-                  </td>
+                  <td>{profilnaSlika.ime}</td>
+                  <td>{profilnaSlika.datum ? <TextFormat type="date" value={profilnaSlika.datum} format={APP_DATE_FORMAT} /> : null}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${profilnaSlika.id}`} color="info" size="sm">

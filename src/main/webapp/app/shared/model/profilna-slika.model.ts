@@ -3,8 +3,8 @@ import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
 
 export interface IProfilnaSlika {
   id?: number;
-  title?: string;
-  created?: string;
+  ime?: string;
+  datum?: string;
   dodatniInfoUser?: IDodatniInfoUser;
 }
 

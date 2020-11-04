@@ -43,7 +43,7 @@ export const GalerijaUpdate = (props: IGalerijaUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
-    values.created = convertDateTimeToServer(values.created);
+    values.datum = convertDateTimeToServer(values.datum);
 
     if (errors.length === 0) {
       const entity = {
@@ -83,22 +83,22 @@ export const GalerijaUpdate = (props: IGalerijaUpdateProps) => {
                 </AvGroup>
               ) : null}
               <AvGroup>
-                <Label id="titleLabel" for="galerija-title">
-                  <Translate contentKey="popraviApp.galerija.title">Title</Translate>
+                <Label id="imeLabel" for="galerija-ime">
+                  <Translate contentKey="popraviApp.galerija.ime">Ime</Translate>
                 </Label>
-                <AvField id="galerija-title" type="text" name="title" />
+                <AvField id="galerija-ime" type="text" name="ime" />
               </AvGroup>
               <AvGroup>
-                <Label id="createdLabel" for="galerija-created">
-                  <Translate contentKey="popraviApp.galerija.created">Created</Translate>
+                <Label id="datumLabel" for="galerija-datum">
+                  <Translate contentKey="popraviApp.galerija.datum">Datum</Translate>
                 </Label>
                 <AvInput
-                  id="galerija-created"
+                  id="galerija-datum"
                   type="datetime-local"
                   className="form-control"
-                  name="created"
+                  name="datum"
                   placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.galerijaEntity.created)}
+                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.galerijaEntity.datum)}
                 />
               </AvGroup>
               <AvGroup>

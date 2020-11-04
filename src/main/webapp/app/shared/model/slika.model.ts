@@ -6,8 +6,8 @@ import { IGalerija } from 'app/shared/model/galerija.model';
 export interface ISlika {
   id?: number;
   ime?: string;
-  imageContentType?: string;
-  image?: any;
+  slikaContentType?: string;
+  slika?: any;
   uploaded?: string;
   mainslika?: IMainSlika;
   mainslika?: IProfilnaSlika;

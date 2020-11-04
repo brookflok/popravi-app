@@ -43,7 +43,7 @@ export const MainSlikaUpdate = (props: IMainSlikaUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
-    values.created = convertDateTimeToServer(values.created);
+    values.datum = convertDateTimeToServer(values.datum);
 
     if (errors.length === 0) {
       const entity = {
@@ -83,22 +83,22 @@ export const MainSlikaUpdate = (props: IMainSlikaUpdateProps) => {
                 </AvGroup>
               ) : null}
               <AvGroup>
-                <Label id="titleLabel" for="main-slika-title">
-                  <Translate contentKey="popraviApp.mainSlika.title">Title</Translate>
+                <Label id="imeLabel" for="main-slika-ime">
+                  <Translate contentKey="popraviApp.mainSlika.ime">Ime</Translate>
                 </Label>
-                <AvField id="main-slika-title" type="text" name="title" />
+                <AvField id="main-slika-ime" type="text" name="ime" />
               </AvGroup>
               <AvGroup>
-                <Label id="createdLabel" for="main-slika-created">
-                  <Translate contentKey="popraviApp.mainSlika.created">Created</Translate>
+                <Label id="datumLabel" for="main-slika-datum">
+                  <Translate contentKey="popraviApp.mainSlika.datum">Datum</Translate>
                 </Label>
                 <AvInput
-                  id="main-slika-created"
+                  id="main-slika-datum"
                   type="datetime-local"
                   className="form-control"
-                  name="created"
+                  name="datum"
                   placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.mainSlikaEntity.created)}
+                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.mainSlikaEntity.datum)}
                 />
               </AvGroup>
               <AvGroup>

@@ -26,17 +26,17 @@ export const GalerijaDetail = (props: IGalerijaDetailProps) => {
         </h2>
         <dl className="jh-entity-details">
           <dt>
-            <span id="title">
-              <Translate contentKey="popraviApp.galerija.title">Title</Translate>
+            <span id="ime">
+              <Translate contentKey="popraviApp.galerija.ime">Ime</Translate>
             </span>
           </dt>
-          <dd>{galerijaEntity.title}</dd>
+          <dd>{galerijaEntity.ime}</dd>
           <dt>
-            <span id="created">
-              <Translate contentKey="popraviApp.galerija.created">Created</Translate>
+            <span id="datum">
+              <Translate contentKey="popraviApp.galerija.datum">Datum</Translate>
             </span>
           </dt>
-          <dd>{galerijaEntity.created ? <TextFormat value={galerijaEntity.created} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
+          <dd>{galerijaEntity.datum ? <TextFormat value={galerijaEntity.datum} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
           <dt>
             <Translate contentKey="popraviApp.galerija.artikl">Artikl</Translate>
           </dt>

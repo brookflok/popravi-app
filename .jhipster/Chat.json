@@ -2,7 +2,7 @@
   "name": "Chat",
   "fields": [
     {
-      "fieldName": "date",
+      "fieldName": "datum",
       "fieldType": "Instant"
     },
     {

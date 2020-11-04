@@ -39,11 +39,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class MainSlikaResourceIT {
 
-    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-    private static final String UPDATED_TITLE = "BBBBBBBBBB";
+    private static final String DEFAULT_IME = "AAAAAAAAAA";
+    private static final String UPDATED_IME = "BBBBBBBBBB";
 
-    private static final Instant DEFAULT_CREATED = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_CREATED = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant DEFAULT_DATUM = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DATUM = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     @Autowired
     private MainSlikaRepository mainSlikaRepository;
@@ -72,8 +72,8 @@ public class MainSlikaResourceIT {
      */
     public static MainSlika createEntity(EntityManager em) {
         MainSlika mainSlika = new MainSlika()
-            .title(DEFAULT_TITLE)
-            .created(DEFAULT_CREATED);
+            .ime(DEFAULT_IME)
+            .datum(DEFAULT_DATUM);
         return mainSlika;
     }
     /**
@@ -84,8 +84,8 @@ public class MainSlikaResourceIT {
      */
     public static MainSlika createUpdatedEntity(EntityManager em) {
         MainSlika mainSlika = new MainSlika()
-            .title(UPDATED_TITLE)
-            .created(UPDATED_CREATED);
+            .ime(UPDATED_IME)
+            .datum(UPDATED_DATUM);
         return mainSlika;
     }
 
@@ -108,8 +108,8 @@ public class MainSlikaResourceIT {
         List<MainSlika> mainSlikaList = mainSlikaRepository.findAll();
         assertThat(mainSlikaList).hasSize(databaseSizeBeforeCreate + 1);
         MainSlika testMainSlika = mainSlikaList.get(mainSlikaList.size() - 1);
-        assertThat(testMainSlika.getTitle()).isEqualTo(DEFAULT_TITLE);
-        assertThat(testMainSlika.getCreated()).isEqualTo(DEFAULT_CREATED);
+        assertThat(testMainSlika.getIme()).isEqualTo(DEFAULT_IME);
+        assertThat(testMainSlika.getDatum()).isEqualTo(DEFAULT_DATUM);
 
         // Validate the MainSlika in Elasticsearch
         verify(mockMainSlikaSearchRepository, times(1)).save(testMainSlika);
@@ -149,8 +149,8 @@ public class MainSlikaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(mainSlika.getId().intValue())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
-            .andExpect(jsonPath("$.[*].created").value(hasItem(DEFAULT_CREATED.toString())));
+            .andExpect(jsonPath("$.[*].ime").value(hasItem(DEFAULT_IME)))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
     
     @Test
@@ -164,8 +164,8 @@ public class MainSlikaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(mainSlika.getId().intValue()))
-            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
-            .andExpect(jsonPath("$.created").value(DEFAULT_CREATED.toString()));
+            .andExpect(jsonPath("$.ime").value(DEFAULT_IME))
+            .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM.toString()));
     }
     @Test
     @Transactional
@@ -188,8 +188,8 @@ public class MainSlikaResourceIT {
         // Disconnect from session so that the updates on updatedMainSlika are not directly saved in db
         em.detach(updatedMainSlika);
         updatedMainSlika
-            .title(UPDATED_TITLE)
-            .created(UPDATED_CREATED);
+            .ime(UPDATED_IME)
+            .datum(UPDATED_DATUM);
 
         restMainSlikaMockMvc.perform(put("/api/main-slikas")
             .contentType(MediaType.APPLICATION_JSON)
@@ -200,8 +200,8 @@ public class MainSlikaResourceIT {
         List<MainSlika> mainSlikaList = mainSlikaRepository.findAll();
         assertThat(mainSlikaList).hasSize(databaseSizeBeforeUpdate);
         MainSlika testMainSlika = mainSlikaList.get(mainSlikaList.size() - 1);
-        assertThat(testMainSlika.getTitle()).isEqualTo(UPDATED_TITLE);
-        assertThat(testMainSlika.getCreated()).isEqualTo(UPDATED_CREATED);
+        assertThat(testMainSlika.getIme()).isEqualTo(UPDATED_IME);
+        assertThat(testMainSlika.getDatum()).isEqualTo(UPDATED_DATUM);
 
         // Validate the MainSlika in Elasticsearch
         verify(mockMainSlikaSearchRepository, times(1)).save(testMainSlika);
@@ -261,7 +261,7 @@ public class MainSlikaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(mainSlika.getId().intValue())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
-            .andExpect(jsonPath("$.[*].created").value(hasItem(DEFAULT_CREATED.toString())));
+            .andExpect(jsonPath("$.[*].ime").value(hasItem(DEFAULT_IME)))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
 }

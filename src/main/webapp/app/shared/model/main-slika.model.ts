@@ -3,8 +3,8 @@ import { IArtikl } from 'app/shared/model/artikl.model';
 
 export interface IMainSlika {
   id?: number;
-  title?: string;
-  created?: string;
+  ime?: string;
+  datum?: string;
   artikl?: IArtikl;
 }
 

@@ -47,7 +47,7 @@ export const PorukaUpdate = (props: IPorukaUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
-    values.date = convertDateTimeToServer(values.date);
+    values.datum = convertDateTimeToServer(values.datum);
 
     if (errors.length === 0) {
       const entity = {
@@ -93,16 +93,16 @@ export const PorukaUpdate = (props: IPorukaUpdateProps) => {
                 <AvField id="poruka-text" type="text" name="text" />
               </AvGroup>
               <AvGroup>
-                <Label id="dateLabel" for="poruka-date">
-                  <Translate contentKey="popraviApp.poruka.date">Date</Translate>
+                <Label id="datumLabel" for="poruka-datum">
+                  <Translate contentKey="popraviApp.poruka.datum">Datum</Translate>
                 </Label>
                 <AvInput
-                  id="poruka-date"
+                  id="poruka-datum"
                   type="datetime-local"
                   className="form-control"
-                  name="date"
+                  name="datum"
                   placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.porukaEntity.date)}
+                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.porukaEntity.datum)}
                 />
               </AvGroup>
               <AvGroup check>

@@ -39,11 +39,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class GalerijaResourceIT {
 
-    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-    private static final String UPDATED_TITLE = "BBBBBBBBBB";
+    private static final String DEFAULT_IME = "AAAAAAAAAA";
+    private static final String UPDATED_IME = "BBBBBBBBBB";
 
-    private static final Instant DEFAULT_CREATED = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_CREATED = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant DEFAULT_DATUM = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DATUM = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     @Autowired
     private GalerijaRepository galerijaRepository;
@@ -72,8 +72,8 @@ public class GalerijaResourceIT {
      */
     public static Galerija createEntity(EntityManager em) {
         Galerija galerija = new Galerija()
-            .title(DEFAULT_TITLE)
-            .created(DEFAULT_CREATED);
+            .ime(DEFAULT_IME)
+            .datum(DEFAULT_DATUM);
         return galerija;
     }
     /**
@@ -84,8 +84,8 @@ public class GalerijaResourceIT {
      */
     public static Galerija createUpdatedEntity(EntityManager em) {
         Galerija galerija = new Galerija()
-            .title(UPDATED_TITLE)
-            .created(UPDATED_CREATED);
+            .ime(UPDATED_IME)
+            .datum(UPDATED_DATUM);
         return galerija;
     }
 
@@ -108,8 +108,8 @@ public class GalerijaResourceIT {
         List<Galerija> galerijaList = galerijaRepository.findAll();
         assertThat(galerijaList).hasSize(databaseSizeBeforeCreate + 1);
         Galerija testGalerija = galerijaList.get(galerijaList.size() - 1);
-        assertThat(testGalerija.getTitle()).isEqualTo(DEFAULT_TITLE);
-        assertThat(testGalerija.getCreated()).isEqualTo(DEFAULT_CREATED);
+        assertThat(testGalerija.getIme()).isEqualTo(DEFAULT_IME);
+        assertThat(testGalerija.getDatum()).isEqualTo(DEFAULT_DATUM);
 
         // Validate the Galerija in Elasticsearch
         verify(mockGalerijaSearchRepository, times(1)).save(testGalerija);
@@ -149,8 +149,8 @@ public class GalerijaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(galerija.getId().intValue())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
-            .andExpect(jsonPath("$.[*].created").value(hasItem(DEFAULT_CREATED.toString())));
+            .andExpect(jsonPath("$.[*].ime").value(hasItem(DEFAULT_IME)))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
     
     @Test
@@ -164,8 +164,8 @@ public class GalerijaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(galerija.getId().intValue()))
-            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
-            .andExpect(jsonPath("$.created").value(DEFAULT_CREATED.toString()));
+            .andExpect(jsonPath("$.ime").value(DEFAULT_IME))
+            .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM.toString()));
     }
     @Test
     @Transactional
@@ -188,8 +188,8 @@ public class GalerijaResourceIT {
         // Disconnect from session so that the updates on updatedGalerija are not directly saved in db
         em.detach(updatedGalerija);
         updatedGalerija
-            .title(UPDATED_TITLE)
-            .created(UPDATED_CREATED);
+            .ime(UPDATED_IME)
+            .datum(UPDATED_DATUM);
 
         restGalerijaMockMvc.perform(put("/api/galerijas")
             .contentType(MediaType.APPLICATION_JSON)
@@ -200,8 +200,8 @@ public class GalerijaResourceIT {
         List<Galerija> galerijaList = galerijaRepository.findAll();
         assertThat(galerijaList).hasSize(databaseSizeBeforeUpdate);
         Galerija testGalerija = galerijaList.get(galerijaList.size() - 1);
-        assertThat(testGalerija.getTitle()).isEqualTo(UPDATED_TITLE);
-        assertThat(testGalerija.getCreated()).isEqualTo(UPDATED_CREATED);
+        assertThat(testGalerija.getIme()).isEqualTo(UPDATED_IME);
+        assertThat(testGalerija.getDatum()).isEqualTo(UPDATED_DATUM);
 
         // Validate the Galerija in Elasticsearch
         verify(mockGalerijaSearchRepository, times(1)).save(testGalerija);
@@ -261,7 +261,7 @@ public class GalerijaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(galerija.getId().intValue())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
-            .andExpect(jsonPath("$.[*].created").value(hasItem(DEFAULT_CREATED.toString())));
+            .andExpect(jsonPath("$.[*].ime").value(hasItem(DEFAULT_IME)))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
 }

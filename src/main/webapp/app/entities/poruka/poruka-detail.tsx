@@ -32,11 +32,11 @@ export const PorukaDetail = (props: IPorukaDetailProps) => {
           </dt>
           <dd>{porukaEntity.text}</dd>
           <dt>
-            <span id="date">
-              <Translate contentKey="popraviApp.poruka.date">Date</Translate>
+            <span id="datum">
+              <Translate contentKey="popraviApp.poruka.datum">Datum</Translate>
             </span>
           </dt>
-          <dd>{porukaEntity.date ? <TextFormat value={porukaEntity.date} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
+          <dd>{porukaEntity.datum ? <TextFormat value={porukaEntity.datum} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
           <dt>
             <span id="postoji">
               <Translate contentKey="popraviApp.poruka.postoji">Postoji</Translate>

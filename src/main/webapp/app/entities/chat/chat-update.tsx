@@ -47,7 +47,7 @@ export const ChatUpdate = (props: IChatUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
-    values.date = convertDateTimeToServer(values.date);
+    values.datum = convertDateTimeToServer(values.datum);
 
     if (errors.length === 0) {
       const entity = {
@@ -87,16 +87,16 @@ export const ChatUpdate = (props: IChatUpdateProps) => {
                 </AvGroup>
               ) : null}
               <AvGroup>
-                <Label id="dateLabel" for="chat-date">
-                  <Translate contentKey="popraviApp.chat.date">Date</Translate>
+                <Label id="datumLabel" for="chat-datum">
+                  <Translate contentKey="popraviApp.chat.datum">Datum</Translate>
                 </Label>
                 <AvInput
-                  id="chat-date"
+                  id="chat-datum"
                   type="datetime-local"
                   className="form-control"
-                  name="date"
+                  name="datum"
                   placeholder={'YYYY-MM-DD HH:mm'}
-                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.chatEntity.date)}
+                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.chatEntity.datum)}
                 />
               </AvGroup>
               <AvGroup check>

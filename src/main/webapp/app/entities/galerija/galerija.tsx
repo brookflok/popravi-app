@@ -76,10 +76,10 @@ export const Galerija = (props: IGalerijaProps) => {
                   <Translate contentKey="global.field.id">ID</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.galerija.title">Title</Translate>
+                  <Translate contentKey="popraviApp.galerija.ime">Ime</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.galerija.created">Created</Translate>
+                  <Translate contentKey="popraviApp.galerija.datum">Datum</Translate>
                 </th>
                 <th>
                   <Translate contentKey="popraviApp.galerija.artikl">Artikl</Translate>
@@ -95,8 +95,8 @@ export const Galerija = (props: IGalerijaProps) => {
                       {galerija.id}
                     </Button>
                   </td>
-                  <td>{galerija.title}</td>
-                  <td>{galerija.created ? <TextFormat type="date" value={galerija.created} format={APP_DATE_FORMAT} /> : null}</td>
+                  <td>{galerija.ime}</td>
+                  <td>{galerija.datum ? <TextFormat type="date" value={galerija.datum} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{galerija.artikl ? <Link to={`artikl/${galerija.artikl.id}`}>{galerija.artikl.ime}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">

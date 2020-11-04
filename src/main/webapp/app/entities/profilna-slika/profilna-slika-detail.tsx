@@ -26,18 +26,18 @@ export const ProfilnaSlikaDetail = (props: IProfilnaSlikaDetailProps) => {
         </h2>
         <dl className="jh-entity-details">
           <dt>
-            <span id="title">
-              <Translate contentKey="popraviApp.profilnaSlika.title">Title</Translate>
+            <span id="ime">
+              <Translate contentKey="popraviApp.profilnaSlika.ime">Ime</Translate>
             </span>
           </dt>
-          <dd>{profilnaSlikaEntity.title}</dd>
+          <dd>{profilnaSlikaEntity.ime}</dd>
           <dt>
-            <span id="created">
-              <Translate contentKey="popraviApp.profilnaSlika.created">Created</Translate>
+            <span id="datum">
+              <Translate contentKey="popraviApp.profilnaSlika.datum">Datum</Translate>
             </span>
           </dt>
           <dd>
-            {profilnaSlikaEntity.created ? <TextFormat value={profilnaSlikaEntity.created} type="date" format={APP_DATE_FORMAT} /> : null}
+            {profilnaSlikaEntity.datum ? <TextFormat value={profilnaSlikaEntity.datum} type="date" format={APP_DATE_FORMAT} /> : null}
           </dd>
         </dl>
         <Button tag={Link} to="/profilna-slika" replace color="info">

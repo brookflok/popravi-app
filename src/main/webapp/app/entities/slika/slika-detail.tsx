@@ -32,20 +32,20 @@ export const SlikaDetail = (props: ISlikaDetailProps) => {
           </dt>
           <dd>{slikaEntity.ime}</dd>
           <dt>
-            <span id="image">
-              <Translate contentKey="popraviApp.slika.image">Image</Translate>
+            <span id="slika">
+              <Translate contentKey="popraviApp.slika.slika">Slika</Translate>
             </span>
           </dt>
           <dd>
-            {slikaEntity.image ? (
+            {slikaEntity.slika ? (
               <div>
-                {slikaEntity.imageContentType ? (
-                  <a onClick={openFile(slikaEntity.imageContentType, slikaEntity.image)}>
-                    <img src={`data:${slikaEntity.imageContentType};base64,${slikaEntity.image}`} style={{ maxHeight: '30px' }} />
+                {slikaEntity.slikaContentType ? (
+                  <a onClick={openFile(slikaEntity.slikaContentType, slikaEntity.slika)}>
+                    <img src={`data:${slikaEntity.slikaContentType};base64,${slikaEntity.slika}`} style={{ maxHeight: '30px' }} />
                   </a>
                 ) : null}
                 <span>
-                  {slikaEntity.imageContentType}, {byteSize(slikaEntity.image)}
+                  {slikaEntity.slikaContentType}, {byteSize(slikaEntity.slika)}
                 </span>
               </div>
             ) : null}

@@ -79,7 +79,7 @@ export const Slika = (props: ISlikaProps) => {
                   <Translate contentKey="popraviApp.slika.ime">Ime</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.slika.image">Image</Translate>
+                  <Translate contentKey="popraviApp.slika.slika">Slika</Translate>
                 </th>
                 <th>
                   <Translate contentKey="popraviApp.slika.uploaded">Uploaded</Translate>
@@ -106,16 +106,16 @@ export const Slika = (props: ISlikaProps) => {
                   </td>
                   <td>{slika.ime}</td>
                   <td>
-                    {slika.image ? (
+                    {slika.slika ? (
                       <div>
-                        {slika.imageContentType ? (
-                          <a onClick={openFile(slika.imageContentType, slika.image)}>
-                            <img src={`data:${slika.imageContentType};base64,${slika.image}`} style={{ maxHeight: '30px' }} />
+                        {slika.slikaContentType ? (
+                          <a onClick={openFile(slika.slikaContentType, slika.slika)}>
+                            <img src={`data:${slika.slikaContentType};base64,${slika.slika}`} style={{ maxHeight: '30px' }} />
                             &nbsp;
                           </a>
                         ) : null}
                         <span>
-                          {slika.imageContentType}, {byteSize(slika.image)}
+                          {slika.slikaContentType}, {byteSize(slika.slika)}
                         </span>
                       </div>
                     ) : null}

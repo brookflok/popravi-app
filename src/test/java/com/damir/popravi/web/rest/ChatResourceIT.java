@@ -39,8 +39,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class ChatResourceIT {
 
-    private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant DEFAULT_DATUM = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DATUM = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final Boolean DEFAULT_POSTOJI = false;
     private static final Boolean UPDATED_POSTOJI = true;
@@ -72,7 +72,7 @@ public class ChatResourceIT {
      */
     public static Chat createEntity(EntityManager em) {
         Chat chat = new Chat()
-            .date(DEFAULT_DATE)
+            .datum(DEFAULT_DATUM)
             .postoji(DEFAULT_POSTOJI);
         return chat;
     }
@@ -84,7 +84,7 @@ public class ChatResourceIT {
      */
     public static Chat createUpdatedEntity(EntityManager em) {
         Chat chat = new Chat()
-            .date(UPDATED_DATE)
+            .datum(UPDATED_DATUM)
             .postoji(UPDATED_POSTOJI);
         return chat;
     }
@@ -108,7 +108,7 @@ public class ChatResourceIT {
         List<Chat> chatList = chatRepository.findAll();
         assertThat(chatList).hasSize(databaseSizeBeforeCreate + 1);
         Chat testChat = chatList.get(chatList.size() - 1);
-        assertThat(testChat.getDate()).isEqualTo(DEFAULT_DATE);
+        assertThat(testChat.getDatum()).isEqualTo(DEFAULT_DATUM);
         assertThat(testChat.isPostoji()).isEqualTo(DEFAULT_POSTOJI);
 
         // Validate the Chat in Elasticsearch
@@ -149,7 +149,7 @@ public class ChatResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(chat.getId().intValue())))
-            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())))
             .andExpect(jsonPath("$.[*].postoji").value(hasItem(DEFAULT_POSTOJI.booleanValue())));
     }
     
@@ -164,7 +164,7 @@ public class ChatResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(chat.getId().intValue()))
-            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
+            .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM.toString()))
             .andExpect(jsonPath("$.postoji").value(DEFAULT_POSTOJI.booleanValue()));
     }
     @Test
@@ -188,7 +188,7 @@ public class ChatResourceIT {
         // Disconnect from session so that the updates on updatedChat are not directly saved in db
         em.detach(updatedChat);
         updatedChat
-            .date(UPDATED_DATE)
+            .datum(UPDATED_DATUM)
             .postoji(UPDATED_POSTOJI);
 
         restChatMockMvc.perform(put("/api/chats")
@@ -200,7 +200,7 @@ public class ChatResourceIT {
         List<Chat> chatList = chatRepository.findAll();
         assertThat(chatList).hasSize(databaseSizeBeforeUpdate);
         Chat testChat = chatList.get(chatList.size() - 1);
-        assertThat(testChat.getDate()).isEqualTo(UPDATED_DATE);
+        assertThat(testChat.getDatum()).isEqualTo(UPDATED_DATUM);
         assertThat(testChat.isPostoji()).isEqualTo(UPDATED_POSTOJI);
 
         // Validate the Chat in Elasticsearch
@@ -261,7 +261,7 @@ public class ChatResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(chat.getId().intValue())))
-            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())))
             .andExpect(jsonPath("$.[*].postoji").value(hasItem(DEFAULT_POSTOJI.booleanValue())));
     }
 }
