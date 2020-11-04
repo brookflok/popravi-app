@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
-import { Translate, ICrudGetAction, TextFormat } from 'react-jhipster';
+import { Translate, ICrudGetAction, openFile, byteSize, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -31,6 +31,25 @@ export const MainSlikaDetail = (props: IMainSlikaDetailProps) => {
             </span>
           </dt>
           <dd>{mainSlikaEntity.ime}</dd>
+          <dt>
+            <span id="slika">
+              <Translate contentKey="popraviApp.mainSlika.slika">Slika</Translate>
+            </span>
+          </dt>
+          <dd>
+            {mainSlikaEntity.slika ? (
+              <div>
+                {mainSlikaEntity.slikaContentType ? (
+                  <a onClick={openFile(mainSlikaEntity.slikaContentType, mainSlikaEntity.slika)}>
+                    <img src={`data:${mainSlikaEntity.slikaContentType};base64,${mainSlikaEntity.slika}`} style={{ maxHeight: '30px' }} />
+                  </a>
+                ) : null}
+                <span>
+                  {mainSlikaEntity.slikaContentType}, {byteSize(mainSlikaEntity.slika)}
+                </span>
+              </div>
+            ) : null}
+          </dd>
           <dt>
             <span id="datum">
               <Translate contentKey="popraviApp.mainSlika.datum">Datum</Translate>

@@ -6,6 +6,11 @@
       "fieldType": "String"
     },
     {
+      "fieldName": "slika",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    },
+    {
       "fieldName": "datum",
       "fieldType": "Instant"
     }

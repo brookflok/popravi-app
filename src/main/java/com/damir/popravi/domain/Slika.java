@@ -38,14 +38,6 @@ public class Slika implements Serializable {
     @Column(name = "uploaded")
     private Instant uploaded;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private MainSlika mainslika;
-
-    @OneToOne
-    @JoinColumn(unique = true)
-    private ProfilnaSlika mainslika;
-
     @ManyToOne
     @JsonIgnoreProperties(value = "slikas", allowSetters = true)
     private Galerija galerija;
@@ -109,32 +101,6 @@ public class Slika implements Serializable {
 
     public void setUploaded(Instant uploaded) {
         this.uploaded = uploaded;
-    }
-
-    public MainSlika getMainslika() {
-        return mainslika;
-    }
-
-    public Slika mainslika(MainSlika mainSlika) {
-        this.mainslika = mainSlika;
-        return this;
-    }
-
-    public void setMainslika(MainSlika mainSlika) {
-        this.mainslika = mainSlika;
-    }
-
-    public ProfilnaSlika getMainslika() {
-        return mainslika;
-    }
-
-    public Slika mainslika(ProfilnaSlika profilnaSlika) {
-        this.mainslika = profilnaSlika;
-        return this;
-    }
-
-    public void setMainslika(ProfilnaSlika profilnaSlika) {
-        this.mainslika = profilnaSlika;
     }
 
     public Galerija getGalerija() {

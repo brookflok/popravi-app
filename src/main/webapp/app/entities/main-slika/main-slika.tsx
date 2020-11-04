@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, InputGroup, Col, Row, Table } from 'reactstrap';
 import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation';
-import { Translate, translate, ICrudSearchAction, ICrudGetAllAction, TextFormat } from 'react-jhipster';
+import { openFile, byteSize, Translate, translate, ICrudSearchAction, ICrudGetAllAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -79,6 +79,9 @@ export const MainSlika = (props: IMainSlikaProps) => {
                   <Translate contentKey="popraviApp.mainSlika.ime">Ime</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="popraviApp.mainSlika.slika">Slika</Translate>
+                </th>
+                <th>
                   <Translate contentKey="popraviApp.mainSlika.datum">Datum</Translate>
                 </th>
                 <th>
@@ -96,6 +99,21 @@ export const MainSlika = (props: IMainSlikaProps) => {
                     </Button>
                   </td>
                   <td>{mainSlika.ime}</td>
+                  <td>
+                    {mainSlika.slika ? (
+                      <div>
+                        {mainSlika.slikaContentType ? (
+                          <a onClick={openFile(mainSlika.slikaContentType, mainSlika.slika)}>
+                            <img src={`data:${mainSlika.slikaContentType};base64,${mainSlika.slika}`} style={{ maxHeight: '30px' }} />
+                            &nbsp;
+                          </a>
+                        ) : null}
+                        <span>
+                          {mainSlika.slikaContentType}, {byteSize(mainSlika.slika)}
+                        </span>
+                      </div>
+                    ) : null}
+                  </td>
                   <td>{mainSlika.datum ? <TextFormat type="date" value={mainSlika.datum} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{mainSlika.artikl ? <Link to={`artikl/${mainSlika.artikl.id}`}>{mainSlika.artikl.ime}</Link> : ''}</td>
                   <td className="text-right">

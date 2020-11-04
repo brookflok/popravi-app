@@ -17,22 +17,6 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "mainSlika",
-      "otherEntityRelationshipName": "slika",
-      "relationshipName": "mainslika",
-      "otherEntityField": "ime",
-      "ownerSide": true
-    },
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "profilnaSlika",
-      "otherEntityRelationshipName": "slika",
-      "relationshipName": "mainslika",
-      "otherEntityField": "ime",
-      "ownerSide": true
-    },
-    {
       "relationshipType": "many-to-one",
       "otherEntityName": "galerija",
       "otherEntityRelationshipName": "slika",

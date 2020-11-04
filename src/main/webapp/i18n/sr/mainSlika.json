@@ -18,6 +18,7 @@
         "title": "Main Slika"
       },
       "ime": "Ime",
+      "slika": "Slika",
       "datum": "Datum",
       "artikl": "Artikl"
     }

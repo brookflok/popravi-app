@@ -28,12 +28,6 @@
             <column name="uploaded" type="datetime">
                 <constraints nullable="true" />
             </column>
-            <column name="mainslika_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_slika_mainslika_id" />
-            </column>
-            <column name="mainslika_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_slika_mainslika_id" />
-            </column>
             <column name="galerija_id" type="bigint">
                 <constraints nullable="true" />
             </column>

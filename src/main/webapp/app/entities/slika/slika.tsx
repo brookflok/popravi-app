@@ -85,12 +85,6 @@ export const Slika = (props: ISlikaProps) => {
                   <Translate contentKey="popraviApp.slika.uploaded">Uploaded</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.slika.mainslika">Mainslika</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="popraviApp.slika.mainslika">Mainslika</Translate>
-                </th>
-                <th>
                   <Translate contentKey="popraviApp.slika.galerija">Galerija</Translate>
                 </th>
                 <th />
@@ -121,8 +115,6 @@ export const Slika = (props: ISlikaProps) => {
                     ) : null}
                   </td>
                   <td>{slika.uploaded ? <TextFormat type="date" value={slika.uploaded} format={APP_DATE_FORMAT} /> : null}</td>
-                  <td>{slika.mainslika ? <Link to={`main-slika/${slika.mainslika.id}`}>{slika.mainslika.ime}</Link> : ''}</td>
-                  <td>{slika.mainslika ? <Link to={`profilna-slika/${slika.mainslika.id}`}>{slika.mainslika.ime}</Link> : ''}</td>
                   <td>{slika.galerija ? <Link to={`galerija/${slika.galerija.id}`}>{slika.galerija.ime}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, InputGroup, Col, Row, Table } from 'reactstrap';
 import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation';
-import { Translate, translate, ICrudSearchAction, ICrudGetAllAction, TextFormat } from 'react-jhipster';
+import { openFile, byteSize, Translate, translate, ICrudSearchAction, ICrudGetAllAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -79,6 +79,9 @@ export const ProfilnaSlika = (props: IProfilnaSlikaProps) => {
                   <Translate contentKey="popraviApp.profilnaSlika.ime">Ime</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="popraviApp.profilnaSlika.slika">Slika</Translate>
+                </th>
+                <th>
                   <Translate contentKey="popraviApp.profilnaSlika.datum">Datum</Translate>
                 </th>
                 <th />
@@ -93,6 +96,24 @@ export const ProfilnaSlika = (props: IProfilnaSlikaProps) => {
                     </Button>
                   </td>
                   <td>{profilnaSlika.ime}</td>
+                  <td>
+                    {profilnaSlika.slika ? (
+                      <div>
+                        {profilnaSlika.slikaContentType ? (
+                          <a onClick={openFile(profilnaSlika.slikaContentType, profilnaSlika.slika)}>
+                            <img
+                              src={`data:${profilnaSlika.slikaContentType};base64,${profilnaSlika.slika}`}
+                              style={{ maxHeight: '30px' }}
+                            />
+                            &nbsp;
+                          </a>
+                        ) : null}
+                        <span>
+                          {profilnaSlika.slikaContentType}, {byteSize(profilnaSlika.slika)}
+                        </span>
+                      </div>
+                    ) : null}
+                  </td>
                   <td>{profilnaSlika.datum ? <TextFormat type="date" value={profilnaSlika.datum} format={APP_DATE_FORMAT} /> : null}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">

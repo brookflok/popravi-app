@@ -30,11 +30,13 @@ entity Galerija {
 
 entity MainSlika {
     ime String,
+    slika ImageBlob,
     datum Instant
 }
 
 entity ProfilnaSlika {
     ime String,
+    slika ImageBlob,
     datum Instant
 }
 
@@ -122,8 +124,6 @@ relationship OneToMany{
 relationship OneToOne{
 	Artikl{potreba} to Potreba,
     Artikl{usluga} to Usluga,
- 	Slika{mainslika(ime)} to MainSlika,
-    Slika{mainslika(ime)} to ProfilnaSlika,
     Galerija{artikl(ime)} to Artikl,
     MainSlika{artikl(ime)} to Artikl,
    	DodatniInfoUser to ProfilnaSlika, 

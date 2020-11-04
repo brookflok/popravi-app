@@ -57,14 +57,6 @@ export const SlikaDetail = (props: ISlikaDetailProps) => {
           </dt>
           <dd>{slikaEntity.uploaded ? <TextFormat value={slikaEntity.uploaded} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
           <dt>
-            <Translate contentKey="popraviApp.slika.mainslika">Mainslika</Translate>
-          </dt>
-          <dd>{slikaEntity.mainslika ? slikaEntity.mainslika.ime : ''}</dd>
-          <dt>
-            <Translate contentKey="popraviApp.slika.mainslika">Mainslika</Translate>
-          </dt>
-          <dd>{slikaEntity.mainslika ? slikaEntity.mainslika.ime : ''}</dd>
-          <dt>
             <Translate contentKey="popraviApp.slika.galerija">Galerija</Translate>
           </dt>
           <dd>{slikaEntity.galerija ? slikaEntity.galerija.ime : ''}</dd>
