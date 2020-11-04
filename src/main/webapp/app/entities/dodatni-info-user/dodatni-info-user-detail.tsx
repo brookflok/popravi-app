@@ -67,10 +67,6 @@ export const DodatniInfoUserDetail = (props: IDodatniInfoUserDetailProps) => {
             <Translate contentKey="popraviApp.dodatniInfoUser.user">User</Translate>
           </dt>
           <dd>{dodatniInfoUserEntity.user ? dodatniInfoUserEntity.user.id : ''}</dd>
-          <dt>
-            <Translate contentKey="popraviApp.dodatniInfoUser.ucesnici">Ucesnici</Translate>
-          </dt>
-          <dd>{dodatniInfoUserEntity.ucesnici ? dodatniInfoUserEntity.ucesnici.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/dodatni-info-user" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -40,6 +40,9 @@
             <column name="usluga_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_artikl_usluga_id" />
             </column>
+            <column name="grupacija_pitanja_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_artikl_grupacija_pitanja_id" />
+            </column>
             <column name="dodatniinfouser_id" type="bigint">
                 <constraints nullable="true" />
             </column>

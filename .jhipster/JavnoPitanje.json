@@ -16,6 +16,14 @@
   ],
   "relationships": [
     {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "odgovorNaJavnoPitanje",
+      "otherEntityRelationshipName": "javnoPitanje",
+      "relationshipName": "odgovorNaJavnoPitanje",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "dodatniInfoUser",
       "otherEntityRelationshipName": "javnoPitanje",
@@ -24,17 +32,10 @@
     },
     {
       "relationshipType": "many-to-one",
-      "otherEntityName": "artikl",
+      "otherEntityName": "grupacijaPitanja",
       "otherEntityRelationshipName": "javnoPitanje",
-      "relationshipName": "artikl",
+      "relationshipName": "grupacijapitanja",
       "otherEntityField": "id"
-    },
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "odgovorNaJavnoPitanje",
-      "otherEntityRelationshipName": "javnoPitanje",
-      "relationshipName": "odgovorNaJavnoPitanje",
-      "ownerSide": false
     }
   ],
   "changelogDate": "20201104095811",

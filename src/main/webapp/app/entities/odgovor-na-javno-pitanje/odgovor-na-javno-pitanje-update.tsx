@@ -7,10 +7,10 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { IJavnoPitanje } from 'app/shared/model/javno-pitanje.model';
-import { getEntities as getJavnoPitanjes } from 'app/entities/javno-pitanje/javno-pitanje.reducer';
 import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
 import { getEntities as getDodatniInfoUsers } from 'app/entities/dodatni-info-user/dodatni-info-user.reducer';
+import { IJavnoPitanje } from 'app/shared/model/javno-pitanje.model';
+import { getEntities as getJavnoPitanjes } from 'app/entities/javno-pitanje/javno-pitanje.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './odgovor-na-javno-pitanje.reducer';
 import { IOdgovorNaJavnoPitanje } from 'app/shared/model/odgovor-na-javno-pitanje.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -19,11 +19,11 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IOdgovorNaJavnoPitanjeUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const OdgovorNaJavnoPitanjeUpdate = (props: IOdgovorNaJavnoPitanjeUpdateProps) => {
-  const [javnoPitanjeId, setJavnoPitanjeId] = useState('0');
   const [dodatniinfoUserId, setDodatniinfoUserId] = useState('0');
+  const [javnoPitanjeId, setJavnoPitanjeId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { odgovorNaJavnoPitanjeEntity, javnoPitanjes, dodatniInfoUsers, loading, updating } = props;
+  const { odgovorNaJavnoPitanjeEntity, dodatniInfoUsers, javnoPitanjes, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/odgovor-na-javno-pitanje');
@@ -36,8 +36,8 @@ export const OdgovorNaJavnoPitanjeUpdate = (props: IOdgovorNaJavnoPitanjeUpdateP
       props.getEntity(props.match.params.id);
     }
 
-    props.getJavnoPitanjes();
     props.getDodatniInfoUsers();
+    props.getJavnoPitanjes();
   }, []);
 
   useEffect(() => {
@@ -114,21 +114,6 @@ export const OdgovorNaJavnoPitanjeUpdate = (props: IOdgovorNaJavnoPitanjeUpdateP
                 </Label>
               </AvGroup>
               <AvGroup>
-                <Label for="odgovor-na-javno-pitanje-javnoPitanje">
-                  <Translate contentKey="popraviApp.odgovorNaJavnoPitanje.javnoPitanje">Javno Pitanje</Translate>
-                </Label>
-                <AvInput id="odgovor-na-javno-pitanje-javnoPitanje" type="select" className="form-control" name="javnoPitanje.id">
-                  <option value="" key="0" />
-                  {javnoPitanjes
-                    ? javnoPitanjes.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
                 <Label for="odgovor-na-javno-pitanje-dodatniinfoUser">
                   <Translate contentKey="popraviApp.odgovorNaJavnoPitanje.dodatniinfoUser">Dodatniinfo User</Translate>
                 </Label>
@@ -165,8 +150,8 @@ export const OdgovorNaJavnoPitanjeUpdate = (props: IOdgovorNaJavnoPitanjeUpdateP
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
-  javnoPitanjes: storeState.javnoPitanje.entities,
   dodatniInfoUsers: storeState.dodatniInfoUser.entities,
+  javnoPitanjes: storeState.javnoPitanje.entities,
   odgovorNaJavnoPitanjeEntity: storeState.odgovorNaJavnoPitanje.entity,
   loading: storeState.odgovorNaJavnoPitanje.loading,
   updating: storeState.odgovorNaJavnoPitanje.updating,
@@ -174,8 +159,8 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  getJavnoPitanjes,
   getDodatniInfoUsers,
+  getJavnoPitanjes,
   getEntity,
   updateEntity,
   createEntity,

@@ -18,6 +18,8 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,6 +38,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @WithMockUser
 public class UcesniciResourceIT {
+
+    private static final Instant DEFAULT_DATUM = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DATUM = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     @Autowired
     private UcesniciRepository ucesniciRepository;
@@ -63,7 +68,8 @@ public class UcesniciResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Ucesnici createEntity(EntityManager em) {
-        Ucesnici ucesnici = new Ucesnici();
+        Ucesnici ucesnici = new Ucesnici()
+            .datum(DEFAULT_DATUM);
         return ucesnici;
     }
     /**
@@ -73,7 +79,8 @@ public class UcesniciResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Ucesnici createUpdatedEntity(EntityManager em) {
-        Ucesnici ucesnici = new Ucesnici();
+        Ucesnici ucesnici = new Ucesnici()
+            .datum(UPDATED_DATUM);
         return ucesnici;
     }
 
@@ -96,6 +103,7 @@ public class UcesniciResourceIT {
         List<Ucesnici> ucesniciList = ucesniciRepository.findAll();
         assertThat(ucesniciList).hasSize(databaseSizeBeforeCreate + 1);
         Ucesnici testUcesnici = ucesniciList.get(ucesniciList.size() - 1);
+        assertThat(testUcesnici.getDatum()).isEqualTo(DEFAULT_DATUM);
 
         // Validate the Ucesnici in Elasticsearch
         verify(mockUcesniciSearchRepository, times(1)).save(testUcesnici);
@@ -134,7 +142,8 @@ public class UcesniciResourceIT {
         restUcesniciMockMvc.perform(get("/api/ucesnicis?sort=id,desc"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(ucesnici.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(ucesnici.getId().intValue())))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
     
     @Test
@@ -147,7 +156,8 @@ public class UcesniciResourceIT {
         restUcesniciMockMvc.perform(get("/api/ucesnicis/{id}", ucesnici.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.id").value(ucesnici.getId().intValue()));
+            .andExpect(jsonPath("$.id").value(ucesnici.getId().intValue()))
+            .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM.toString()));
     }
     @Test
     @Transactional
@@ -169,6 +179,8 @@ public class UcesniciResourceIT {
         Ucesnici updatedUcesnici = ucesniciRepository.findById(ucesnici.getId()).get();
         // Disconnect from session so that the updates on updatedUcesnici are not directly saved in db
         em.detach(updatedUcesnici);
+        updatedUcesnici
+            .datum(UPDATED_DATUM);
 
         restUcesniciMockMvc.perform(put("/api/ucesnicis")
             .contentType(MediaType.APPLICATION_JSON)
@@ -179,6 +191,7 @@ public class UcesniciResourceIT {
         List<Ucesnici> ucesniciList = ucesniciRepository.findAll();
         assertThat(ucesniciList).hasSize(databaseSizeBeforeUpdate);
         Ucesnici testUcesnici = ucesniciList.get(ucesniciList.size() - 1);
+        assertThat(testUcesnici.getDatum()).isEqualTo(UPDATED_DATUM);
 
         // Validate the Ucesnici in Elasticsearch
         verify(mockUcesniciSearchRepository, times(1)).save(testUcesnici);
@@ -237,6 +250,7 @@ public class UcesniciResourceIT {
         restUcesniciMockMvc.perform(get("/api/_search/ucesnicis?query=id:" + ucesnici.getId()))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(ucesnici.getId().intValue())));
+            .andExpect(jsonPath("$.[*].id").value(hasItem(ucesnici.getId().intValue())))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
 }

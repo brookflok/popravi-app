@@ -80,6 +80,10 @@ import poruka, {
 import chat, {
   ChatState
 } from 'app/entities/chat/chat.reducer';
+// prettier-ignore
+import grupacijaPitanja, {
+  GrupacijaPitanjaState
+} from 'app/entities/grupacija-pitanja/grupacija-pitanja.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -110,6 +114,7 @@ export interface IRootState {
   readonly ucesnici: UcesniciState;
   readonly poruka: PorukaState;
   readonly chat: ChatState;
+  readonly grupacijaPitanja: GrupacijaPitanjaState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -142,6 +147,7 @@ const rootReducer = combineReducers<IRootState>({
   ucesnici,
   poruka,
   chat,
+  grupacijaPitanja,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

@@ -17,6 +17,7 @@
       "detail": {
         "title": "Ucesnici"
       },
+      "datum": "Datum",
       "chat": "Chat",
       "dodatniInfoUser": "Dodatni Info User"
     }

@@ -52,6 +52,10 @@ public class Artikl implements Serializable {
     @JoinColumn(unique = true)
     private Usluga usluga;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private GrupacijaPitanja grupacijaPitanja;
+
     @OneToOne(mappedBy = "artikl")
     @JsonIgnore
     private Informacije informacije;
@@ -171,6 +175,19 @@ public class Artikl implements Serializable {
 
     public void setUsluga(Usluga usluga) {
         this.usluga = usluga;
+    }
+
+    public GrupacijaPitanja getGrupacijaPitanja() {
+        return grupacijaPitanja;
+    }
+
+    public Artikl grupacijaPitanja(GrupacijaPitanja grupacijaPitanja) {
+        this.grupacijaPitanja = grupacijaPitanja;
+        return this;
+    }
+
+    public void setGrupacijaPitanja(GrupacijaPitanja grupacijaPitanja) {
+        this.grupacijaPitanja = grupacijaPitanja;
     }
 
     public Informacije getInformacije() {

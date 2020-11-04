@@ -26,6 +26,12 @@
                                  referencedColumnNames="id"
                                  referencedTableName="usluga"/>
 
+        <addForeignKeyConstraint baseColumnNames="grupacija_pitanja_id"
+                                 baseTableName="artikl"
+                                 constraintName="fk_artikl_grupacija_pitanja_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="grupacija_pitanja"/>
+
         <addForeignKeyConstraint baseColumnNames="dodatniinfouser_id"
                                  baseTableName="artikl"
                                  constraintName="fk_artikl_dodatniinfouser_id"

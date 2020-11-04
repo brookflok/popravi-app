@@ -1,0 +1,24 @@
+{
+  "popraviApp": {
+    "grupacijaPitanja": {
+      "home": {
+        "title": "Grupacija Pitanjas",
+        "createLabel": "Create a new Grupacija Pitanja",
+        "createOrEditLabel": "Create or edit a Grupacija Pitanja",
+        "search": "Search for Grupacija Pitanja",
+        "notFound": "No Grupacija Pitanjas found"
+      },
+      "created": "A new Grupacija Pitanja is created with identifier {{ param }}",
+      "updated": "A Grupacija Pitanja is updated with identifier {{ param }}",
+      "deleted": "A Grupacija Pitanja is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Grupacija Pitanja {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupacija Pitanja"
+      },
+      "datum": "Datum",
+      "artikl": "Artikl"
+    }
+  }
+}

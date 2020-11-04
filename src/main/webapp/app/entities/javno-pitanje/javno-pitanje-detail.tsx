@@ -44,13 +44,17 @@ export const JavnoPitanjeDetail = (props: IJavnoPitanjeDetailProps) => {
           </dt>
           <dd>{javnoPitanjeEntity.prikaz ? 'true' : 'false'}</dd>
           <dt>
+            <Translate contentKey="popraviApp.javnoPitanje.odgovorNaJavnoPitanje">Odgovor Na Javno Pitanje</Translate>
+          </dt>
+          <dd>{javnoPitanjeEntity.odgovorNaJavnoPitanje ? javnoPitanjeEntity.odgovorNaJavnoPitanje.id : ''}</dd>
+          <dt>
             <Translate contentKey="popraviApp.javnoPitanje.dodatniinfoUser">Dodatniinfo User</Translate>
           </dt>
           <dd>{javnoPitanjeEntity.dodatniinfoUser ? javnoPitanjeEntity.dodatniinfoUser.id : ''}</dd>
           <dt>
-            <Translate contentKey="popraviApp.javnoPitanje.artikl">Artikl</Translate>
+            <Translate contentKey="popraviApp.javnoPitanje.grupacijapitanja">Grupacijapitanja</Translate>
           </dt>
-          <dd>{javnoPitanjeEntity.artikl ? javnoPitanjeEntity.artikl.id : ''}</dd>
+          <dd>{javnoPitanjeEntity.grupacijapitanja ? javnoPitanjeEntity.grupacijapitanja.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/javno-pitanje" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -1,6 +1,11 @@
 {
   "name": "Ucesnici",
-  "fields": [],
+  "fields": [
+    {
+      "fieldName": "datum",
+      "fieldType": "Instant"
+    }
+  ],
   "relationships": [
     {
       "relationshipType": "one-to-one",
@@ -11,10 +16,11 @@
       "ownerSide": true
     },
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-one",
       "otherEntityName": "dodatniInfoUser",
       "otherEntityRelationshipName": "ucesnici",
-      "relationshipName": "dodatniInfoUser"
+      "relationshipName": "dodatniInfoUser",
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20201104100311",

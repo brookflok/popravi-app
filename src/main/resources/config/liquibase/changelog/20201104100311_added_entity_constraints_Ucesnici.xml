@@ -14,5 +14,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="chat"/>
 
+        <addForeignKeyConstraint baseColumnNames="dodatni_info_user_id"
+                                 baseTableName="ucesnici"
+                                 constraintName="fk_ucesnici_dodatni_info_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dodatni_info_user"/>
+
     </changeSet>
 </databaseChangeLog>

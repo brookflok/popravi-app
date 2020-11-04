@@ -49,10 +49,6 @@ export const OdgovorNaJavnoPitanjeDetail = (props: IOdgovorNaJavnoPitanjeDetailP
           </dt>
           <dd>{odgovorNaJavnoPitanjeEntity.prikaz ? 'true' : 'false'}</dd>
           <dt>
-            <Translate contentKey="popraviApp.odgovorNaJavnoPitanje.javnoPitanje">Javno Pitanje</Translate>
-          </dt>
-          <dd>{odgovorNaJavnoPitanjeEntity.javnoPitanje ? odgovorNaJavnoPitanjeEntity.javnoPitanje.id : ''}</dd>
-          <dt>
             <Translate contentKey="popraviApp.odgovorNaJavnoPitanje.dodatniinfoUser">Dodatniinfo User</Translate>
           </dt>
           <dd>{odgovorNaJavnoPitanjeEntity.dodatniinfoUser ? odgovorNaJavnoPitanjeEntity.dodatniinfoUser.id : ''}</dd>

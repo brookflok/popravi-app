@@ -49,6 +49,14 @@
     },
     {
       "relationshipType": "one-to-one",
+      "otherEntityName": "grupacijaPitanja",
+      "otherEntityRelationshipName": "artikl",
+      "relationshipName": "grupacijaPitanja",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
       "otherEntityName": "informacije",
       "otherEntityRelationshipName": "artikl",
       "relationshipName": "informacije",

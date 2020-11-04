@@ -1,5 +1,6 @@
 package com.damir.popravi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -34,13 +35,13 @@ public class OdgovorNaJavnoPitanje implements Serializable {
     @Column(name = "prikaz")
     private Boolean prikaz;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private JavnoPitanje javnoPitanje;
-
     @ManyToOne
     @JsonIgnoreProperties(value = "odgovorNaJavnoPitanjes", allowSetters = true)
     private DodatniInfoUser dodatniinfoUser;
+
+    @OneToOne(mappedBy = "odgovorNaJavnoPitanje")
+    @JsonIgnore
+    private JavnoPitanje javnoPitanje;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -90,19 +91,6 @@ public class OdgovorNaJavnoPitanje implements Serializable {
         this.prikaz = prikaz;
     }
 
-    public JavnoPitanje getJavnoPitanje() {
-        return javnoPitanje;
-    }
-
-    public OdgovorNaJavnoPitanje javnoPitanje(JavnoPitanje javnoPitanje) {
-        this.javnoPitanje = javnoPitanje;
-        return this;
-    }
-
-    public void setJavnoPitanje(JavnoPitanje javnoPitanje) {
-        this.javnoPitanje = javnoPitanje;
-    }
-
     public DodatniInfoUser getDodatniinfoUser() {
         return dodatniinfoUser;
     }
@@ -114,6 +102,19 @@ public class OdgovorNaJavnoPitanje implements Serializable {
 
     public void setDodatniinfoUser(DodatniInfoUser dodatniInfoUser) {
         this.dodatniinfoUser = dodatniInfoUser;
+    }
+
+    public JavnoPitanje getJavnoPitanje() {
+        return javnoPitanje;
+    }
+
+    public OdgovorNaJavnoPitanje javnoPitanje(JavnoPitanje javnoPitanje) {
+        this.javnoPitanje = javnoPitanje;
+        return this;
+    }
+
+    public void setJavnoPitanje(JavnoPitanje javnoPitanje) {
+        this.javnoPitanje = javnoPitanje;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

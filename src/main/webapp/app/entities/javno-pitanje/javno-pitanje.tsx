@@ -85,10 +85,13 @@ export const JavnoPitanje = (props: IJavnoPitanjeProps) => {
                   <Translate contentKey="popraviApp.javnoPitanje.prikaz">Prikaz</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="popraviApp.javnoPitanje.odgovorNaJavnoPitanje">Odgovor Na Javno Pitanje</Translate>
+                </th>
+                <th>
                   <Translate contentKey="popraviApp.javnoPitanje.dodatniinfoUser">Dodatniinfo User</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.javnoPitanje.artikl">Artikl</Translate>
+                  <Translate contentKey="popraviApp.javnoPitanje.grupacijapitanja">Grupacijapitanja</Translate>
                 </th>
                 <th />
               </tr>
@@ -105,13 +108,28 @@ export const JavnoPitanje = (props: IJavnoPitanjeProps) => {
                   <td>{javnoPitanje.datum ? <TextFormat type="date" value={javnoPitanje.datum} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{javnoPitanje.prikaz ? 'true' : 'false'}</td>
                   <td>
+                    {javnoPitanje.odgovorNaJavnoPitanje ? (
+                      <Link to={`odgovor-na-javno-pitanje/${javnoPitanje.odgovorNaJavnoPitanje.id}`}>
+                        {javnoPitanje.odgovorNaJavnoPitanje.id}
+                      </Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
+                  <td>
                     {javnoPitanje.dodatniinfoUser ? (
                       <Link to={`dodatni-info-user/${javnoPitanje.dodatniinfoUser.id}`}>{javnoPitanje.dodatniinfoUser.id}</Link>
                     ) : (
                       ''
                     )}
                   </td>
-                  <td>{javnoPitanje.artikl ? <Link to={`artikl/${javnoPitanje.artikl.id}`}>{javnoPitanje.artikl.id}</Link> : ''}</td>
+                  <td>
+                    {javnoPitanje.grupacijapitanja ? (
+                      <Link to={`grupacija-pitanja/${javnoPitanje.grupacijapitanja.id}`}>{javnoPitanje.grupacijapitanja.id}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${javnoPitanje.id}`} color="info" size="sm">

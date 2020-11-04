@@ -92,10 +92,18 @@ public class OdgovorNaJavnoPitanjeResource {
     /**
      * {@code GET  /odgovor-na-javno-pitanjes} : get all the odgovorNaJavnoPitanjes.
      *
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of odgovorNaJavnoPitanjes in body.
      */
     @GetMapping("/odgovor-na-javno-pitanjes")
-    public List<OdgovorNaJavnoPitanje> getAllOdgovorNaJavnoPitanjes() {
+    public List<OdgovorNaJavnoPitanje> getAllOdgovorNaJavnoPitanjes(@RequestParam(required = false) String filter) {
+        if ("javnopitanje-is-null".equals(filter)) {
+            log.debug("REST request to get all OdgovorNaJavnoPitanjes where javnoPitanje is null");
+            return StreamSupport
+                .stream(odgovorNaJavnoPitanjeRepository.findAll().spliterator(), false)
+                .filter(odgovorNaJavnoPitanje -> odgovorNaJavnoPitanje.getJavnoPitanje() == null)
+                .collect(Collectors.toList());
+        }
         log.debug("REST request to get all OdgovorNaJavnoPitanjes");
         return odgovorNaJavnoPitanjeRepository.findAll();
     }

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, InputGroup, Col, Row, Table } from 'reactstrap';
 import { AvForm, AvGroup, AvInput } from 'availity-reactstrap-validation';
-import { Translate, translate, ICrudSearchAction, ICrudGetAllAction } from 'react-jhipster';
+import { Translate, translate, ICrudSearchAction, ICrudGetAllAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -76,7 +76,13 @@ export const Ucesnici = (props: IUcesniciProps) => {
                   <Translate contentKey="global.field.id">ID</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="popraviApp.ucesnici.datum">Datum</Translate>
+                </th>
+                <th>
                   <Translate contentKey="popraviApp.ucesnici.chat">Chat</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="popraviApp.ucesnici.dodatniInfoUser">Dodatni Info User</Translate>
                 </th>
                 <th />
               </tr>
@@ -89,7 +95,15 @@ export const Ucesnici = (props: IUcesniciProps) => {
                       {ucesnici.id}
                     </Button>
                   </td>
+                  <td>{ucesnici.datum ? <TextFormat type="date" value={ucesnici.datum} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{ucesnici.chat ? <Link to={`chat/${ucesnici.chat.id}`}>{ucesnici.chat.id}</Link> : ''}</td>
+                  <td>
+                    {ucesnici.dodatniInfoUser ? (
+                      <Link to={`dodatni-info-user/${ucesnici.dodatniInfoUser.id}`}>{ucesnici.dodatniInfoUser.id}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${ucesnici.id}`} color="info" size="sm">

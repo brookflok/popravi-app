@@ -99,9 +99,6 @@ export const DodatniInfoUser = (props: IDodatniInfoUserProps) => {
                 <th>
                   <Translate contentKey="popraviApp.dodatniInfoUser.user">User</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="popraviApp.dodatniInfoUser.ucesnici">Ucesnici</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -133,13 +130,6 @@ export const DodatniInfoUser = (props: IDodatniInfoUserProps) => {
                     )}
                   </td>
                   <td>{dodatniInfoUser.user ? dodatniInfoUser.user.id : ''}</td>
-                  <td>
-                    {dodatniInfoUser.ucesnici ? (
-                      <Link to={`ucesnici/${dodatniInfoUser.ucesnici.id}`}>{dodatniInfoUser.ucesnici.id}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${dodatniInfoUser.id}`} color="info" size="sm">

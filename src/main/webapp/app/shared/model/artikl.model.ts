@@ -1,6 +1,7 @@
 import { ILokacija } from 'app/shared/model/lokacija.model';
 import { IPotreba } from 'app/shared/model/potreba.model';
 import { IUsluga } from 'app/shared/model/usluga.model';
+import { IGrupacijaPitanja } from 'app/shared/model/grupacija-pitanja.model';
 import { IInformacije } from 'app/shared/model/informacije.model';
 import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
 
@@ -14,6 +15,7 @@ export interface IArtikl {
   lokacija?: ILokacija;
   potreba?: IPotreba;
   usluga?: IUsluga;
+  grupacijaPitanja?: IGrupacijaPitanja;
   informacije?: IInformacije;
   dodatniinfouser?: IDodatniInfoUser;
 }
