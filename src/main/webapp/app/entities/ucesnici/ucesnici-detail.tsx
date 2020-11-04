@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
-import { Translate, ICrudGetAction } from 'react-jhipster';
+import { Translate, ICrudGetAction, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -26,9 +26,19 @@ export const UcesniciDetail = (props: IUcesniciDetailProps) => {
         </h2>
         <dl className="jh-entity-details">
           <dt>
+            <span id="datum">
+              <Translate contentKey="popraviApp.ucesnici.datum">Datum</Translate>
+            </span>
+          </dt>
+          <dd>{ucesniciEntity.datum ? <TextFormat value={ucesniciEntity.datum} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
+          <dt>
             <Translate contentKey="popraviApp.ucesnici.chat">Chat</Translate>
           </dt>
           <dd>{ucesniciEntity.chat ? ucesniciEntity.chat.id : ''}</dd>
+          <dt>
+            <Translate contentKey="popraviApp.ucesnici.dodatniInfoUser">Dodatni Info User</Translate>
+          </dt>
+          <dd>{ucesniciEntity.dodatniInfoUser ? ucesniciEntity.dodatniInfoUser.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/ucesnici" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

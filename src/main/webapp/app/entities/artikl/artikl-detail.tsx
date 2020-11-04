@@ -68,6 +68,10 @@ export const ArtiklDetail = (props: IArtiklDetailProps) => {
           </dt>
           <dd>{artiklEntity.usluga ? artiklEntity.usluga.id : ''}</dd>
           <dt>
+            <Translate contentKey="popraviApp.artikl.grupacijaPitanja">Grupacija Pitanja</Translate>
+          </dt>
+          <dd>{artiklEntity.grupacijaPitanja ? artiklEntity.grupacijaPitanja.id : ''}</dd>
+          <dt>
             <Translate contentKey="popraviApp.artikl.dodatniinfouser">Dodatniinfouser</Translate>
           </dt>
           <dd>{artiklEntity.dodatniinfouser ? artiklEntity.dodatniinfouser.id : ''}</dd>

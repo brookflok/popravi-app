@@ -66,6 +66,8 @@ public class CacheConfiguration {
             createCache(cm, com.damir.popravi.domain.Ucesnici.class.getName() + ".dodatniInfoUsers");
             createCache(cm, com.damir.popravi.domain.Poruka.class.getName());
             createCache(cm, com.damir.popravi.domain.Chat.class.getName());
+            createCache(cm, com.damir.popravi.domain.DodatniInfoUser.class.getName() + ".ucesnicis");
+            createCache(cm, com.damir.popravi.domain.GrupacijaPitanja.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

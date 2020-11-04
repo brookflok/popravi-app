@@ -9,6 +9,8 @@ import { IRootState } from 'app/shared/reducers';
 
 import { IChat } from 'app/shared/model/chat.model';
 import { getEntities as getChats } from 'app/entities/chat/chat.reducer';
+import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
+import { getEntities as getDodatniInfoUsers } from 'app/entities/dodatni-info-user/dodatni-info-user.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './ucesnici.reducer';
 import { IUcesnici } from 'app/shared/model/ucesnici.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -18,9 +20,10 @@ export interface IUcesniciUpdateProps extends StateProps, DispatchProps, RouteCo
 
 export const UcesniciUpdate = (props: IUcesniciUpdateProps) => {
   const [chatId, setChatId] = useState('0');
+  const [dodatniInfoUserId, setDodatniInfoUserId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { ucesniciEntity, chats, loading, updating } = props;
+  const { ucesniciEntity, chats, dodatniInfoUsers, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/ucesnici');
@@ -34,6 +37,7 @@ export const UcesniciUpdate = (props: IUcesniciUpdateProps) => {
     }
 
     props.getChats();
+    props.getDodatniInfoUsers();
   }, []);
 
   useEffect(() => {
@@ -43,6 +47,8 @@ export const UcesniciUpdate = (props: IUcesniciUpdateProps) => {
   }, [props.updateSuccess]);
 
   const saveEntity = (event, errors, values) => {
+    values.datum = convertDateTimeToServer(values.datum);
+
     if (errors.length === 0) {
       const entity = {
         ...ucesniciEntity,
@@ -81,6 +87,19 @@ export const UcesniciUpdate = (props: IUcesniciUpdateProps) => {
                 </AvGroup>
               ) : null}
               <AvGroup>
+                <Label id="datumLabel" for="ucesnici-datum">
+                  <Translate contentKey="popraviApp.ucesnici.datum">Datum</Translate>
+                </Label>
+                <AvInput
+                  id="ucesnici-datum"
+                  type="datetime-local"
+                  className="form-control"
+                  name="datum"
+                  placeholder={'YYYY-MM-DD HH:mm'}
+                  value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.ucesniciEntity.datum)}
+                />
+              </AvGroup>
+              <AvGroup>
                 <Label for="ucesnici-chat">
                   <Translate contentKey="popraviApp.ucesnici.chat">Chat</Translate>
                 </Label>
@@ -88,6 +107,21 @@ export const UcesniciUpdate = (props: IUcesniciUpdateProps) => {
                   <option value="" key="0" />
                   {chats
                     ? chats.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.id}
+                        </option>
+                      ))
+                    : null}
+                </AvInput>
+              </AvGroup>
+              <AvGroup>
+                <Label for="ucesnici-dodatniInfoUser">
+                  <Translate contentKey="popraviApp.ucesnici.dodatniInfoUser">Dodatni Info User</Translate>
+                </Label>
+                <AvInput id="ucesnici-dodatniInfoUser" type="select" className="form-control" name="dodatniInfoUser.id">
+                  <option value="" key="0" />
+                  {dodatniInfoUsers
+                    ? dodatniInfoUsers.map(otherEntity => (
                         <option value={otherEntity.id} key={otherEntity.id}>
                           {otherEntity.id}
                         </option>
@@ -118,6 +152,7 @@ export const UcesniciUpdate = (props: IUcesniciUpdateProps) => {
 
 const mapStateToProps = (storeState: IRootState) => ({
   chats: storeState.chat.entities,
+  dodatniInfoUsers: storeState.dodatniInfoUser.entities,
   ucesniciEntity: storeState.ucesnici.entity,
   loading: storeState.ucesnici.loading,
   updating: storeState.ucesnici.updating,
@@ -126,6 +161,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 
 const mapDispatchToProps = {
   getChats,
+  getDodatniInfoUsers,
   getEntity,
   updateEntity,
   createEntity,

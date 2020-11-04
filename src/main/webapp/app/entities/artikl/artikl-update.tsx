@@ -13,6 +13,8 @@ import { IPotreba } from 'app/shared/model/potreba.model';
 import { getEntities as getPotrebas } from 'app/entities/potreba/potreba.reducer';
 import { IUsluga } from 'app/shared/model/usluga.model';
 import { getEntities as getUslugas } from 'app/entities/usluga/usluga.reducer';
+import { IGrupacijaPitanja } from 'app/shared/model/grupacija-pitanja.model';
+import { getEntities as getGrupacijaPitanjas } from 'app/entities/grupacija-pitanja/grupacija-pitanja.reducer';
 import { IInformacije } from 'app/shared/model/informacije.model';
 import { getEntities as getInformacijes } from 'app/entities/informacije/informacije.reducer';
 import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
@@ -28,11 +30,12 @@ export const ArtiklUpdate = (props: IArtiklUpdateProps) => {
   const [lokacijaId, setLokacijaId] = useState('0');
   const [potrebaId, setPotrebaId] = useState('0');
   const [uslugaId, setUslugaId] = useState('0');
+  const [grupacijaPitanjaId, setGrupacijaPitanjaId] = useState('0');
   const [informacijeId, setInformacijeId] = useState('0');
   const [dodatniinfouserId, setDodatniinfouserId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { artiklEntity, lokacijas, potrebas, uslugas, informacijes, dodatniInfoUsers, loading, updating } = props;
+  const { artiklEntity, lokacijas, potrebas, uslugas, grupacijaPitanjas, informacijes, dodatniInfoUsers, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/artikl');
@@ -48,6 +51,7 @@ export const ArtiklUpdate = (props: IArtiklUpdateProps) => {
     props.getLokacijas();
     props.getPotrebas();
     props.getUslugas();
+    props.getGrupacijaPitanjas();
     props.getInformacijes();
     props.getDodatniInfoUsers();
   }, []);
@@ -172,6 +176,21 @@ export const ArtiklUpdate = (props: IArtiklUpdateProps) => {
                 </AvInput>
               </AvGroup>
               <AvGroup>
+                <Label for="artikl-grupacijaPitanja">
+                  <Translate contentKey="popraviApp.artikl.grupacijaPitanja">Grupacija Pitanja</Translate>
+                </Label>
+                <AvInput id="artikl-grupacijaPitanja" type="select" className="form-control" name="grupacijaPitanja.id">
+                  <option value="" key="0" />
+                  {grupacijaPitanjas
+                    ? grupacijaPitanjas.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.id}
+                        </option>
+                      ))
+                    : null}
+                </AvInput>
+              </AvGroup>
+              <AvGroup>
                 <Label for="artikl-dodatniinfouser">
                   <Translate contentKey="popraviApp.artikl.dodatniinfouser">Dodatniinfouser</Translate>
                 </Label>
@@ -211,6 +230,7 @@ const mapStateToProps = (storeState: IRootState) => ({
   lokacijas: storeState.lokacija.entities,
   potrebas: storeState.potreba.entities,
   uslugas: storeState.usluga.entities,
+  grupacijaPitanjas: storeState.grupacijaPitanja.entities,
   informacijes: storeState.informacije.entities,
   dodatniInfoUsers: storeState.dodatniInfoUser.entities,
   artiklEntity: storeState.artikl.entity,
@@ -223,6 +243,7 @@ const mapDispatchToProps = {
   getLokacijas,
   getPotrebas,
   getUslugas,
+  getGrupacijaPitanjas,
   getInformacijes,
   getDodatniInfoUsers,
   getEntity,

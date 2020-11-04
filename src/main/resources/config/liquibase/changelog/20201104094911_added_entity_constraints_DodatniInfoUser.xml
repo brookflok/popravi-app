@@ -26,11 +26,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
-        <addForeignKeyConstraint baseColumnNames="ucesnici_id"
-                                 baseTableName="dodatni_info_user"
-                                 constraintName="fk_dodatni_info_user_ucesnici_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="ucesnici"/>
-
     </changeSet>
 </databaseChangeLog>

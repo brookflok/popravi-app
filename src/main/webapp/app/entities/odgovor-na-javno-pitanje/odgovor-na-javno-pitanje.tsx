@@ -85,9 +85,6 @@ export const OdgovorNaJavnoPitanje = (props: IOdgovorNaJavnoPitanjeProps) => {
                   <Translate contentKey="popraviApp.odgovorNaJavnoPitanje.prikaz">Prikaz</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.odgovorNaJavnoPitanje.javnoPitanje">Javno Pitanje</Translate>
-                </th>
-                <th>
                   <Translate contentKey="popraviApp.odgovorNaJavnoPitanje.dodatniinfoUser">Dodatniinfo User</Translate>
                 </th>
                 <th />
@@ -108,13 +105,6 @@ export const OdgovorNaJavnoPitanje = (props: IOdgovorNaJavnoPitanjeProps) => {
                     ) : null}
                   </td>
                   <td>{odgovorNaJavnoPitanje.prikaz ? 'true' : 'false'}</td>
-                  <td>
-                    {odgovorNaJavnoPitanje.javnoPitanje ? (
-                      <Link to={`javno-pitanje/${odgovorNaJavnoPitanje.javnoPitanje.id}`}>{odgovorNaJavnoPitanje.javnoPitanje.id}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
                   <td>
                     {odgovorNaJavnoPitanje.dodatniinfoUser ? (
                       <Link to={`dodatni-info-user/${odgovorNaJavnoPitanje.dodatniinfoUser.id}`}>

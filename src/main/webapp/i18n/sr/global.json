@@ -24,6 +24,7 @@
         "ucesnici": "Ucesnici",
         "poruka": "Poruka",
         "chat": "Chat",
+        "grupacijaPitanja": "Grupacija Pitanja",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

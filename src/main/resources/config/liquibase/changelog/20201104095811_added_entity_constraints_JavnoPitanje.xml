@@ -8,17 +8,23 @@
     -->
     <changeSet id="20201104095811-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="odgovor_na_javno_pitanje_id"
+                                 baseTableName="javno_pitanje"
+                                 constraintName="fk_javno_pitanje_odgovor_na_javno_pitanje_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="odgovor_na_javno_pitanje"/>
+
         <addForeignKeyConstraint baseColumnNames="dodatniinfo_user_id"
                                  baseTableName="javno_pitanje"
                                  constraintName="fk_javno_pitanje_dodatniinfo_user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="dodatni_info_user"/>
 
-        <addForeignKeyConstraint baseColumnNames="artikl_id"
+        <addForeignKeyConstraint baseColumnNames="grupacijapitanja_id"
                                  baseTableName="javno_pitanje"
-                                 constraintName="fk_javno_pitanje_artikl_id"
+                                 constraintName="fk_javno_pitanje_grupacijapitanja_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="artikl"/>
+                                 referencedTableName="grupacija_pitanja"/>
 
     </changeSet>
 </databaseChangeLog>

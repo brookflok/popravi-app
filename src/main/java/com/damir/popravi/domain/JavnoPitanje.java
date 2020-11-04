@@ -1,6 +1,5 @@
 package com.damir.popravi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -35,17 +34,17 @@ public class JavnoPitanje implements Serializable {
     @Column(name = "prikaz")
     private Boolean prikaz;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private OdgovorNaJavnoPitanje odgovorNaJavnoPitanje;
+
     @ManyToOne
     @JsonIgnoreProperties(value = "javnoPitanjes", allowSetters = true)
     private DodatniInfoUser dodatniinfoUser;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "javnoPitanjes", allowSetters = true)
-    private Artikl artikl;
-
-    @OneToOne(mappedBy = "javnoPitanje")
-    @JsonIgnore
-    private OdgovorNaJavnoPitanje odgovorNaJavnoPitanje;
+    private GrupacijaPitanja grupacijapitanja;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -95,6 +94,19 @@ public class JavnoPitanje implements Serializable {
         this.prikaz = prikaz;
     }
 
+    public OdgovorNaJavnoPitanje getOdgovorNaJavnoPitanje() {
+        return odgovorNaJavnoPitanje;
+    }
+
+    public JavnoPitanje odgovorNaJavnoPitanje(OdgovorNaJavnoPitanje odgovorNaJavnoPitanje) {
+        this.odgovorNaJavnoPitanje = odgovorNaJavnoPitanje;
+        return this;
+    }
+
+    public void setOdgovorNaJavnoPitanje(OdgovorNaJavnoPitanje odgovorNaJavnoPitanje) {
+        this.odgovorNaJavnoPitanje = odgovorNaJavnoPitanje;
+    }
+
     public DodatniInfoUser getDodatniinfoUser() {
         return dodatniinfoUser;
     }
@@ -108,30 +120,17 @@ public class JavnoPitanje implements Serializable {
         this.dodatniinfoUser = dodatniInfoUser;
     }
 
-    public Artikl getArtikl() {
-        return artikl;
+    public GrupacijaPitanja getGrupacijapitanja() {
+        return grupacijapitanja;
     }
 
-    public JavnoPitanje artikl(Artikl artikl) {
-        this.artikl = artikl;
+    public JavnoPitanje grupacijapitanja(GrupacijaPitanja grupacijaPitanja) {
+        this.grupacijapitanja = grupacijaPitanja;
         return this;
     }
 
-    public void setArtikl(Artikl artikl) {
-        this.artikl = artikl;
-    }
-
-    public OdgovorNaJavnoPitanje getOdgovorNaJavnoPitanje() {
-        return odgovorNaJavnoPitanje;
-    }
-
-    public JavnoPitanje odgovorNaJavnoPitanje(OdgovorNaJavnoPitanje odgovorNaJavnoPitanje) {
-        this.odgovorNaJavnoPitanje = odgovorNaJavnoPitanje;
-        return this;
-    }
-
-    public void setOdgovorNaJavnoPitanje(OdgovorNaJavnoPitanje odgovorNaJavnoPitanje) {
-        this.odgovorNaJavnoPitanje = odgovorNaJavnoPitanje;
+    public void setGrupacijapitanja(GrupacijaPitanja grupacijaPitanja) {
+        this.grupacijapitanja = grupacijaPitanja;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

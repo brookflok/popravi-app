@@ -100,6 +100,9 @@ export const Artikl = (props: IArtiklProps) => {
                   <Translate contentKey="popraviApp.artikl.usluga">Usluga</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="popraviApp.artikl.grupacijaPitanja">Grupacija Pitanja</Translate>
+                </th>
+                <th>
                   <Translate contentKey="popraviApp.artikl.dodatniinfouser">Dodatniinfouser</Translate>
                 </th>
                 <th />
@@ -121,6 +124,13 @@ export const Artikl = (props: IArtiklProps) => {
                   <td>{artikl.lokacija ? <Link to={`lokacija/${artikl.lokacija.id}`}>{artikl.lokacija.id}</Link> : ''}</td>
                   <td>{artikl.potreba ? <Link to={`potreba/${artikl.potreba.id}`}>{artikl.potreba.id}</Link> : ''}</td>
                   <td>{artikl.usluga ? <Link to={`usluga/${artikl.usluga.id}`}>{artikl.usluga.id}</Link> : ''}</td>
+                  <td>
+                    {artikl.grupacijaPitanja ? (
+                      <Link to={`grupacija-pitanja/${artikl.grupacijaPitanja.id}`}>{artikl.grupacijaPitanja.id}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
                   <td>
                     {artikl.dodatniinfouser ? (
                       <Link to={`dodatni-info-user/${artikl.dodatniinfouser.id}`}>{artikl.dodatniinfouser.id}</Link>

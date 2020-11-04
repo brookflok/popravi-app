@@ -25,10 +25,13 @@
             <column name="prikaz" type="boolean">
                 <constraints nullable="true" />
             </column>
+            <column name="odgovor_na_javno_pitanje_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_javno_pitanje_odgovor_na_javno_pitanje_id" />
+            </column>
             <column name="dodatniinfo_user_id" type="bigint">
                 <constraints nullable="true" />
             </column>
-            <column name="artikl_id" type="bigint">
+            <column name="grupacijapitanja_id" type="bigint">
                 <constraints nullable="true" />
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->

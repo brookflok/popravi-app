@@ -7,12 +7,12 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
-import { getEntities as getDodatniInfoUsers } from 'app/entities/dodatni-info-user/dodatni-info-user.reducer';
-import { IArtikl } from 'app/shared/model/artikl.model';
-import { getEntities as getArtikls } from 'app/entities/artikl/artikl.reducer';
 import { IOdgovorNaJavnoPitanje } from 'app/shared/model/odgovor-na-javno-pitanje.model';
 import { getEntities as getOdgovorNaJavnoPitanjes } from 'app/entities/odgovor-na-javno-pitanje/odgovor-na-javno-pitanje.reducer';
+import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
+import { getEntities as getDodatniInfoUsers } from 'app/entities/dodatni-info-user/dodatni-info-user.reducer';
+import { IGrupacijaPitanja } from 'app/shared/model/grupacija-pitanja.model';
+import { getEntities as getGrupacijaPitanjas } from 'app/entities/grupacija-pitanja/grupacija-pitanja.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './javno-pitanje.reducer';
 import { IJavnoPitanje } from 'app/shared/model/javno-pitanje.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -21,12 +21,12 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IJavnoPitanjeUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const JavnoPitanjeUpdate = (props: IJavnoPitanjeUpdateProps) => {
-  const [dodatniinfoUserId, setDodatniinfoUserId] = useState('0');
-  const [artiklId, setArtiklId] = useState('0');
   const [odgovorNaJavnoPitanjeId, setOdgovorNaJavnoPitanjeId] = useState('0');
+  const [dodatniinfoUserId, setDodatniinfoUserId] = useState('0');
+  const [grupacijapitanjaId, setGrupacijapitanjaId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { javnoPitanjeEntity, dodatniInfoUsers, artikls, odgovorNaJavnoPitanjes, loading, updating } = props;
+  const { javnoPitanjeEntity, odgovorNaJavnoPitanjes, dodatniInfoUsers, grupacijaPitanjas, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/javno-pitanje');
@@ -39,9 +39,9 @@ export const JavnoPitanjeUpdate = (props: IJavnoPitanjeUpdateProps) => {
       props.getEntity(props.match.params.id);
     }
 
-    props.getDodatniInfoUsers();
-    props.getArtikls();
     props.getOdgovorNaJavnoPitanjes();
+    props.getDodatniInfoUsers();
+    props.getGrupacijaPitanjas();
   }, []);
 
   useEffect(() => {
@@ -116,6 +116,21 @@ export const JavnoPitanjeUpdate = (props: IJavnoPitanjeUpdateProps) => {
                 </Label>
               </AvGroup>
               <AvGroup>
+                <Label for="javno-pitanje-odgovorNaJavnoPitanje">
+                  <Translate contentKey="popraviApp.javnoPitanje.odgovorNaJavnoPitanje">Odgovor Na Javno Pitanje</Translate>
+                </Label>
+                <AvInput id="javno-pitanje-odgovorNaJavnoPitanje" type="select" className="form-control" name="odgovorNaJavnoPitanje.id">
+                  <option value="" key="0" />
+                  {odgovorNaJavnoPitanjes
+                    ? odgovorNaJavnoPitanjes.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.id}
+                        </option>
+                      ))
+                    : null}
+                </AvInput>
+              </AvGroup>
+              <AvGroup>
                 <Label for="javno-pitanje-dodatniinfoUser">
                   <Translate contentKey="popraviApp.javnoPitanje.dodatniinfoUser">Dodatniinfo User</Translate>
                 </Label>
@@ -131,13 +146,13 @@ export const JavnoPitanjeUpdate = (props: IJavnoPitanjeUpdateProps) => {
                 </AvInput>
               </AvGroup>
               <AvGroup>
-                <Label for="javno-pitanje-artikl">
-                  <Translate contentKey="popraviApp.javnoPitanje.artikl">Artikl</Translate>
+                <Label for="javno-pitanje-grupacijapitanja">
+                  <Translate contentKey="popraviApp.javnoPitanje.grupacijapitanja">Grupacijapitanja</Translate>
                 </Label>
-                <AvInput id="javno-pitanje-artikl" type="select" className="form-control" name="artikl.id">
+                <AvInput id="javno-pitanje-grupacijapitanja" type="select" className="form-control" name="grupacijapitanja.id">
                   <option value="" key="0" />
-                  {artikls
-                    ? artikls.map(otherEntity => (
+                  {grupacijaPitanjas
+                    ? grupacijaPitanjas.map(otherEntity => (
                         <option value={otherEntity.id} key={otherEntity.id}>
                           {otherEntity.id}
                         </option>
@@ -167,9 +182,9 @@ export const JavnoPitanjeUpdate = (props: IJavnoPitanjeUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
-  dodatniInfoUsers: storeState.dodatniInfoUser.entities,
-  artikls: storeState.artikl.entities,
   odgovorNaJavnoPitanjes: storeState.odgovorNaJavnoPitanje.entities,
+  dodatniInfoUsers: storeState.dodatniInfoUser.entities,
+  grupacijaPitanjas: storeState.grupacijaPitanja.entities,
   javnoPitanjeEntity: storeState.javnoPitanje.entity,
   loading: storeState.javnoPitanje.loading,
   updating: storeState.javnoPitanje.updating,
@@ -177,9 +192,9 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  getDodatniInfoUsers,
-  getArtikls,
   getOdgovorNaJavnoPitanjes,
+  getDodatniInfoUsers,
+  getGrupacijaPitanjas,
   getEntity,
   updateEntity,
   createEntity,

@@ -1,0 +1,29 @@
+{
+  "name": "GrupacijaPitanja",
+  "fields": [
+    {
+      "fieldName": "datum",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "artikl",
+      "otherEntityRelationshipName": "grupacijaPitanja",
+      "relationshipName": "artikl",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20201104134348",
+  "entityTableName": "grupacija_pitanja",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

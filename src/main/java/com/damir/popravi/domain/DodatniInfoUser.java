@@ -1,7 +1,6 @@
 package com.damir.popravi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -58,13 +57,13 @@ public class DodatniInfoUser implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Artikl> artikls = new HashSet<>();
 
+    @OneToMany(mappedBy = "dodatniInfoUser")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Ucesnici> ucesnicis = new HashSet<>();
+
     @OneToOne(mappedBy = "dodatniInfoUser")
     @JsonIgnore
     private Poruka poruka;
-
-    @ManyToOne
-    @JsonIgnoreProperties(value = "dodatniInfoUsers", allowSetters = true)
-    private Ucesnici ucesnici;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -204,6 +203,31 @@ public class DodatniInfoUser implements Serializable {
         this.artikls = artikls;
     }
 
+    public Set<Ucesnici> getUcesnicis() {
+        return ucesnicis;
+    }
+
+    public DodatniInfoUser ucesnicis(Set<Ucesnici> ucesnicis) {
+        this.ucesnicis = ucesnicis;
+        return this;
+    }
+
+    public DodatniInfoUser addUcesnici(Ucesnici ucesnici) {
+        this.ucesnicis.add(ucesnici);
+        ucesnici.setDodatniInfoUser(this);
+        return this;
+    }
+
+    public DodatniInfoUser removeUcesnici(Ucesnici ucesnici) {
+        this.ucesnicis.remove(ucesnici);
+        ucesnici.setDodatniInfoUser(null);
+        return this;
+    }
+
+    public void setUcesnicis(Set<Ucesnici> ucesnicis) {
+        this.ucesnicis = ucesnicis;
+    }
+
     public Poruka getPoruka() {
         return poruka;
     }
@@ -215,19 +239,6 @@ public class DodatniInfoUser implements Serializable {
 
     public void setPoruka(Poruka poruka) {
         this.poruka = poruka;
-    }
-
-    public Ucesnici getUcesnici() {
-        return ucesnici;
-    }
-
-    public DodatniInfoUser ucesnici(Ucesnici ucesnici) {
-        this.ucesnici = ucesnici;
-        return this;
-    }
-
-    public void setUcesnici(Ucesnici ucesnici) {
-        this.ucesnici = ucesnici;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

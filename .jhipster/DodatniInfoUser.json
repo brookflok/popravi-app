@@ -54,18 +54,17 @@
       "relationshipName": "artikl"
     },
     {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "ucesnici",
+      "otherEntityRelationshipName": "dodatniInfoUser",
+      "relationshipName": "ucesnici"
+    },
+    {
       "relationshipType": "one-to-one",
       "otherEntityName": "poruka",
       "otherEntityRelationshipName": "dodatniInfoUser",
       "relationshipName": "poruka",
       "ownerSide": false
-    },
-    {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "ucesnici",
-      "otherEntityRelationshipName": "dodatniInfoUser",
-      "relationshipName": "ucesnici",
-      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20201104094911",
