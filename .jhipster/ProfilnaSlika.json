@@ -1,0 +1,33 @@
+{
+  "name": "ProfilnaSlika",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "created",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "dodatniInfoUser",
+      "otherEntityRelationshipName": "profilnaSlika",
+      "relationshipName": "dodatniInfoUser",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20201104095511",
+  "entityTableName": "profilna_slika",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

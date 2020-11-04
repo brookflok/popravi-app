@@ -1,0 +1,25 @@
+{
+  "popraviApp": {
+    "galerija": {
+      "home": {
+        "title": "Galerijas",
+        "createLabel": "Kreiraj novi Galerija",
+        "createOrEditLabel": "Kreirajte ili izmenite Galerija",
+        "search": "Potražite Galerija",
+        "notFound": "No Galerijas found"
+      },
+      "created": "Kreiran je novi Galerija pod nazivom {{ param }}",
+      "updated": "Galerija pod nazivom {{ param }} je ažuriran",
+      "deleted": "Galerija pod nazivom {{ param }} je obrisan",
+      "delete": {
+        "question": "Da li ste sigurni da želite da obrišete Galerija pod nazivom {{ id }}?"
+      },
+      "detail": {
+        "title": "Galerija"
+      },
+      "title": "Title",
+      "created": "Created",
+      "artikl": "Artikl"
+    }
+  }
+}
