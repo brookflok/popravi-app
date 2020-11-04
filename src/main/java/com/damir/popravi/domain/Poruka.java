@@ -28,8 +28,8 @@ public class Poruka implements Serializable {
     @Column(name = "text")
     private String text;
 
-    @Column(name = "date")
-    private Instant date;
+    @Column(name = "datum")
+    private Instant datum;
 
     @Column(name = "postoji")
     private Boolean postoji;
@@ -64,17 +64,17 @@ public class Poruka implements Serializable {
         this.text = text;
     }
 
-    public Instant getDate() {
-        return date;
+    public Instant getDatum() {
+        return datum;
     }
 
-    public Poruka date(Instant date) {
-        this.date = date;
+    public Poruka datum(Instant datum) {
+        this.datum = datum;
         return this;
     }
 
-    public void setDate(Instant date) {
-        this.date = date;
+    public void setDatum(Instant datum) {
+        this.datum = datum;
     }
 
     public Boolean isPostoji() {
@@ -139,7 +139,7 @@ public class Poruka implements Serializable {
         return "Poruka{" +
             "id=" + getId() +
             ", text='" + getText() + "'" +
-            ", date='" + getDate() + "'" +
+            ", datum='" + getDatum() + "'" +
             ", postoji='" + isPostoji() + "'" +
             "}";
     }

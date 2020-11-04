@@ -28,7 +28,7 @@ export const SlikaUpdate = (props: ISlikaUpdateProps) => {
 
   const { slikaEntity, mainSlikas, profilnaSlikas, galerijas, loading, updating } = props;
 
-  const { image, imageContentType } = slikaEntity;
+  const { slika, slikaContentType } = slikaEntity;
 
   const handleClose = () => {
     props.history.push('/slika');
@@ -108,34 +108,34 @@ export const SlikaUpdate = (props: ISlikaUpdateProps) => {
               </AvGroup>
               <AvGroup>
                 <AvGroup>
-                  <Label id="imageLabel" for="image">
-                    <Translate contentKey="popraviApp.slika.image">Image</Translate>
+                  <Label id="slikaLabel" for="slika">
+                    <Translate contentKey="popraviApp.slika.slika">Slika</Translate>
                   </Label>
                   <br />
-                  {image ? (
+                  {slika ? (
                     <div>
-                      {imageContentType ? (
-                        <a onClick={openFile(imageContentType, image)}>
-                          <img src={`data:${imageContentType};base64,${image}`} style={{ maxHeight: '100px' }} />
+                      {slikaContentType ? (
+                        <a onClick={openFile(slikaContentType, slika)}>
+                          <img src={`data:${slikaContentType};base64,${slika}`} style={{ maxHeight: '100px' }} />
                         </a>
                       ) : null}
                       <br />
                       <Row>
                         <Col md="11">
                           <span>
-                            {imageContentType}, {byteSize(image)}
+                            {slikaContentType}, {byteSize(slika)}
                           </span>
                         </Col>
                         <Col md="1">
-                          <Button color="danger" onClick={clearBlob('image')}>
+                          <Button color="danger" onClick={clearBlob('slika')}>
                             <FontAwesomeIcon icon="times-circle" />
                           </Button>
                         </Col>
                       </Row>
                     </div>
                   ) : null}
-                  <input id="file_image" type="file" onChange={onBlobChange(true, 'image')} accept="image/*" />
-                  <AvInput type="hidden" name="image" value={image} />
+                  <input id="file_slika" type="file" onChange={onBlobChange(true, 'slika')} accept="image/*" />
+                  <AvInput type="hidden" name="slika" value={slika} />
                 </AvGroup>
               </AvGroup>
               <AvGroup>

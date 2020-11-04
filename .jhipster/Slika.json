@@ -6,7 +6,7 @@
       "fieldType": "String"
     },
     {
-      "fieldName": "image",
+      "fieldName": "slika",
       "fieldType": "byte[]",
       "fieldTypeBlobContent": "image"
     },

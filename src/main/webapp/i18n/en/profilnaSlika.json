@@ -17,8 +17,8 @@
       "detail": {
         "title": "Profilna Slika"
       },
-      "title": "Title",
-      "created": "Created",
+      "ime": "Ime",
+      "datum": "Datum",
       "dodatniInfoUser": "Dodatni Info User"
     }
   }

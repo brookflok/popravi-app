@@ -29,11 +29,11 @@ public class Slika implements Serializable {
     private String ime;
 
     @Lob
-    @Column(name = "image")
-    private byte[] image;
+    @Column(name = "slika")
+    private byte[] slika;
 
-    @Column(name = "image_content_type")
-    private String imageContentType;
+    @Column(name = "slika_content_type")
+    private String slikaContentType;
 
     @Column(name = "uploaded")
     private Instant uploaded;
@@ -72,30 +72,30 @@ public class Slika implements Serializable {
         this.ime = ime;
     }
 
-    public byte[] getImage() {
-        return image;
+    public byte[] getSlika() {
+        return slika;
     }
 
-    public Slika image(byte[] image) {
-        this.image = image;
+    public Slika slika(byte[] slika) {
+        this.slika = slika;
         return this;
     }
 
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setSlika(byte[] slika) {
+        this.slika = slika;
     }
 
-    public String getImageContentType() {
-        return imageContentType;
+    public String getSlikaContentType() {
+        return slikaContentType;
     }
 
-    public Slika imageContentType(String imageContentType) {
-        this.imageContentType = imageContentType;
+    public Slika slikaContentType(String slikaContentType) {
+        this.slikaContentType = slikaContentType;
         return this;
     }
 
-    public void setImageContentType(String imageContentType) {
-        this.imageContentType = imageContentType;
+    public void setSlikaContentType(String slikaContentType) {
+        this.slikaContentType = slikaContentType;
     }
 
     public Instant getUploaded() {
@@ -173,8 +173,8 @@ public class Slika implements Serializable {
         return "Slika{" +
             "id=" + getId() +
             ", ime='" + getIme() + "'" +
-            ", image='" + getImage() + "'" +
-            ", imageContentType='" + getImageContentType() + "'" +
+            ", slika='" + getSlika() + "'" +
+            ", slikaContentType='" + getSlikaContentType() + "'" +
             ", uploaded='" + getUploaded() + "'" +
             "}";
     }

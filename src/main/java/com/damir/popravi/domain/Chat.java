@@ -26,8 +26,8 @@ public class Chat implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "date")
-    private Instant date;
+    @Column(name = "datum")
+    private Instant datum;
 
     @Column(name = "postoji")
     private Boolean postoji;
@@ -49,17 +49,17 @@ public class Chat implements Serializable {
         this.id = id;
     }
 
-    public Instant getDate() {
-        return date;
+    public Instant getDatum() {
+        return datum;
     }
 
-    public Chat date(Instant date) {
-        this.date = date;
+    public Chat datum(Instant datum) {
+        this.datum = datum;
         return this;
     }
 
-    public void setDate(Instant date) {
-        this.date = date;
+    public void setDatum(Instant datum) {
+        this.datum = datum;
     }
 
     public Boolean isPostoji() {
@@ -123,7 +123,7 @@ public class Chat implements Serializable {
     public String toString() {
         return "Chat{" +
             "id=" + getId() +
-            ", date='" + getDate() + "'" +
+            ", datum='" + getDatum() + "'" +
             ", postoji='" + isPostoji() + "'" +
             "}";
     }

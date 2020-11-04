@@ -5,7 +5,7 @@ import { IChat } from 'app/shared/model/chat.model';
 export interface IPoruka {
   id?: number;
   text?: string;
-  date?: string;
+  datum?: string;
   postoji?: boolean;
   dodatniInfoUser?: IDodatniInfoUser;
   chat?: IChat;

@@ -19,10 +19,10 @@
             <column name="ime" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="image" type="longblob">
+            <column name="slika" type="longblob">
                 <constraints nullable="true" />
             </column>
-            <column name="image_content_type" type="varchar(255)">
+            <column name="slika_content_type" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
             <column name="uploaded" type="datetime">
@@ -62,8 +62,8 @@
                   tableName="slika">
             <column name="id" type="numeric"/>
             <column name="ime" type="string"/>
-            <column name="image" type="blob"/>
-            <column name="image_content_type" type="string"/>
+            <column name="slika" type="blob"/>
+            <column name="slika_content_type" type="string"/>
             <column name="uploaded" type="datetime"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>

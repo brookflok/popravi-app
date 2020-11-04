@@ -42,8 +42,8 @@ public class PorukaResourceIT {
     private static final String DEFAULT_TEXT = "AAAAAAAAAA";
     private static final String UPDATED_TEXT = "BBBBBBBBBB";
 
-    private static final Instant DEFAULT_DATE = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_DATE = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant DEFAULT_DATUM = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DATUM = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     private static final Boolean DEFAULT_POSTOJI = false;
     private static final Boolean UPDATED_POSTOJI = true;
@@ -76,7 +76,7 @@ public class PorukaResourceIT {
     public static Poruka createEntity(EntityManager em) {
         Poruka poruka = new Poruka()
             .text(DEFAULT_TEXT)
-            .date(DEFAULT_DATE)
+            .datum(DEFAULT_DATUM)
             .postoji(DEFAULT_POSTOJI);
         return poruka;
     }
@@ -89,7 +89,7 @@ public class PorukaResourceIT {
     public static Poruka createUpdatedEntity(EntityManager em) {
         Poruka poruka = new Poruka()
             .text(UPDATED_TEXT)
-            .date(UPDATED_DATE)
+            .datum(UPDATED_DATUM)
             .postoji(UPDATED_POSTOJI);
         return poruka;
     }
@@ -114,7 +114,7 @@ public class PorukaResourceIT {
         assertThat(porukaList).hasSize(databaseSizeBeforeCreate + 1);
         Poruka testPoruka = porukaList.get(porukaList.size() - 1);
         assertThat(testPoruka.getText()).isEqualTo(DEFAULT_TEXT);
-        assertThat(testPoruka.getDate()).isEqualTo(DEFAULT_DATE);
+        assertThat(testPoruka.getDatum()).isEqualTo(DEFAULT_DATUM);
         assertThat(testPoruka.isPostoji()).isEqualTo(DEFAULT_POSTOJI);
 
         // Validate the Poruka in Elasticsearch
@@ -156,7 +156,7 @@ public class PorukaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(poruka.getId().intValue())))
             .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT)))
-            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())))
             .andExpect(jsonPath("$.[*].postoji").value(hasItem(DEFAULT_POSTOJI.booleanValue())));
     }
     
@@ -172,7 +172,7 @@ public class PorukaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(poruka.getId().intValue()))
             .andExpect(jsonPath("$.text").value(DEFAULT_TEXT))
-            .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
+            .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM.toString()))
             .andExpect(jsonPath("$.postoji").value(DEFAULT_POSTOJI.booleanValue()));
     }
     @Test
@@ -197,7 +197,7 @@ public class PorukaResourceIT {
         em.detach(updatedPoruka);
         updatedPoruka
             .text(UPDATED_TEXT)
-            .date(UPDATED_DATE)
+            .datum(UPDATED_DATUM)
             .postoji(UPDATED_POSTOJI);
 
         restPorukaMockMvc.perform(put("/api/porukas")
@@ -210,7 +210,7 @@ public class PorukaResourceIT {
         assertThat(porukaList).hasSize(databaseSizeBeforeUpdate);
         Poruka testPoruka = porukaList.get(porukaList.size() - 1);
         assertThat(testPoruka.getText()).isEqualTo(UPDATED_TEXT);
-        assertThat(testPoruka.getDate()).isEqualTo(UPDATED_DATE);
+        assertThat(testPoruka.getDatum()).isEqualTo(UPDATED_DATUM);
         assertThat(testPoruka.isPostoji()).isEqualTo(UPDATED_POSTOJI);
 
         // Validate the Poruka in Elasticsearch
@@ -272,7 +272,7 @@ public class PorukaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(poruka.getId().intValue())))
             .andExpect(jsonPath("$.[*].text").value(hasItem(DEFAULT_TEXT)))
-            .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())))
             .andExpect(jsonPath("$.[*].postoji").value(hasItem(DEFAULT_POSTOJI.booleanValue())));
     }
 }

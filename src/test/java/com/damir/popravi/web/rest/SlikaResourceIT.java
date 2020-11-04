@@ -43,10 +43,10 @@ public class SlikaResourceIT {
     private static final String DEFAULT_IME = "AAAAAAAAAA";
     private static final String UPDATED_IME = "BBBBBBBBBB";
 
-    private static final byte[] DEFAULT_IMAGE = TestUtil.createByteArray(1, "0");
-    private static final byte[] UPDATED_IMAGE = TestUtil.createByteArray(1, "1");
-    private static final String DEFAULT_IMAGE_CONTENT_TYPE = "image/jpg";
-    private static final String UPDATED_IMAGE_CONTENT_TYPE = "image/png";
+    private static final byte[] DEFAULT_SLIKA = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_SLIKA = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_SLIKA_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_SLIKA_CONTENT_TYPE = "image/png";
 
     private static final Instant DEFAULT_UPLOADED = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_UPLOADED = Instant.now().truncatedTo(ChronoUnit.MILLIS);
@@ -79,8 +79,8 @@ public class SlikaResourceIT {
     public static Slika createEntity(EntityManager em) {
         Slika slika = new Slika()
             .ime(DEFAULT_IME)
-            .image(DEFAULT_IMAGE)
-            .imageContentType(DEFAULT_IMAGE_CONTENT_TYPE)
+            .slika(DEFAULT_SLIKA)
+            .slikaContentType(DEFAULT_SLIKA_CONTENT_TYPE)
             .uploaded(DEFAULT_UPLOADED);
         return slika;
     }
@@ -93,8 +93,8 @@ public class SlikaResourceIT {
     public static Slika createUpdatedEntity(EntityManager em) {
         Slika slika = new Slika()
             .ime(UPDATED_IME)
-            .image(UPDATED_IMAGE)
-            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
+            .slika(UPDATED_SLIKA)
+            .slikaContentType(UPDATED_SLIKA_CONTENT_TYPE)
             .uploaded(UPDATED_UPLOADED);
         return slika;
     }
@@ -119,8 +119,8 @@ public class SlikaResourceIT {
         assertThat(slikaList).hasSize(databaseSizeBeforeCreate + 1);
         Slika testSlika = slikaList.get(slikaList.size() - 1);
         assertThat(testSlika.getIme()).isEqualTo(DEFAULT_IME);
-        assertThat(testSlika.getImage()).isEqualTo(DEFAULT_IMAGE);
-        assertThat(testSlika.getImageContentType()).isEqualTo(DEFAULT_IMAGE_CONTENT_TYPE);
+        assertThat(testSlika.getSlika()).isEqualTo(DEFAULT_SLIKA);
+        assertThat(testSlika.getSlikaContentType()).isEqualTo(DEFAULT_SLIKA_CONTENT_TYPE);
         assertThat(testSlika.getUploaded()).isEqualTo(DEFAULT_UPLOADED);
 
         // Validate the Slika in Elasticsearch
@@ -162,8 +162,8 @@ public class SlikaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(slika.getId().intValue())))
             .andExpect(jsonPath("$.[*].ime").value(hasItem(DEFAULT_IME)))
-            .andExpect(jsonPath("$.[*].imageContentType").value(hasItem(DEFAULT_IMAGE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))))
+            .andExpect(jsonPath("$.[*].slikaContentType").value(hasItem(DEFAULT_SLIKA_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].slika").value(hasItem(Base64Utils.encodeToString(DEFAULT_SLIKA))))
             .andExpect(jsonPath("$.[*].uploaded").value(hasItem(DEFAULT_UPLOADED.toString())));
     }
     
@@ -179,8 +179,8 @@ public class SlikaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(slika.getId().intValue()))
             .andExpect(jsonPath("$.ime").value(DEFAULT_IME))
-            .andExpect(jsonPath("$.imageContentType").value(DEFAULT_IMAGE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.image").value(Base64Utils.encodeToString(DEFAULT_IMAGE)))
+            .andExpect(jsonPath("$.slikaContentType").value(DEFAULT_SLIKA_CONTENT_TYPE))
+            .andExpect(jsonPath("$.slika").value(Base64Utils.encodeToString(DEFAULT_SLIKA)))
             .andExpect(jsonPath("$.uploaded").value(DEFAULT_UPLOADED.toString()));
     }
     @Test
@@ -205,8 +205,8 @@ public class SlikaResourceIT {
         em.detach(updatedSlika);
         updatedSlika
             .ime(UPDATED_IME)
-            .image(UPDATED_IMAGE)
-            .imageContentType(UPDATED_IMAGE_CONTENT_TYPE)
+            .slika(UPDATED_SLIKA)
+            .slikaContentType(UPDATED_SLIKA_CONTENT_TYPE)
             .uploaded(UPDATED_UPLOADED);
 
         restSlikaMockMvc.perform(put("/api/slikas")
@@ -219,8 +219,8 @@ public class SlikaResourceIT {
         assertThat(slikaList).hasSize(databaseSizeBeforeUpdate);
         Slika testSlika = slikaList.get(slikaList.size() - 1);
         assertThat(testSlika.getIme()).isEqualTo(UPDATED_IME);
-        assertThat(testSlika.getImage()).isEqualTo(UPDATED_IMAGE);
-        assertThat(testSlika.getImageContentType()).isEqualTo(UPDATED_IMAGE_CONTENT_TYPE);
+        assertThat(testSlika.getSlika()).isEqualTo(UPDATED_SLIKA);
+        assertThat(testSlika.getSlikaContentType()).isEqualTo(UPDATED_SLIKA_CONTENT_TYPE);
         assertThat(testSlika.getUploaded()).isEqualTo(UPDATED_UPLOADED);
 
         // Validate the Slika in Elasticsearch
@@ -282,8 +282,8 @@ public class SlikaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(slika.getId().intValue())))
             .andExpect(jsonPath("$.[*].ime").value(hasItem(DEFAULT_IME)))
-            .andExpect(jsonPath("$.[*].imageContentType").value(hasItem(DEFAULT_IMAGE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].image").value(hasItem(Base64Utils.encodeToString(DEFAULT_IMAGE))))
+            .andExpect(jsonPath("$.[*].slikaContentType").value(hasItem(DEFAULT_SLIKA_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].slika").value(hasItem(Base64Utils.encodeToString(DEFAULT_SLIKA))))
             .andExpect(jsonPath("$.[*].uploaded").value(hasItem(DEFAULT_UPLOADED.toString())));
     }
 }

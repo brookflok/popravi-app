@@ -26,17 +26,17 @@ export const MainSlikaDetail = (props: IMainSlikaDetailProps) => {
         </h2>
         <dl className="jh-entity-details">
           <dt>
-            <span id="title">
-              <Translate contentKey="popraviApp.mainSlika.title">Title</Translate>
+            <span id="ime">
+              <Translate contentKey="popraviApp.mainSlika.ime">Ime</Translate>
             </span>
           </dt>
-          <dd>{mainSlikaEntity.title}</dd>
+          <dd>{mainSlikaEntity.ime}</dd>
           <dt>
-            <span id="created">
-              <Translate contentKey="popraviApp.mainSlika.created">Created</Translate>
+            <span id="datum">
+              <Translate contentKey="popraviApp.mainSlika.datum">Datum</Translate>
             </span>
           </dt>
-          <dd>{mainSlikaEntity.created ? <TextFormat value={mainSlikaEntity.created} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
+          <dd>{mainSlikaEntity.datum ? <TextFormat value={mainSlikaEntity.datum} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
           <dt>
             <Translate contentKey="popraviApp.mainSlika.artikl">Artikl</Translate>
           </dt>

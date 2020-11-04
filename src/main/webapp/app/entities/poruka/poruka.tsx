@@ -79,7 +79,7 @@ export const Poruka = (props: IPorukaProps) => {
                   <Translate contentKey="popraviApp.poruka.text">Text</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.poruka.date">Date</Translate>
+                  <Translate contentKey="popraviApp.poruka.datum">Datum</Translate>
                 </th>
                 <th>
                   <Translate contentKey="popraviApp.poruka.postoji">Postoji</Translate>
@@ -102,7 +102,7 @@ export const Poruka = (props: IPorukaProps) => {
                     </Button>
                   </td>
                   <td>{poruka.text}</td>
-                  <td>{poruka.date ? <TextFormat type="date" value={poruka.date} format={APP_DATE_FORMAT} /> : null}</td>
+                  <td>{poruka.datum ? <TextFormat type="date" value={poruka.datum} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{poruka.postoji ? 'true' : 'false'}</td>
                   <td>
                     {poruka.dodatniInfoUser ? (

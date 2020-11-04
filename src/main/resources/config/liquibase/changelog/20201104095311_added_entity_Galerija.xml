@@ -16,10 +16,10 @@
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="title" type="varchar(255)">
+            <column name="ime" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="created" type="datetime">
+            <column name="datum" type="datetime">
                 <constraints nullable="true" />
             </column>
             <column name="artikl_id" type="bigint">
@@ -27,7 +27,7 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-        <dropDefaultValue tableName="galerija" columnName="created" columnDataType="datetime"/>
+        <dropDefaultValue tableName="galerija" columnName="datum" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20201104095311-1-relations" author="jhipster">
@@ -49,8 +49,8 @@
                   separator=";"
                   tableName="galerija">
             <column name="id" type="numeric"/>
-            <column name="title" type="string"/>
-            <column name="created" type="datetime"/>
+            <column name="ime" type="string"/>
+            <column name="datum" type="datetime"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

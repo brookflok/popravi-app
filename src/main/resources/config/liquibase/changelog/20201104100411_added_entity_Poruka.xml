@@ -19,7 +19,7 @@
             <column name="text" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="date" type="datetime">
+            <column name="datum" type="datetime">
                 <constraints nullable="true" />
             </column>
             <column name="postoji" type="boolean">
@@ -33,7 +33,7 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-        <dropDefaultValue tableName="poruka" columnName="date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="poruka" columnName="datum" columnDataType="datetime"/>
     </changeSet>
 
     <changeSet id="20201104100411-1-relations" author="jhipster">
@@ -56,7 +56,7 @@
                   tableName="poruka">
             <column name="id" type="numeric"/>
             <column name="text" type="string"/>
-            <column name="date" type="datetime"/>
+            <column name="datum" type="datetime"/>
             <column name="postoji" type="boolean"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>

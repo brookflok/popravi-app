@@ -17,8 +17,8 @@
       "detail": {
         "title": "Galerija"
       },
-      "title": "Title",
-      "created": "Created",
+      "ime": "Ime",
+      "datum": "Datum",
       "artikl": "Artikl"
     }
   }

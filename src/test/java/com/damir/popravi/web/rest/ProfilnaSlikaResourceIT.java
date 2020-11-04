@@ -39,11 +39,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WithMockUser
 public class ProfilnaSlikaResourceIT {
 
-    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-    private static final String UPDATED_TITLE = "BBBBBBBBBB";
+    private static final String DEFAULT_IME = "AAAAAAAAAA";
+    private static final String UPDATED_IME = "BBBBBBBBBB";
 
-    private static final Instant DEFAULT_CREATED = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_CREATED = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final Instant DEFAULT_DATUM = Instant.ofEpochMilli(0L);
+    private static final Instant UPDATED_DATUM = Instant.now().truncatedTo(ChronoUnit.MILLIS);
 
     @Autowired
     private ProfilnaSlikaRepository profilnaSlikaRepository;
@@ -72,8 +72,8 @@ public class ProfilnaSlikaResourceIT {
      */
     public static ProfilnaSlika createEntity(EntityManager em) {
         ProfilnaSlika profilnaSlika = new ProfilnaSlika()
-            .title(DEFAULT_TITLE)
-            .created(DEFAULT_CREATED);
+            .ime(DEFAULT_IME)
+            .datum(DEFAULT_DATUM);
         return profilnaSlika;
     }
     /**
@@ -84,8 +84,8 @@ public class ProfilnaSlikaResourceIT {
      */
     public static ProfilnaSlika createUpdatedEntity(EntityManager em) {
         ProfilnaSlika profilnaSlika = new ProfilnaSlika()
-            .title(UPDATED_TITLE)
-            .created(UPDATED_CREATED);
+            .ime(UPDATED_IME)
+            .datum(UPDATED_DATUM);
         return profilnaSlika;
     }
 
@@ -108,8 +108,8 @@ public class ProfilnaSlikaResourceIT {
         List<ProfilnaSlika> profilnaSlikaList = profilnaSlikaRepository.findAll();
         assertThat(profilnaSlikaList).hasSize(databaseSizeBeforeCreate + 1);
         ProfilnaSlika testProfilnaSlika = profilnaSlikaList.get(profilnaSlikaList.size() - 1);
-        assertThat(testProfilnaSlika.getTitle()).isEqualTo(DEFAULT_TITLE);
-        assertThat(testProfilnaSlika.getCreated()).isEqualTo(DEFAULT_CREATED);
+        assertThat(testProfilnaSlika.getIme()).isEqualTo(DEFAULT_IME);
+        assertThat(testProfilnaSlika.getDatum()).isEqualTo(DEFAULT_DATUM);
 
         // Validate the ProfilnaSlika in Elasticsearch
         verify(mockProfilnaSlikaSearchRepository, times(1)).save(testProfilnaSlika);
@@ -149,8 +149,8 @@ public class ProfilnaSlikaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(profilnaSlika.getId().intValue())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
-            .andExpect(jsonPath("$.[*].created").value(hasItem(DEFAULT_CREATED.toString())));
+            .andExpect(jsonPath("$.[*].ime").value(hasItem(DEFAULT_IME)))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
     
     @Test
@@ -164,8 +164,8 @@ public class ProfilnaSlikaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(profilnaSlika.getId().intValue()))
-            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
-            .andExpect(jsonPath("$.created").value(DEFAULT_CREATED.toString()));
+            .andExpect(jsonPath("$.ime").value(DEFAULT_IME))
+            .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM.toString()));
     }
     @Test
     @Transactional
@@ -188,8 +188,8 @@ public class ProfilnaSlikaResourceIT {
         // Disconnect from session so that the updates on updatedProfilnaSlika are not directly saved in db
         em.detach(updatedProfilnaSlika);
         updatedProfilnaSlika
-            .title(UPDATED_TITLE)
-            .created(UPDATED_CREATED);
+            .ime(UPDATED_IME)
+            .datum(UPDATED_DATUM);
 
         restProfilnaSlikaMockMvc.perform(put("/api/profilna-slikas")
             .contentType(MediaType.APPLICATION_JSON)
@@ -200,8 +200,8 @@ public class ProfilnaSlikaResourceIT {
         List<ProfilnaSlika> profilnaSlikaList = profilnaSlikaRepository.findAll();
         assertThat(profilnaSlikaList).hasSize(databaseSizeBeforeUpdate);
         ProfilnaSlika testProfilnaSlika = profilnaSlikaList.get(profilnaSlikaList.size() - 1);
-        assertThat(testProfilnaSlika.getTitle()).isEqualTo(UPDATED_TITLE);
-        assertThat(testProfilnaSlika.getCreated()).isEqualTo(UPDATED_CREATED);
+        assertThat(testProfilnaSlika.getIme()).isEqualTo(UPDATED_IME);
+        assertThat(testProfilnaSlika.getDatum()).isEqualTo(UPDATED_DATUM);
 
         // Validate the ProfilnaSlika in Elasticsearch
         verify(mockProfilnaSlikaSearchRepository, times(1)).save(testProfilnaSlika);
@@ -261,7 +261,7 @@ public class ProfilnaSlikaResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(profilnaSlika.getId().intValue())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
-            .andExpect(jsonPath("$.[*].created").value(hasItem(DEFAULT_CREATED.toString())));
+            .andExpect(jsonPath("$.[*].ime").value(hasItem(DEFAULT_IME)))
+            .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
 }

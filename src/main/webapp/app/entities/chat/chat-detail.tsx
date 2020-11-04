@@ -26,11 +26,11 @@ export const ChatDetail = (props: IChatDetailProps) => {
         </h2>
         <dl className="jh-entity-details">
           <dt>
-            <span id="date">
-              <Translate contentKey="popraviApp.chat.date">Date</Translate>
+            <span id="datum">
+              <Translate contentKey="popraviApp.chat.datum">Datum</Translate>
             </span>
           </dt>
-          <dd>{chatEntity.date ? <TextFormat value={chatEntity.date} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
+          <dd>{chatEntity.datum ? <TextFormat value={chatEntity.datum} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
           <dt>
             <span id="postoji">
               <Translate contentKey="popraviApp.chat.postoji">Postoji</Translate>

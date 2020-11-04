@@ -24,11 +24,11 @@ public class Galerija implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "title")
-    private String title;
+    @Column(name = "ime")
+    private String ime;
 
-    @Column(name = "created")
-    private Instant created;
+    @Column(name = "datum")
+    private Instant datum;
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -43,30 +43,30 @@ public class Galerija implements Serializable {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getIme() {
+        return ime;
     }
 
-    public Galerija title(String title) {
-        this.title = title;
+    public Galerija ime(String ime) {
+        this.ime = ime;
         return this;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setIme(String ime) {
+        this.ime = ime;
     }
 
-    public Instant getCreated() {
-        return created;
+    public Instant getDatum() {
+        return datum;
     }
 
-    public Galerija created(Instant created) {
-        this.created = created;
+    public Galerija datum(Instant datum) {
+        this.datum = datum;
         return this;
     }
 
-    public void setCreated(Instant created) {
-        this.created = created;
+    public void setDatum(Instant datum) {
+        this.datum = datum;
     }
 
     public Artikl getArtikl() {
@@ -104,8 +104,8 @@ public class Galerija implements Serializable {
     public String toString() {
         return "Galerija{" +
             "id=" + getId() +
-            ", title='" + getTitle() + "'" +
-            ", created='" + getCreated() + "'" +
+            ", ime='" + getIme() + "'" +
+            ", datum='" + getDatum() + "'" +
             "}";
     }
 }

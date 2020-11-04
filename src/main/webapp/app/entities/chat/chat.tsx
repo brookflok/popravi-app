@@ -76,7 +76,7 @@ export const Chat = (props: IChatProps) => {
                   <Translate contentKey="global.field.id">ID</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.chat.date">Date</Translate>
+                  <Translate contentKey="popraviApp.chat.datum">Datum</Translate>
                 </th>
                 <th>
                   <Translate contentKey="popraviApp.chat.postoji">Postoji</Translate>
@@ -95,7 +95,7 @@ export const Chat = (props: IChatProps) => {
                       {chat.id}
                     </Button>
                   </td>
-                  <td>{chat.date ? <TextFormat type="date" value={chat.date} format={APP_DATE_FORMAT} /> : null}</td>
+                  <td>{chat.datum ? <TextFormat type="date" value={chat.datum} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{chat.postoji ? 'true' : 'false'}</td>
                   <td>{chat.artikl ? <Link to={`artikl/${chat.artikl.id}`}>{chat.artikl.id}</Link> : ''}</td>
                   <td className="text-right">
