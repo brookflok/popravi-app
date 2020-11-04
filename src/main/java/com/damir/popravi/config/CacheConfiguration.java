@@ -47,6 +47,25 @@ public class CacheConfiguration {
             createCache(cm, com.damir.popravi.domain.User.class.getName());
             createCache(cm, com.damir.popravi.domain.Authority.class.getName());
             createCache(cm, com.damir.popravi.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.damir.popravi.domain.DodatniInfoUser.class.getName());
+            createCache(cm, com.damir.popravi.domain.DodatniInfoUser.class.getName() + ".artikls");
+            createCache(cm, com.damir.popravi.domain.Artikl.class.getName());
+            createCache(cm, com.damir.popravi.domain.Usluga.class.getName());
+            createCache(cm, com.damir.popravi.domain.Potreba.class.getName());
+            createCache(cm, com.damir.popravi.domain.Galerija.class.getName());
+            createCache(cm, com.damir.popravi.domain.MainSlika.class.getName());
+            createCache(cm, com.damir.popravi.domain.ProfilnaSlika.class.getName());
+            createCache(cm, com.damir.popravi.domain.Slika.class.getName());
+            createCache(cm, com.damir.popravi.domain.Informacije.class.getName());
+            createCache(cm, com.damir.popravi.domain.JavnoPitanje.class.getName());
+            createCache(cm, com.damir.popravi.domain.OdgovorNaJavnoPitanje.class.getName());
+            createCache(cm, com.damir.popravi.domain.Entiteti.class.getName());
+            createCache(cm, com.damir.popravi.domain.Kanton.class.getName());
+            createCache(cm, com.damir.popravi.domain.Lokacija.class.getName());
+            createCache(cm, com.damir.popravi.domain.Ucesnici.class.getName());
+            createCache(cm, com.damir.popravi.domain.Ucesnici.class.getName() + ".dodatniInfoUsers");
+            createCache(cm, com.damir.popravi.domain.Poruka.class.getName());
+            createCache(cm, com.damir.popravi.domain.Chat.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

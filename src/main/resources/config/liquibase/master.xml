@@ -14,7 +14,37 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104094911_added_entity_DodatniInfoUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095011_added_entity_Artikl.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095111_added_entity_Usluga.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095211_added_entity_Potreba.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095311_added_entity_Galerija.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095411_added_entity_MainSlika.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095511_added_entity_ProfilnaSlika.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095611_added_entity_Slika.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095711_added_entity_Informacije.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095811_added_entity_JavnoPitanje.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095911_added_entity_OdgovorNaJavnoPitanje.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104100011_added_entity_Entiteti.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104100111_added_entity_Kanton.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104100211_added_entity_Lokacija.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104100311_added_entity_Ucesnici.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104100411_added_entity_Poruka.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104100511_added_entity_Chat.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20201104094911_added_entity_constraints_DodatniInfoUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095011_added_entity_constraints_Artikl.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095311_added_entity_constraints_Galerija.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095411_added_entity_constraints_MainSlika.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095611_added_entity_constraints_Slika.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095711_added_entity_constraints_Informacije.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095811_added_entity_constraints_JavnoPitanje.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104095911_added_entity_constraints_OdgovorNaJavnoPitanje.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104100111_added_entity_constraints_Kanton.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104100211_added_entity_constraints_Lokacija.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104100311_added_entity_constraints_Ucesnici.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104100411_added_entity_constraints_Poruka.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201104100511_added_entity_constraints_Chat.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>
