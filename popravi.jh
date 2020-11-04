@@ -24,23 +24,23 @@ cijenaMax Double,
 }
 
 entity Galerija {
-    title String,
-    created Instant
+    ime String,
+    datum Instant
 }
 
 entity MainSlika {
-    title String,
-    created Instant
+    ime String,
+    datum Instant
 }
 
 entity ProfilnaSlika {
-    title String,
-    created Instant
+    ime String,
+    datum Instant
 }
 
 entity Slika {
     ime String,
-    image ImageBlob,
+    slika ImageBlob,
     uploaded Instant
     
 }
@@ -83,12 +83,12 @@ entity Ucesnici{
 
 entity Poruka{
  text String,
- date Instant,
+ datum Instant,
  postoji Boolean,
 }
 
 entity Chat{
-	date Instant,
+	datum Instant,
     postoji Boolean,
 }
 
