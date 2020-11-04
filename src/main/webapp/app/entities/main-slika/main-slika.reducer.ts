@@ -13,6 +13,7 @@ export const ACTION_TYPES = {
   CREATE_MAINSLIKA: 'mainSlika/CREATE_MAINSLIKA',
   UPDATE_MAINSLIKA: 'mainSlika/UPDATE_MAINSLIKA',
   DELETE_MAINSLIKA: 'mainSlika/DELETE_MAINSLIKA',
+  SET_BLOB: 'mainSlika/SET_BLOB',
   RESET: 'mainSlika/RESET',
 };
 
@@ -90,6 +91,17 @@ export default (state: MainSlikaState = initialState, action): MainSlikaState =>
         updateSuccess: true,
         entity: {},
       };
+    case ACTION_TYPES.SET_BLOB: {
+      const { name, data, contentType } = action.payload;
+      return {
+        ...state,
+        entity: {
+          ...state.entity,
+          [name]: data,
+          [name + 'ContentType']: contentType,
+        },
+      };
+    }
     case ACTION_TYPES.RESET:
       return {
         ...initialState,
@@ -148,6 +160,15 @@ export const deleteEntity: ICrudDeleteAction<IMainSlika> = id => async dispatch 
   dispatch(getEntities());
   return result;
 };
+
+export const setBlob = (name, data, contentType?) => ({
+  type: ACTION_TYPES.SET_BLOB,
+  payload: {
+    name,
+    data,
+    contentType,
+  },
+});
 
 export const reset = () => ({
   type: ACTION_TYPES.RESET,

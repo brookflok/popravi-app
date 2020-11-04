@@ -17,6 +17,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 import javax.persistence.EntityManager;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
@@ -41,6 +42,11 @@ public class ProfilnaSlikaResourceIT {
 
     private static final String DEFAULT_IME = "AAAAAAAAAA";
     private static final String UPDATED_IME = "BBBBBBBBBB";
+
+    private static final byte[] DEFAULT_SLIKA = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_SLIKA = TestUtil.createByteArray(1, "1");
+    private static final String DEFAULT_SLIKA_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_SLIKA_CONTENT_TYPE = "image/png";
 
     private static final Instant DEFAULT_DATUM = Instant.ofEpochMilli(0L);
     private static final Instant UPDATED_DATUM = Instant.now().truncatedTo(ChronoUnit.MILLIS);
@@ -73,6 +79,8 @@ public class ProfilnaSlikaResourceIT {
     public static ProfilnaSlika createEntity(EntityManager em) {
         ProfilnaSlika profilnaSlika = new ProfilnaSlika()
             .ime(DEFAULT_IME)
+            .slika(DEFAULT_SLIKA)
+            .slikaContentType(DEFAULT_SLIKA_CONTENT_TYPE)
             .datum(DEFAULT_DATUM);
         return profilnaSlika;
     }
@@ -85,6 +93,8 @@ public class ProfilnaSlikaResourceIT {
     public static ProfilnaSlika createUpdatedEntity(EntityManager em) {
         ProfilnaSlika profilnaSlika = new ProfilnaSlika()
             .ime(UPDATED_IME)
+            .slika(UPDATED_SLIKA)
+            .slikaContentType(UPDATED_SLIKA_CONTENT_TYPE)
             .datum(UPDATED_DATUM);
         return profilnaSlika;
     }
@@ -109,6 +119,8 @@ public class ProfilnaSlikaResourceIT {
         assertThat(profilnaSlikaList).hasSize(databaseSizeBeforeCreate + 1);
         ProfilnaSlika testProfilnaSlika = profilnaSlikaList.get(profilnaSlikaList.size() - 1);
         assertThat(testProfilnaSlika.getIme()).isEqualTo(DEFAULT_IME);
+        assertThat(testProfilnaSlika.getSlika()).isEqualTo(DEFAULT_SLIKA);
+        assertThat(testProfilnaSlika.getSlikaContentType()).isEqualTo(DEFAULT_SLIKA_CONTENT_TYPE);
         assertThat(testProfilnaSlika.getDatum()).isEqualTo(DEFAULT_DATUM);
 
         // Validate the ProfilnaSlika in Elasticsearch
@@ -150,6 +162,8 @@ public class ProfilnaSlikaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(profilnaSlika.getId().intValue())))
             .andExpect(jsonPath("$.[*].ime").value(hasItem(DEFAULT_IME)))
+            .andExpect(jsonPath("$.[*].slikaContentType").value(hasItem(DEFAULT_SLIKA_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].slika").value(hasItem(Base64Utils.encodeToString(DEFAULT_SLIKA))))
             .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
     
@@ -165,6 +179,8 @@ public class ProfilnaSlikaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(profilnaSlika.getId().intValue()))
             .andExpect(jsonPath("$.ime").value(DEFAULT_IME))
+            .andExpect(jsonPath("$.slikaContentType").value(DEFAULT_SLIKA_CONTENT_TYPE))
+            .andExpect(jsonPath("$.slika").value(Base64Utils.encodeToString(DEFAULT_SLIKA)))
             .andExpect(jsonPath("$.datum").value(DEFAULT_DATUM.toString()));
     }
     @Test
@@ -189,6 +205,8 @@ public class ProfilnaSlikaResourceIT {
         em.detach(updatedProfilnaSlika);
         updatedProfilnaSlika
             .ime(UPDATED_IME)
+            .slika(UPDATED_SLIKA)
+            .slikaContentType(UPDATED_SLIKA_CONTENT_TYPE)
             .datum(UPDATED_DATUM);
 
         restProfilnaSlikaMockMvc.perform(put("/api/profilna-slikas")
@@ -201,6 +219,8 @@ public class ProfilnaSlikaResourceIT {
         assertThat(profilnaSlikaList).hasSize(databaseSizeBeforeUpdate);
         ProfilnaSlika testProfilnaSlika = profilnaSlikaList.get(profilnaSlikaList.size() - 1);
         assertThat(testProfilnaSlika.getIme()).isEqualTo(UPDATED_IME);
+        assertThat(testProfilnaSlika.getSlika()).isEqualTo(UPDATED_SLIKA);
+        assertThat(testProfilnaSlika.getSlikaContentType()).isEqualTo(UPDATED_SLIKA_CONTENT_TYPE);
         assertThat(testProfilnaSlika.getDatum()).isEqualTo(UPDATED_DATUM);
 
         // Validate the ProfilnaSlika in Elasticsearch
@@ -262,6 +282,8 @@ public class ProfilnaSlikaResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(profilnaSlika.getId().intValue())))
             .andExpect(jsonPath("$.[*].ime").value(hasItem(DEFAULT_IME)))
+            .andExpect(jsonPath("$.[*].slikaContentType").value(hasItem(DEFAULT_SLIKA_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].slika").value(hasItem(Base64Utils.encodeToString(DEFAULT_SLIKA))))
             .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
 }

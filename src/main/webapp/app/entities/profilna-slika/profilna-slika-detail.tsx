@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col } from 'reactstrap';
-import { Translate, ICrudGetAction, TextFormat } from 'react-jhipster';
+import { Translate, ICrudGetAction, openFile, byteSize, TextFormat } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
@@ -31,6 +31,28 @@ export const ProfilnaSlikaDetail = (props: IProfilnaSlikaDetailProps) => {
             </span>
           </dt>
           <dd>{profilnaSlikaEntity.ime}</dd>
+          <dt>
+            <span id="slika">
+              <Translate contentKey="popraviApp.profilnaSlika.slika">Slika</Translate>
+            </span>
+          </dt>
+          <dd>
+            {profilnaSlikaEntity.slika ? (
+              <div>
+                {profilnaSlikaEntity.slikaContentType ? (
+                  <a onClick={openFile(profilnaSlikaEntity.slikaContentType, profilnaSlikaEntity.slika)}>
+                    <img
+                      src={`data:${profilnaSlikaEntity.slikaContentType};base64,${profilnaSlikaEntity.slika}`}
+                      style={{ maxHeight: '30px' }}
+                    />
+                  </a>
+                ) : null}
+                <span>
+                  {profilnaSlikaEntity.slikaContentType}, {byteSize(profilnaSlikaEntity.slika)}
+                </span>
+              </div>
+            ) : null}
+          </dd>
           <dt>
             <span id="datum">
               <Translate contentKey="popraviApp.profilnaSlika.datum">Datum</Translate>

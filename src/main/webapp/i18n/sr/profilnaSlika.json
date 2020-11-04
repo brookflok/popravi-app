@@ -18,6 +18,7 @@
         "title": "Profilna Slika"
       },
       "ime": "Ime",
+      "slika": "Slika",
       "datum": "Datum",
       "dodatniInfoUser": "Dodatni Info User"
     }

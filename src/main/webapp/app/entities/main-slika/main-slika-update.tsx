@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col, Label } from 'reactstrap';
 import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
-import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
+import { Translate, translate, ICrudGetAction, ICrudGetAllAction, setFileData, openFile, byteSize, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
 import { IArtikl } from 'app/shared/model/artikl.model';
 import { getEntities as getArtikls } from 'app/entities/artikl/artikl.reducer';
-import { getEntity, updateEntity, createEntity, reset } from './main-slika.reducer';
+import { getEntity, updateEntity, createEntity, setBlob, reset } from './main-slika.reducer';
 import { IMainSlika } from 'app/shared/model/main-slika.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
@@ -21,6 +21,8 @@ export const MainSlikaUpdate = (props: IMainSlikaUpdateProps) => {
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
   const { mainSlikaEntity, artikls, loading, updating } = props;
+
+  const { slika, slikaContentType } = mainSlikaEntity;
 
   const handleClose = () => {
     props.history.push('/main-slika');
@@ -35,6 +37,14 @@ export const MainSlikaUpdate = (props: IMainSlikaUpdateProps) => {
 
     props.getArtikls();
   }, []);
+
+  const onBlobChange = (isAnImage, name) => event => {
+    setFileData(event, (contentType, data) => props.setBlob(name, data, contentType), isAnImage);
+  };
+
+  const clearBlob = name => () => {
+    props.setBlob(name, undefined, undefined);
+  };
 
   useEffect(() => {
     if (props.updateSuccess) {
@@ -87,6 +97,38 @@ export const MainSlikaUpdate = (props: IMainSlikaUpdateProps) => {
                   <Translate contentKey="popraviApp.mainSlika.ime">Ime</Translate>
                 </Label>
                 <AvField id="main-slika-ime" type="text" name="ime" />
+              </AvGroup>
+              <AvGroup>
+                <AvGroup>
+                  <Label id="slikaLabel" for="slika">
+                    <Translate contentKey="popraviApp.mainSlika.slika">Slika</Translate>
+                  </Label>
+                  <br />
+                  {slika ? (
+                    <div>
+                      {slikaContentType ? (
+                        <a onClick={openFile(slikaContentType, slika)}>
+                          <img src={`data:${slikaContentType};base64,${slika}`} style={{ maxHeight: '100px' }} />
+                        </a>
+                      ) : null}
+                      <br />
+                      <Row>
+                        <Col md="11">
+                          <span>
+                            {slikaContentType}, {byteSize(slika)}
+                          </span>
+                        </Col>
+                        <Col md="1">
+                          <Button color="danger" onClick={clearBlob('slika')}>
+                            <FontAwesomeIcon icon="times-circle" />
+                          </Button>
+                        </Col>
+                      </Row>
+                    </div>
+                  ) : null}
+                  <input id="file_slika" type="file" onChange={onBlobChange(true, 'slika')} accept="image/*" />
+                  <AvInput type="hidden" name="slika" value={slika} />
+                </AvGroup>
               </AvGroup>
               <AvGroup>
                 <Label id="datumLabel" for="main-slika-datum">
@@ -149,6 +191,7 @@ const mapDispatchToProps = {
   getArtikls,
   getEntity,
   updateEntity,
+  setBlob,
   createEntity,
   reset,
 };

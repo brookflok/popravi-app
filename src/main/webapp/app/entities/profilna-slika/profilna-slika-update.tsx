@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Button, Row, Col, Label } from 'reactstrap';
 import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
-import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
+import { Translate, translate, ICrudGetAction, ICrudGetAllAction, setFileData, openFile, byteSize, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
 import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
 import { getEntities as getDodatniInfoUsers } from 'app/entities/dodatni-info-user/dodatni-info-user.reducer';
-import { getEntity, updateEntity, createEntity, reset } from './profilna-slika.reducer';
+import { getEntity, updateEntity, createEntity, setBlob, reset } from './profilna-slika.reducer';
 import { IProfilnaSlika } from 'app/shared/model/profilna-slika.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
@@ -21,6 +21,8 @@ export const ProfilnaSlikaUpdate = (props: IProfilnaSlikaUpdateProps) => {
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
   const { profilnaSlikaEntity, dodatniInfoUsers, loading, updating } = props;
+
+  const { slika, slikaContentType } = profilnaSlikaEntity;
 
   const handleClose = () => {
     props.history.push('/profilna-slika');
@@ -35,6 +37,14 @@ export const ProfilnaSlikaUpdate = (props: IProfilnaSlikaUpdateProps) => {
 
     props.getDodatniInfoUsers();
   }, []);
+
+  const onBlobChange = (isAnImage, name) => event => {
+    setFileData(event, (contentType, data) => props.setBlob(name, data, contentType), isAnImage);
+  };
+
+  const clearBlob = name => () => {
+    props.setBlob(name, undefined, undefined);
+  };
 
   useEffect(() => {
     if (props.updateSuccess) {
@@ -89,6 +99,38 @@ export const ProfilnaSlikaUpdate = (props: IProfilnaSlikaUpdateProps) => {
                 <AvField id="profilna-slika-ime" type="text" name="ime" />
               </AvGroup>
               <AvGroup>
+                <AvGroup>
+                  <Label id="slikaLabel" for="slika">
+                    <Translate contentKey="popraviApp.profilnaSlika.slika">Slika</Translate>
+                  </Label>
+                  <br />
+                  {slika ? (
+                    <div>
+                      {slikaContentType ? (
+                        <a onClick={openFile(slikaContentType, slika)}>
+                          <img src={`data:${slikaContentType};base64,${slika}`} style={{ maxHeight: '100px' }} />
+                        </a>
+                      ) : null}
+                      <br />
+                      <Row>
+                        <Col md="11">
+                          <span>
+                            {slikaContentType}, {byteSize(slika)}
+                          </span>
+                        </Col>
+                        <Col md="1">
+                          <Button color="danger" onClick={clearBlob('slika')}>
+                            <FontAwesomeIcon icon="times-circle" />
+                          </Button>
+                        </Col>
+                      </Row>
+                    </div>
+                  ) : null}
+                  <input id="file_slika" type="file" onChange={onBlobChange(true, 'slika')} accept="image/*" />
+                  <AvInput type="hidden" name="slika" value={slika} />
+                </AvGroup>
+              </AvGroup>
+              <AvGroup>
                 <Label id="datumLabel" for="profilna-slika-datum">
                   <Translate contentKey="popraviApp.profilnaSlika.datum">Datum</Translate>
                 </Label>
@@ -134,6 +176,7 @@ const mapDispatchToProps = {
   getDodatniInfoUsers,
   getEntity,
   updateEntity,
+  setBlob,
   createEntity,
   reset,
 };

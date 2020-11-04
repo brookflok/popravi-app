@@ -27,6 +27,13 @@ public class MainSlika implements Serializable {
     @Column(name = "ime")
     private String ime;
 
+    @Lob
+    @Column(name = "slika")
+    private byte[] slika;
+
+    @Column(name = "slika_content_type")
+    private String slikaContentType;
+
     @Column(name = "datum")
     private Instant datum;
 
@@ -54,6 +61,32 @@ public class MainSlika implements Serializable {
 
     public void setIme(String ime) {
         this.ime = ime;
+    }
+
+    public byte[] getSlika() {
+        return slika;
+    }
+
+    public MainSlika slika(byte[] slika) {
+        this.slika = slika;
+        return this;
+    }
+
+    public void setSlika(byte[] slika) {
+        this.slika = slika;
+    }
+
+    public String getSlikaContentType() {
+        return slikaContentType;
+    }
+
+    public MainSlika slikaContentType(String slikaContentType) {
+        this.slikaContentType = slikaContentType;
+        return this;
+    }
+
+    public void setSlikaContentType(String slikaContentType) {
+        this.slikaContentType = slikaContentType;
     }
 
     public Instant getDatum() {
@@ -105,6 +138,8 @@ public class MainSlika implements Serializable {
         return "MainSlika{" +
             "id=" + getId() +
             ", ime='" + getIme() + "'" +
+            ", slika='" + getSlika() + "'" +
+            ", slikaContentType='" + getSlikaContentType() + "'" +
             ", datum='" + getDatum() + "'" +
             "}";
     }

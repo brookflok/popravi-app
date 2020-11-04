@@ -7,10 +7,6 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, setFileData, o
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { IMainSlika } from 'app/shared/model/main-slika.model';
-import { getEntities as getMainSlikas } from 'app/entities/main-slika/main-slika.reducer';
-import { IProfilnaSlika } from 'app/shared/model/profilna-slika.model';
-import { getEntities as getProfilnaSlikas } from 'app/entities/profilna-slika/profilna-slika.reducer';
 import { IGalerija } from 'app/shared/model/galerija.model';
 import { getEntities as getGalerijas } from 'app/entities/galerija/galerija.reducer';
 import { getEntity, updateEntity, createEntity, setBlob, reset } from './slika.reducer';
@@ -21,12 +17,10 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface ISlikaUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const SlikaUpdate = (props: ISlikaUpdateProps) => {
-  const [mainslikaId, setMainslikaId] = useState('0');
-  const [mainslikaId, setMainslikaId] = useState('0');
   const [galerijaId, setGalerijaId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { slikaEntity, mainSlikas, profilnaSlikas, galerijas, loading, updating } = props;
+  const { slikaEntity, galerijas, loading, updating } = props;
 
   const { slika, slikaContentType } = slikaEntity;
 
@@ -41,8 +35,6 @@ export const SlikaUpdate = (props: ISlikaUpdateProps) => {
       props.getEntity(props.match.params.id);
     }
 
-    props.getMainSlikas();
-    props.getProfilnaSlikas();
     props.getGalerijas();
   }, []);
 
@@ -152,36 +144,6 @@ export const SlikaUpdate = (props: ISlikaUpdateProps) => {
                 />
               </AvGroup>
               <AvGroup>
-                <Label for="slika-mainslika">
-                  <Translate contentKey="popraviApp.slika.mainslika">Mainslika</Translate>
-                </Label>
-                <AvInput id="slika-mainslika" type="select" className="form-control" name="mainslika.id">
-                  <option value="" key="0" />
-                  {mainSlikas
-                    ? mainSlikas.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.ime}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
-                <Label for="slika-mainslika">
-                  <Translate contentKey="popraviApp.slika.mainslika">Mainslika</Translate>
-                </Label>
-                <AvInput id="slika-mainslika" type="select" className="form-control" name="mainslika.id">
-                  <option value="" key="0" />
-                  {profilnaSlikas
-                    ? profilnaSlikas.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.ime}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
-              <AvGroup>
                 <Label for="slika-galerija">
                   <Translate contentKey="popraviApp.slika.galerija">Galerija</Translate>
                 </Label>
@@ -218,8 +180,6 @@ export const SlikaUpdate = (props: ISlikaUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
-  mainSlikas: storeState.mainSlika.entities,
-  profilnaSlikas: storeState.profilnaSlika.entities,
   galerijas: storeState.galerija.entities,
   slikaEntity: storeState.slika.entity,
   loading: storeState.slika.loading,
@@ -228,8 +188,6 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  getMainSlikas,
-  getProfilnaSlikas,
   getGalerijas,
   getEntity,
   updateEntity,
