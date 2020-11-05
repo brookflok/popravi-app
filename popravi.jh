@@ -94,15 +94,17 @@ entity Chat{
     postoji Boolean,
 }
 
+entity GrupacijaPoruka{
+datum Instant
+}
+
 entity GrupacijaPitanja{
 	datum Instant
-
 }
 
 relationship ManyToOne {
 	Kanton{entitet} to Entiteti,
     Lokacija{kanton} to Kanton,
-    Poruka{chat} to Chat,
     Chat{artikl} to Artikl,
     
 }
@@ -117,27 +119,33 @@ relationship OneToOne {
 relationship ManyToOne {
 	JavnoPitanje{dodatniinfoUser} to DodatniInfoUser,
     OdgovorNaJavnoPitanje{dodatniinfoUser} to DodatniInfoUser,
-    Slika{galerija(ime)} to Galerija,
-    JavnoPitanje{grupacijapitanja} to GrupacijaPitanja
+    Poruka{dodatniinfouser} to DodatniInfoUser
 }
 
 relationship OneToMany{
 	DodatniInfoUser{artikl} to Artikl{dodatniinfouser},
-	DodatniInfoUser{ucesnici} to Ucesnici
+    GrupacijaPitanja to JavnoPitanje
+    GrupacijaPoruka to Poruka
+    Galerija to Slika
 }
 
 relationship OneToOne{
 	Artikl{potreba} to Potreba,
     Artikl{usluga} to Usluga,
-    Galerija{artikl(ime)} to Artikl,
-    MainSlika{artikl(ime)} to Artikl,
+    Artikl to Galerija,
+    Artikl to MainSlika,
    	DodatniInfoUser to ProfilnaSlika, 
     DodatniInfoUser to User,
-    Informacije to Artikl,
+    Artikl to Informacije,
    	JavnoPitanje to OdgovorNaJavnoPitanje,
-    Ucesnici to Chat,
+    Chat to Ucesnici,
+    Chat to GrupacijaPoruka,
   	Artikl to GrupacijaPitanja,
-    Poruka to DodatniInfoUser
+    
+}
+
+relationship ManyToMany{
+	 Ucesnici{dodatniinfouser} to DodatniInfoUser
 }
 
 
