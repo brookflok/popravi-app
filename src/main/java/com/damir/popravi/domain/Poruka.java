@@ -34,13 +34,13 @@ public class Poruka implements Serializable {
     @Column(name = "postoji")
     private Boolean postoji;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private DodatniInfoUser dodatniInfoUser;
+    @ManyToOne
+    @JsonIgnoreProperties(value = "porukas", allowSetters = true)
+    private DodatniInfoUser dodatniinfouser;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "porukas", allowSetters = true)
-    private Chat chat;
+    private GrupacijaPoruka grupacijaPoruka;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -90,30 +90,30 @@ public class Poruka implements Serializable {
         this.postoji = postoji;
     }
 
-    public DodatniInfoUser getDodatniInfoUser() {
-        return dodatniInfoUser;
+    public DodatniInfoUser getDodatniinfouser() {
+        return dodatniinfouser;
     }
 
-    public Poruka dodatniInfoUser(DodatniInfoUser dodatniInfoUser) {
-        this.dodatniInfoUser = dodatniInfoUser;
+    public Poruka dodatniinfouser(DodatniInfoUser dodatniInfoUser) {
+        this.dodatniinfouser = dodatniInfoUser;
         return this;
     }
 
-    public void setDodatniInfoUser(DodatniInfoUser dodatniInfoUser) {
-        this.dodatniInfoUser = dodatniInfoUser;
+    public void setDodatniinfouser(DodatniInfoUser dodatniInfoUser) {
+        this.dodatniinfouser = dodatniInfoUser;
     }
 
-    public Chat getChat() {
-        return chat;
+    public GrupacijaPoruka getGrupacijaPoruka() {
+        return grupacijaPoruka;
     }
 
-    public Poruka chat(Chat chat) {
-        this.chat = chat;
+    public Poruka grupacijaPoruka(GrupacijaPoruka grupacijaPoruka) {
+        this.grupacijaPoruka = grupacijaPoruka;
         return this;
     }
 
-    public void setChat(Chat chat) {
-        this.chat = chat;
+    public void setGrupacijaPoruka(GrupacijaPoruka grupacijaPoruka) {
+        this.grupacijaPoruka = grupacijaPoruka;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

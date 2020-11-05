@@ -91,7 +91,7 @@ export const JavnoPitanje = (props: IJavnoPitanjeProps) => {
                   <Translate contentKey="popraviApp.javnoPitanje.dodatniinfoUser">Dodatniinfo User</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.javnoPitanje.grupacijapitanja">Grupacijapitanja</Translate>
+                  <Translate contentKey="popraviApp.javnoPitanje.grupacijaPitanja">Grupacija Pitanja</Translate>
                 </th>
                 <th />
               </tr>
@@ -124,8 +124,8 @@ export const JavnoPitanje = (props: IJavnoPitanjeProps) => {
                     )}
                   </td>
                   <td>
-                    {javnoPitanje.grupacijapitanja ? (
-                      <Link to={`grupacija-pitanja/${javnoPitanje.grupacijapitanja.id}`}>{javnoPitanje.grupacijapitanja.id}</Link>
+                    {javnoPitanje.grupacijaPitanja ? (
+                      <Link to={`grupacija-pitanja/${javnoPitanje.grupacijaPitanja.id}`}>{javnoPitanje.grupacijaPitanja.id}</Link>
                     ) : (
                       ''
                     )}

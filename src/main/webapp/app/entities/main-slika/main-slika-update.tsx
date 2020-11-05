@@ -143,21 +143,6 @@ export const MainSlikaUpdate = (props: IMainSlikaUpdateProps) => {
                   value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.mainSlikaEntity.datum)}
                 />
               </AvGroup>
-              <AvGroup>
-                <Label for="main-slika-artikl">
-                  <Translate contentKey="popraviApp.mainSlika.artikl">Artikl</Translate>
-                </Label>
-                <AvInput id="main-slika-artikl" type="select" className="form-control" name="artikl.id">
-                  <option value="" key="0" />
-                  {artikls
-                    ? artikls.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.ime}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
               <Button tag={Link} id="cancel-save" to="/main-slika" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

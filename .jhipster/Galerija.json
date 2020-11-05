@@ -12,12 +12,17 @@
   ],
   "relationships": [
     {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "slika",
+      "otherEntityRelationshipName": "galerija",
+      "relationshipName": "slika"
+    },
+    {
       "relationshipType": "one-to-one",
       "otherEntityName": "artikl",
       "otherEntityRelationshipName": "galerija",
       "relationshipName": "artikl",
-      "otherEntityField": "ime",
-      "ownerSide": true
+      "ownerSide": false
     }
   ],
   "changelogDate": "20201104095311",

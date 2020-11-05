@@ -115,7 +115,7 @@ export const Slika = (props: ISlikaProps) => {
                     ) : null}
                   </td>
                   <td>{slika.uploaded ? <TextFormat type="date" value={slika.uploaded} format={APP_DATE_FORMAT} /> : null}</td>
-                  <td>{slika.galerija ? <Link to={`galerija/${slika.galerija.id}`}>{slika.galerija.ime}</Link> : ''}</td>
+                  <td>{slika.galerija ? <Link to={`galerija/${slika.galerija.id}`}>{slika.galerija.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${slika.id}`} color="info" size="sm">

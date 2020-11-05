@@ -152,7 +152,7 @@ export const SlikaUpdate = (props: ISlikaUpdateProps) => {
                   {galerijas
                     ? galerijas.map(otherEntity => (
                         <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.ime}
+                          {otherEntity.id}
                         </option>
                       ))
                     : null}

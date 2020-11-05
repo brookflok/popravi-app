@@ -47,10 +47,6 @@ export const InformacijeDetail = (props: IInformacijeDetailProps) => {
             </span>
           </dt>
           <dd>{informacijeEntity.brojPregleda}</dd>
-          <dt>
-            <Translate contentKey="popraviApp.informacije.artikl">Artikl</Translate>
-          </dt>
-          <dd>{informacijeEntity.artikl ? informacijeEntity.artikl.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/informacije" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

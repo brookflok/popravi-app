@@ -19,8 +19,9 @@
       },
       "datum": "Datum",
       "postoji": "Postoji",
-      "artikl": "Artikl",
-      "ucesnici": "Ucesnici"
+      "ucesnici": "Ucesnici",
+      "grupacijaPoruka": "Grupacija Poruka",
+      "artikl": "Artikl"
     }
   }
 }

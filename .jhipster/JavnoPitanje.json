@@ -34,7 +34,7 @@
       "relationshipType": "many-to-one",
       "otherEntityName": "grupacijaPitanja",
       "otherEntityRelationshipName": "javnoPitanje",
-      "relationshipName": "grupacijapitanja",
+      "relationshipName": "grupacijaPitanja",
       "otherEntityField": "id"
     }
   ],

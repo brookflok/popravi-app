@@ -12,18 +12,27 @@
   ],
   "relationships": [
     {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "ucesnici",
+      "otherEntityRelationshipName": "chat",
+      "relationshipName": "ucesnici",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "grupacijaPoruka",
+      "otherEntityRelationshipName": "chat",
+      "relationshipName": "grupacijaPoruka",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "artikl",
       "otherEntityRelationshipName": "chat",
       "relationshipName": "artikl",
       "otherEntityField": "id"
-    },
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "ucesnici",
-      "otherEntityRelationshipName": "chat",
-      "relationshipName": "ucesnici",
-      "ownerSide": false
     }
   ],
   "changelogDate": "20201104100511",

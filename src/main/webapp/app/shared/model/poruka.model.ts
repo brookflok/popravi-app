@@ -1,14 +1,14 @@
 import { Moment } from 'moment';
 import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
-import { IChat } from 'app/shared/model/chat.model';
+import { IGrupacijaPoruka } from 'app/shared/model/grupacija-poruka.model';
 
 export interface IPoruka {
   id?: number;
   text?: string;
   datum?: string;
   postoji?: boolean;
-  dodatniInfoUser?: IDodatniInfoUser;
-  chat?: IChat;
+  dodatniinfouser?: IDodatniInfoUser;
+  grupacijaPoruka?: IGrupacijaPoruka;
 }
 
 export const defaultValue: Readonly<IPoruka> = {

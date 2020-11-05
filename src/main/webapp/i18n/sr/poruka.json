@@ -20,8 +20,8 @@
       "text": "Text",
       "datum": "Datum",
       "postoji": "Postoji",
-      "dodatniInfoUser": "Dodatni Info User",
-      "chat": "Chat"
+      "dodatniinfouser": "Dodatniinfouser",
+      "grupacijaPoruka": "Grupacija Poruka"
     }
   }
 }

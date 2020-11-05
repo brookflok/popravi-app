@@ -59,7 +59,7 @@ export const SlikaDetail = (props: ISlikaDetailProps) => {
           <dt>
             <Translate contentKey="popraviApp.slika.galerija">Galerija</Translate>
           </dt>
-          <dd>{slikaEntity.galerija ? slikaEntity.galerija.ime : ''}</dd>
+          <dd>{slikaEntity.galerija ? slikaEntity.galerija.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/slika" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

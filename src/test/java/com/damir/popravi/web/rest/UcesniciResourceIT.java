@@ -13,6 +13,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,6 +47,9 @@ public class UcesniciResourceIT {
 
     @Autowired
     private UcesniciRepository ucesniciRepository;
+
+    @Mock
+    private UcesniciRepository ucesniciRepositoryMock;
 
     /**
      * This repository is mocked in the com.damir.popravi.repository.search test package.
@@ -146,6 +152,26 @@ public class UcesniciResourceIT {
             .andExpect(jsonPath("$.[*].datum").value(hasItem(DEFAULT_DATUM.toString())));
     }
     
+    @SuppressWarnings({"unchecked"})
+    public void getAllUcesnicisWithEagerRelationshipsIsEnabled() throws Exception {
+        when(ucesniciRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restUcesniciMockMvc.perform(get("/api/ucesnicis?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(ucesniciRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public void getAllUcesnicisWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(ucesniciRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restUcesniciMockMvc.perform(get("/api/ucesnicis?eagerload=true"))
+            .andExpect(status().isOk());
+
+        verify(ucesniciRepositoryMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
     @Test
     @Transactional
     public void getUcesnici() throws Exception {

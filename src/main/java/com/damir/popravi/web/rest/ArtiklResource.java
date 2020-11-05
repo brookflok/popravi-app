@@ -92,18 +92,10 @@ public class ArtiklResource {
     /**
      * {@code GET  /artikls} : get all the artikls.
      *
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of artikls in body.
      */
     @GetMapping("/artikls")
-    public List<Artikl> getAllArtikls(@RequestParam(required = false) String filter) {
-        if ("informacije-is-null".equals(filter)) {
-            log.debug("REST request to get all Artikls where informacije is null");
-            return StreamSupport
-                .stream(artiklRepository.findAll().spliterator(), false)
-                .filter(artikl -> artikl.getInformacije() == null)
-                .collect(Collectors.toList());
-        }
+    public List<Artikl> getAllArtikls() {
         log.debug("REST request to get all Artikls");
         return artiklRepository.findAll();
     }

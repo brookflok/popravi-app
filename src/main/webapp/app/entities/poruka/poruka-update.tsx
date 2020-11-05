@@ -9,8 +9,8 @@ import { IRootState } from 'app/shared/reducers';
 
 import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
 import { getEntities as getDodatniInfoUsers } from 'app/entities/dodatni-info-user/dodatni-info-user.reducer';
-import { IChat } from 'app/shared/model/chat.model';
-import { getEntities as getChats } from 'app/entities/chat/chat.reducer';
+import { IGrupacijaPoruka } from 'app/shared/model/grupacija-poruka.model';
+import { getEntities as getGrupacijaPorukas } from 'app/entities/grupacija-poruka/grupacija-poruka.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './poruka.reducer';
 import { IPoruka } from 'app/shared/model/poruka.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -19,11 +19,11 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IPorukaUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const PorukaUpdate = (props: IPorukaUpdateProps) => {
-  const [dodatniInfoUserId, setDodatniInfoUserId] = useState('0');
-  const [chatId, setChatId] = useState('0');
+  const [dodatniinfouserId, setDodatniinfouserId] = useState('0');
+  const [grupacijaPorukaId, setGrupacijaPorukaId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { porukaEntity, dodatniInfoUsers, chats, loading, updating } = props;
+  const { porukaEntity, dodatniInfoUsers, grupacijaPorukas, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/poruka');
@@ -37,7 +37,7 @@ export const PorukaUpdate = (props: IPorukaUpdateProps) => {
     }
 
     props.getDodatniInfoUsers();
-    props.getChats();
+    props.getGrupacijaPorukas();
   }, []);
 
   useEffect(() => {
@@ -112,10 +112,10 @@ export const PorukaUpdate = (props: IPorukaUpdateProps) => {
                 </Label>
               </AvGroup>
               <AvGroup>
-                <Label for="poruka-dodatniInfoUser">
-                  <Translate contentKey="popraviApp.poruka.dodatniInfoUser">Dodatni Info User</Translate>
+                <Label for="poruka-dodatniinfouser">
+                  <Translate contentKey="popraviApp.poruka.dodatniinfouser">Dodatniinfouser</Translate>
                 </Label>
-                <AvInput id="poruka-dodatniInfoUser" type="select" className="form-control" name="dodatniInfoUser.id">
+                <AvInput id="poruka-dodatniinfouser" type="select" className="form-control" name="dodatniinfouser.id">
                   <option value="" key="0" />
                   {dodatniInfoUsers
                     ? dodatniInfoUsers.map(otherEntity => (
@@ -127,13 +127,13 @@ export const PorukaUpdate = (props: IPorukaUpdateProps) => {
                 </AvInput>
               </AvGroup>
               <AvGroup>
-                <Label for="poruka-chat">
-                  <Translate contentKey="popraviApp.poruka.chat">Chat</Translate>
+                <Label for="poruka-grupacijaPoruka">
+                  <Translate contentKey="popraviApp.poruka.grupacijaPoruka">Grupacija Poruka</Translate>
                 </Label>
-                <AvInput id="poruka-chat" type="select" className="form-control" name="chat.id">
+                <AvInput id="poruka-grupacijaPoruka" type="select" className="form-control" name="grupacijaPoruka.id">
                   <option value="" key="0" />
-                  {chats
-                    ? chats.map(otherEntity => (
+                  {grupacijaPorukas
+                    ? grupacijaPorukas.map(otherEntity => (
                         <option value={otherEntity.id} key={otherEntity.id}>
                           {otherEntity.id}
                         </option>
@@ -164,7 +164,7 @@ export const PorukaUpdate = (props: IPorukaUpdateProps) => {
 
 const mapStateToProps = (storeState: IRootState) => ({
   dodatniInfoUsers: storeState.dodatniInfoUser.entities,
-  chats: storeState.chat.entities,
+  grupacijaPorukas: storeState.grupacijaPoruka.entities,
   porukaEntity: storeState.poruka.entity,
   loading: storeState.poruka.loading,
   updating: storeState.poruka.updating,
@@ -173,7 +173,7 @@ const mapStateToProps = (storeState: IRootState) => ({
 
 const mapDispatchToProps = {
   getDodatniInfoUsers,
-  getChats,
+  getGrupacijaPorukas,
   getEntity,
   updateEntity,
   createEntity,

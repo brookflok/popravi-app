@@ -84,9 +84,6 @@ export const MainSlika = (props: IMainSlikaProps) => {
                 <th>
                   <Translate contentKey="popraviApp.mainSlika.datum">Datum</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="popraviApp.mainSlika.artikl">Artikl</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -115,7 +112,6 @@ export const MainSlika = (props: IMainSlikaProps) => {
                     ) : null}
                   </td>
                   <td>{mainSlika.datum ? <TextFormat type="date" value={mainSlika.datum} format={APP_DATE_FORMAT} /> : null}</td>
-                  <td>{mainSlika.artikl ? <Link to={`artikl/${mainSlika.artikl.id}`}>{mainSlika.artikl.ime}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${mainSlika.id}`} color="info" size="sm">

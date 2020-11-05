@@ -92,18 +92,10 @@ public class DodatniInfoUserResource {
     /**
      * {@code GET  /dodatni-info-users} : get all the dodatniInfoUsers.
      *
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of dodatniInfoUsers in body.
      */
     @GetMapping("/dodatni-info-users")
-    public List<DodatniInfoUser> getAllDodatniInfoUsers(@RequestParam(required = false) String filter) {
-        if ("poruka-is-null".equals(filter)) {
-            log.debug("REST request to get all DodatniInfoUsers where poruka is null");
-            return StreamSupport
-                .stream(dodatniInfoUserRepository.findAll().spliterator(), false)
-                .filter(dodatniInfoUser -> dodatniInfoUser.getPoruka() == null)
-                .collect(Collectors.toList());
-        }
+    public List<DodatniInfoUser> getAllDodatniInfoUsers() {
         log.debug("REST request to get all DodatniInfoUsers");
         return dodatniInfoUserRepository.findAll();
     }

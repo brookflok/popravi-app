@@ -54,16 +54,11 @@
       "relationshipName": "artikl"
     },
     {
-      "relationshipType": "one-to-many",
+      "relationshipType": "many-to-many",
       "otherEntityName": "ucesnici",
       "otherEntityRelationshipName": "dodatniInfoUser",
-      "relationshipName": "ucesnici"
-    },
-    {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "poruka",
-      "otherEntityRelationshipName": "dodatniInfoUser",
-      "relationshipName": "poruka",
+      "relationshipName": "ucesnici",
+      "otherEntityField": "id",
       "ownerSide": false
     }
   ],

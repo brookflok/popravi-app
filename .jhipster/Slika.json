@@ -21,7 +21,7 @@
       "otherEntityName": "galerija",
       "otherEntityRelationshipName": "slika",
       "relationshipName": "galerija",
-      "otherEntityField": "ime"
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20201104095611",

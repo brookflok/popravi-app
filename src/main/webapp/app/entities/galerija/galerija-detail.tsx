@@ -37,10 +37,6 @@ export const GalerijaDetail = (props: IGalerijaDetailProps) => {
             </span>
           </dt>
           <dd>{galerijaEntity.datum ? <TextFormat value={galerijaEntity.datum} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
-          <dt>
-            <Translate contentKey="popraviApp.galerija.artikl">Artikl</Translate>
-          </dt>
-          <dd>{galerijaEntity.artikl ? galerijaEntity.artikl.ime : ''}</dd>
         </dl>
         <Button tag={Link} to="/galerija" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

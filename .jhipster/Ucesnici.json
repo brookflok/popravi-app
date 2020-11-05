@@ -8,19 +8,19 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "chat",
+      "relationshipType": "many-to-many",
+      "otherEntityName": "dodatniInfoUser",
       "otherEntityRelationshipName": "ucesnici",
-      "relationshipName": "chat",
+      "relationshipName": "dodatniInfoUser",
       "otherEntityField": "id",
       "ownerSide": true
     },
     {
-      "relationshipType": "many-to-one",
-      "otherEntityName": "dodatniInfoUser",
+      "relationshipType": "one-to-one",
+      "otherEntityName": "chat",
       "otherEntityRelationshipName": "ucesnici",
-      "relationshipName": "dodatniInfoUser",
-      "otherEntityField": "id"
+      "relationshipName": "chat",
+      "ownerSide": false
     }
   ],
   "changelogDate": "20201104100311",

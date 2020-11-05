@@ -8,17 +8,17 @@
     -->
     <changeSet id="20201104100311-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="chat_id"
-                                 baseTableName="ucesnici"
-                                 constraintName="fk_ucesnici_chat_id"
+        <addForeignKeyConstraint baseColumnNames="ucesnici_id"
+                                 baseTableName="ucesnici_dodatni_info_user"
+                                 constraintName="fk_ucesnici_dodatni_info_user_ucesnici_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="chat"/>
+                                 referencedTableName="ucesnici"/>
 
         <addForeignKeyConstraint baseColumnNames="dodatni_info_user_id"
-                                 baseTableName="ucesnici"
-                                 constraintName="fk_ucesnici_dodatni_info_user_id"
+                                 baseTableName="ucesnici_dodatni_info_user"
+                                 constraintName="fk_ucesnici_dodatni_info_user_dodatni_info_user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="dodatni_info_user"/>
-
+        
     </changeSet>
 </databaseChangeLog>

@@ -19,12 +19,6 @@
             <column name="datum" type="datetime">
                 <constraints nullable="true" />
             </column>
-            <column name="chat_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_ucesnici_chat_id" />
-            </column>
-            <column name="dodatni_info_user_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="ucesnici" columnName="datum" columnDataType="datetime"/>
@@ -32,6 +26,17 @@
 
     <changeSet id="20201104100311-1-relations" author="jhipster">
 
+        <createTable tableName="ucesnici_dodatni_info_user">
+            <column name="dodatni_info_user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ucesnici_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="ucesnici_id, dodatni_info_user_id" tableName="ucesnici_dodatni_info_user"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
 

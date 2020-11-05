@@ -23,7 +23,7 @@ export interface IJavnoPitanjeUpdateProps extends StateProps, DispatchProps, Rou
 export const JavnoPitanjeUpdate = (props: IJavnoPitanjeUpdateProps) => {
   const [odgovorNaJavnoPitanjeId, setOdgovorNaJavnoPitanjeId] = useState('0');
   const [dodatniinfoUserId, setDodatniinfoUserId] = useState('0');
-  const [grupacijapitanjaId, setGrupacijapitanjaId] = useState('0');
+  const [grupacijaPitanjaId, setGrupacijaPitanjaId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
   const { javnoPitanjeEntity, odgovorNaJavnoPitanjes, dodatniInfoUsers, grupacijaPitanjas, loading, updating } = props;
@@ -146,10 +146,10 @@ export const JavnoPitanjeUpdate = (props: IJavnoPitanjeUpdateProps) => {
                 </AvInput>
               </AvGroup>
               <AvGroup>
-                <Label for="javno-pitanje-grupacijapitanja">
-                  <Translate contentKey="popraviApp.javnoPitanje.grupacijapitanja">Grupacijapitanja</Translate>
+                <Label for="javno-pitanje-grupacijaPitanja">
+                  <Translate contentKey="popraviApp.javnoPitanje.grupacijaPitanja">Grupacija Pitanja</Translate>
                 </Label>
-                <AvInput id="javno-pitanje-grupacijapitanja" type="select" className="form-control" name="grupacijapitanja.id">
+                <AvInput id="javno-pitanje-grupacijaPitanja" type="select" className="form-control" name="grupacijaPitanja.id">
                   <option value="" key="0" />
                   {grupacijaPitanjas
                     ? grupacijaPitanjas.map(otherEntity => (

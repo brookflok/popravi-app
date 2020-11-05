@@ -25,9 +25,6 @@
             <column name="broj_pregleda" type="integer">
                 <constraints nullable="true" />
             </column>
-            <column name="artikl_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_informacije_artikl_id" />
-            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
         <dropDefaultValue tableName="informacije" columnName="datum_objave" columnDataType="datetime"/>

@@ -1,5 +1,6 @@
 package com.damir.popravi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -33,8 +34,8 @@ public class Informacije implements Serializable {
     @Column(name = "broj_pregleda")
     private Integer brojPregleda;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @OneToOne(mappedBy = "informacije")
+    @JsonIgnore
     private Artikl artikl;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
