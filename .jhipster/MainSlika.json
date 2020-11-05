@@ -21,8 +21,7 @@
       "otherEntityName": "artikl",
       "otherEntityRelationshipName": "mainSlika",
       "relationshipName": "artikl",
-      "otherEntityField": "ime",
-      "ownerSide": true
+      "ownerSide": false
     }
   ],
   "changelogDate": "20201104095411",

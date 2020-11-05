@@ -1,5 +1,6 @@
 package com.damir.popravi.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,6 +9,8 @@ import javax.persistence.*;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Galerija.
@@ -30,8 +33,12 @@ public class Galerija implements Serializable {
     @Column(name = "datum")
     private Instant datum;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @OneToMany(mappedBy = "galerija")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<Slika> slikas = new HashSet<>();
+
+    @OneToOne(mappedBy = "galerija")
+    @JsonIgnore
     private Artikl artikl;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -67,6 +74,31 @@ public class Galerija implements Serializable {
 
     public void setDatum(Instant datum) {
         this.datum = datum;
+    }
+
+    public Set<Slika> getSlikas() {
+        return slikas;
+    }
+
+    public Galerija slikas(Set<Slika> slikas) {
+        this.slikas = slikas;
+        return this;
+    }
+
+    public Galerija addSlika(Slika slika) {
+        this.slikas.add(slika);
+        slika.setGalerija(this);
+        return this;
+    }
+
+    public Galerija removeSlika(Slika slika) {
+        this.slikas.remove(slika);
+        slika.setGalerija(null);
+        return this;
+    }
+
+    public void setSlikas(Set<Slika> slikas) {
+        this.slikas = slikas;
     }
 
     public Artikl getArtikl() {

@@ -85,10 +85,10 @@ export const Poruka = (props: IPorukaProps) => {
                   <Translate contentKey="popraviApp.poruka.postoji">Postoji</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.poruka.dodatniInfoUser">Dodatni Info User</Translate>
+                  <Translate contentKey="popraviApp.poruka.dodatniinfouser">Dodatniinfouser</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.poruka.chat">Chat</Translate>
+                  <Translate contentKey="popraviApp.poruka.grupacijaPoruka">Grupacija Poruka</Translate>
                 </th>
                 <th />
               </tr>
@@ -105,13 +105,19 @@ export const Poruka = (props: IPorukaProps) => {
                   <td>{poruka.datum ? <TextFormat type="date" value={poruka.datum} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{poruka.postoji ? 'true' : 'false'}</td>
                   <td>
-                    {poruka.dodatniInfoUser ? (
-                      <Link to={`dodatni-info-user/${poruka.dodatniInfoUser.id}`}>{poruka.dodatniInfoUser.id}</Link>
+                    {poruka.dodatniinfouser ? (
+                      <Link to={`dodatni-info-user/${poruka.dodatniinfouser.id}`}>{poruka.dodatniinfouser.id}</Link>
                     ) : (
                       ''
                     )}
                   </td>
-                  <td>{poruka.chat ? <Link to={`chat/${poruka.chat.id}`}>{poruka.chat.id}</Link> : ''}</td>
+                  <td>
+                    {poruka.grupacijaPoruka ? (
+                      <Link to={`grupacija-poruka/${poruka.grupacijaPoruka.id}`}>{poruka.grupacijaPoruka.id}</Link>
+                    ) : (
+                      ''
+                    )}
+                  </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${poruka.id}`} color="info" size="sm">

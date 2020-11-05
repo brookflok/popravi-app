@@ -7,10 +7,12 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { IArtikl } from 'app/shared/model/artikl.model';
-import { getEntities as getArtikls } from 'app/entities/artikl/artikl.reducer';
 import { IUcesnici } from 'app/shared/model/ucesnici.model';
 import { getEntities as getUcesnicis } from 'app/entities/ucesnici/ucesnici.reducer';
+import { IGrupacijaPoruka } from 'app/shared/model/grupacija-poruka.model';
+import { getEntities as getGrupacijaPorukas } from 'app/entities/grupacija-poruka/grupacija-poruka.reducer';
+import { IArtikl } from 'app/shared/model/artikl.model';
+import { getEntities as getArtikls } from 'app/entities/artikl/artikl.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './chat.reducer';
 import { IChat } from 'app/shared/model/chat.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -19,11 +21,12 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 export interface IChatUpdateProps extends StateProps, DispatchProps, RouteComponentProps<{ id: string }> {}
 
 export const ChatUpdate = (props: IChatUpdateProps) => {
-  const [artiklId, setArtiklId] = useState('0');
   const [ucesniciId, setUcesniciId] = useState('0');
+  const [grupacijaPorukaId, setGrupacijaPorukaId] = useState('0');
+  const [artiklId, setArtiklId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { chatEntity, artikls, ucesnicis, loading, updating } = props;
+  const { chatEntity, ucesnicis, grupacijaPorukas, artikls, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/chat');
@@ -36,8 +39,9 @@ export const ChatUpdate = (props: IChatUpdateProps) => {
       props.getEntity(props.match.params.id);
     }
 
-    props.getArtikls();
     props.getUcesnicis();
+    props.getGrupacijaPorukas();
+    props.getArtikls();
   }, []);
 
   useEffect(() => {
@@ -106,6 +110,36 @@ export const ChatUpdate = (props: IChatUpdateProps) => {
                 </Label>
               </AvGroup>
               <AvGroup>
+                <Label for="chat-ucesnici">
+                  <Translate contentKey="popraviApp.chat.ucesnici">Ucesnici</Translate>
+                </Label>
+                <AvInput id="chat-ucesnici" type="select" className="form-control" name="ucesnici.id">
+                  <option value="" key="0" />
+                  {ucesnicis
+                    ? ucesnicis.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.id}
+                        </option>
+                      ))
+                    : null}
+                </AvInput>
+              </AvGroup>
+              <AvGroup>
+                <Label for="chat-grupacijaPoruka">
+                  <Translate contentKey="popraviApp.chat.grupacijaPoruka">Grupacija Poruka</Translate>
+                </Label>
+                <AvInput id="chat-grupacijaPoruka" type="select" className="form-control" name="grupacijaPoruka.id">
+                  <option value="" key="0" />
+                  {grupacijaPorukas
+                    ? grupacijaPorukas.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.id}
+                        </option>
+                      ))
+                    : null}
+                </AvInput>
+              </AvGroup>
+              <AvGroup>
                 <Label for="chat-artikl">
                   <Translate contentKey="popraviApp.chat.artikl">Artikl</Translate>
                 </Label>
@@ -142,8 +176,9 @@ export const ChatUpdate = (props: IChatUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
-  artikls: storeState.artikl.entities,
   ucesnicis: storeState.ucesnici.entities,
+  grupacijaPorukas: storeState.grupacijaPoruka.entities,
+  artikls: storeState.artikl.entities,
   chatEntity: storeState.chat.entity,
   loading: storeState.chat.loading,
   updating: storeState.chat.updating,
@@ -151,8 +186,9 @@ const mapStateToProps = (storeState: IRootState) => ({
 });
 
 const mapDispatchToProps = {
-  getArtikls,
   getUcesnicis,
+  getGrupacijaPorukas,
+  getArtikls,
   getEntity,
   updateEntity,
   createEntity,

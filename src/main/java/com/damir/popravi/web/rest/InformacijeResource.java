@@ -92,10 +92,18 @@ public class InformacijeResource {
     /**
      * {@code GET  /informacijes} : get all the informacijes.
      *
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of informacijes in body.
      */
     @GetMapping("/informacijes")
-    public List<Informacije> getAllInformacijes() {
+    public List<Informacije> getAllInformacijes(@RequestParam(required = false) String filter) {
+        if ("artikl-is-null".equals(filter)) {
+            log.debug("REST request to get all Informacijes where artikl is null");
+            return StreamSupport
+                .stream(informacijeRepository.findAll().spliterator(), false)
+                .filter(informacije -> informacije.getArtikl() == null)
+                .collect(Collectors.toList());
+        }
         log.debug("REST request to get all Informacijes");
         return informacijeRepository.findAll();
     }

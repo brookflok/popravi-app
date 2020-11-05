@@ -10,7 +10,7 @@ export interface IJavnoPitanje {
   prikaz?: boolean;
   odgovorNaJavnoPitanje?: IOdgovorNaJavnoPitanje;
   dodatniinfoUser?: IDodatniInfoUser;
-  grupacijapitanja?: IGrupacijaPitanja;
+  grupacijaPitanja?: IGrupacijaPitanja;
 }
 
 export const defaultValue: Readonly<IJavnoPitanje> = {

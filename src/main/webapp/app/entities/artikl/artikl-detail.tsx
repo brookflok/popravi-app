@@ -68,6 +68,18 @@ export const ArtiklDetail = (props: IArtiklDetailProps) => {
           </dt>
           <dd>{artiklEntity.usluga ? artiklEntity.usluga.id : ''}</dd>
           <dt>
+            <Translate contentKey="popraviApp.artikl.galerija">Galerija</Translate>
+          </dt>
+          <dd>{artiklEntity.galerija ? artiklEntity.galerija.id : ''}</dd>
+          <dt>
+            <Translate contentKey="popraviApp.artikl.mainSlika">Main Slika</Translate>
+          </dt>
+          <dd>{artiklEntity.mainSlika ? artiklEntity.mainSlika.id : ''}</dd>
+          <dt>
+            <Translate contentKey="popraviApp.artikl.informacije">Informacije</Translate>
+          </dt>
+          <dd>{artiklEntity.informacije ? artiklEntity.informacije.id : ''}</dd>
+          <dt>
             <Translate contentKey="popraviApp.artikl.grupacijaPitanja">Grupacija Pitanja</Translate>
           </dt>
           <dd>{artiklEntity.grupacijaPitanja ? artiklEntity.grupacijaPitanja.id : ''}</dd>

@@ -38,6 +38,14 @@ export const ChatDetail = (props: IChatDetailProps) => {
           </dt>
           <dd>{chatEntity.postoji ? 'true' : 'false'}</dd>
           <dt>
+            <Translate contentKey="popraviApp.chat.ucesnici">Ucesnici</Translate>
+          </dt>
+          <dd>{chatEntity.ucesnici ? chatEntity.ucesnici.id : ''}</dd>
+          <dt>
+            <Translate contentKey="popraviApp.chat.grupacijaPoruka">Grupacija Poruka</Translate>
+          </dt>
+          <dd>{chatEntity.grupacijaPoruka ? chatEntity.grupacijaPoruka.id : ''}</dd>
+          <dt>
             <Translate contentKey="popraviApp.chat.artikl">Artikl</Translate>
           </dt>
           <dd>{chatEntity.artikl ? chatEntity.artikl.id : ''}</dd>

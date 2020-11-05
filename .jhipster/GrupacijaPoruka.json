@@ -1,0 +1,35 @@
+{
+  "name": "GrupacijaPoruka",
+  "fields": [
+    {
+      "fieldName": "datum",
+      "fieldType": "Instant"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "poruka",
+      "otherEntityRelationshipName": "grupacijaPoruka",
+      "relationshipName": "poruka"
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "chat",
+      "otherEntityRelationshipName": "grupacijaPoruka",
+      "relationshipName": "chat",
+      "ownerSide": false
+    }
+  ],
+  "changelogDate": "20201105072757",
+  "entityTableName": "grupacija_poruka",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

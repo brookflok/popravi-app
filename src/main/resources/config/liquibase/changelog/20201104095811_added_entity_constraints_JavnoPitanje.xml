@@ -20,9 +20,9 @@
                                  referencedColumnNames="id"
                                  referencedTableName="dodatni_info_user"/>
 
-        <addForeignKeyConstraint baseColumnNames="grupacijapitanja_id"
+        <addForeignKeyConstraint baseColumnNames="grupacija_pitanja_id"
                                  baseTableName="javno_pitanje"
-                                 constraintName="fk_javno_pitanje_grupacijapitanja_id"
+                                 constraintName="fk_javno_pitanje_grupacija_pitanja_id"
                                  referencedColumnNames="id"
                                  referencedTableName="grupacija_pitanja"/>
 

@@ -82,6 +82,12 @@ export const Chat = (props: IChatProps) => {
                   <Translate contentKey="popraviApp.chat.postoji">Postoji</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="popraviApp.chat.ucesnici">Ucesnici</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="popraviApp.chat.grupacijaPoruka">Grupacija Poruka</Translate>
+                </th>
+                <th>
                   <Translate contentKey="popraviApp.chat.artikl">Artikl</Translate>
                 </th>
                 <th />
@@ -97,6 +103,10 @@ export const Chat = (props: IChatProps) => {
                   </td>
                   <td>{chat.datum ? <TextFormat type="date" value={chat.datum} format={APP_DATE_FORMAT} /> : null}</td>
                   <td>{chat.postoji ? 'true' : 'false'}</td>
+                  <td>{chat.ucesnici ? <Link to={`ucesnici/${chat.ucesnici.id}`}>{chat.ucesnici.id}</Link> : ''}</td>
+                  <td>
+                    {chat.grupacijaPoruka ? <Link to={`grupacija-poruka/${chat.grupacijaPoruka.id}`}>{chat.grupacijaPoruka.id}</Link> : ''}
+                  </td>
                   <td>{chat.artikl ? <Link to={`artikl/${chat.artikl.id}`}>{chat.artikl.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">

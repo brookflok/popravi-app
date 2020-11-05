@@ -1,6 +1,5 @@
 package com.damir.popravi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -54,11 +53,19 @@ public class Artikl implements Serializable {
 
     @OneToOne
     @JoinColumn(unique = true)
-    private GrupacijaPitanja grupacijaPitanja;
+    private Galerija galerija;
 
-    @OneToOne(mappedBy = "artikl")
-    @JsonIgnore
+    @OneToOne
+    @JoinColumn(unique = true)
+    private MainSlika mainSlika;
+
+    @OneToOne
+    @JoinColumn(unique = true)
     private Informacije informacije;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private GrupacijaPitanja grupacijaPitanja;
 
     @ManyToOne
     @JsonIgnoreProperties(value = "artikls", allowSetters = true)
@@ -177,17 +184,30 @@ public class Artikl implements Serializable {
         this.usluga = usluga;
     }
 
-    public GrupacijaPitanja getGrupacijaPitanja() {
-        return grupacijaPitanja;
+    public Galerija getGalerija() {
+        return galerija;
     }
 
-    public Artikl grupacijaPitanja(GrupacijaPitanja grupacijaPitanja) {
-        this.grupacijaPitanja = grupacijaPitanja;
+    public Artikl galerija(Galerija galerija) {
+        this.galerija = galerija;
         return this;
     }
 
-    public void setGrupacijaPitanja(GrupacijaPitanja grupacijaPitanja) {
-        this.grupacijaPitanja = grupacijaPitanja;
+    public void setGalerija(Galerija galerija) {
+        this.galerija = galerija;
+    }
+
+    public MainSlika getMainSlika() {
+        return mainSlika;
+    }
+
+    public Artikl mainSlika(MainSlika mainSlika) {
+        this.mainSlika = mainSlika;
+        return this;
+    }
+
+    public void setMainSlika(MainSlika mainSlika) {
+        this.mainSlika = mainSlika;
     }
 
     public Informacije getInformacije() {
@@ -201,6 +221,19 @@ public class Artikl implements Serializable {
 
     public void setInformacije(Informacije informacije) {
         this.informacije = informacije;
+    }
+
+    public GrupacijaPitanja getGrupacijaPitanja() {
+        return grupacijaPitanja;
+    }
+
+    public Artikl grupacijaPitanja(GrupacijaPitanja grupacijaPitanja) {
+        this.grupacijaPitanja = grupacijaPitanja;
+        return this;
+    }
+
+    public void setGrupacijaPitanja(GrupacijaPitanja grupacijaPitanja) {
+        this.grupacijaPitanja = grupacijaPitanja;
     }
 
     public DodatniInfoUser getDodatniinfouser() {

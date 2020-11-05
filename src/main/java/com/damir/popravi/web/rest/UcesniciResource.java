@@ -92,12 +92,21 @@ public class UcesniciResource {
     /**
      * {@code GET  /ucesnicis} : get all the ucesnicis.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of ucesnicis in body.
      */
     @GetMapping("/ucesnicis")
-    public List<Ucesnici> getAllUcesnicis() {
+    public List<Ucesnici> getAllUcesnicis(@RequestParam(required = false) String filter,@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+        if ("chat-is-null".equals(filter)) {
+            log.debug("REST request to get all Ucesnicis where chat is null");
+            return StreamSupport
+                .stream(ucesniciRepository.findAll().spliterator(), false)
+                .filter(ucesnici -> ucesnici.getChat() == null)
+                .collect(Collectors.toList());
+        }
         log.debug("REST request to get all Ucesnicis");
-        return ucesniciRepository.findAll();
+        return ucesniciRepository.findAllWithEagerRelationships();
     }
 
     /**
@@ -109,7 +118,7 @@ public class UcesniciResource {
     @GetMapping("/ucesnicis/{id}")
     public ResponseEntity<Ucesnici> getUcesnici(@PathVariable Long id) {
         log.debug("REST request to get Ucesnici : {}", id);
-        Optional<Ucesnici> ucesnici = ucesniciRepository.findById(id);
+        Optional<Ucesnici> ucesnici = ucesniciRepository.findOneWithEagerRelationships(id);
         return ResponseUtil.wrapOrNotFound(ucesnici);
     }
 

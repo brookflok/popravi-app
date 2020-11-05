@@ -84,9 +84,6 @@ export const Informacije = (props: IInformacijeProps) => {
                 <th>
                   <Translate contentKey="popraviApp.informacije.brojPregleda">Broj Pregleda</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="popraviApp.informacije.artikl">Artikl</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -103,7 +100,6 @@ export const Informacije = (props: IInformacijeProps) => {
                     {informacije.datumObjave ? <TextFormat type="date" value={informacije.datumObjave} format={APP_DATE_FORMAT} /> : null}
                   </td>
                   <td>{informacije.brojPregleda}</td>
-                  <td>{informacije.artikl ? <Link to={`artikl/${informacije.artikl.id}`}>{informacije.artikl.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${informacije.id}`} color="info" size="sm">

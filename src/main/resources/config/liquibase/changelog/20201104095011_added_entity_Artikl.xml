@@ -40,6 +40,15 @@
             <column name="usluga_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_artikl_usluga_id" />
             </column>
+            <column name="galerija_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_artikl_galerija_id" />
+            </column>
+            <column name="main_slika_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_artikl_main_slika_id" />
+            </column>
+            <column name="informacije_id" type="bigint">
+                <constraints unique="true" nullable="true" uniqueConstraintName="ux_artikl_informacije_id" />
+            </column>
             <column name="grupacija_pitanja_id" type="bigint">
                 <constraints unique="true" nullable="true" uniqueConstraintName="ux_artikl_grupacija_pitanja_id" />
             </column>

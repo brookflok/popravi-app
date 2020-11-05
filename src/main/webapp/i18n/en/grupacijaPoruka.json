@@ -1,0 +1,25 @@
+{
+  "popraviApp": {
+    "grupacijaPoruka": {
+      "home": {
+        "title": "Grupacija Porukas",
+        "createLabel": "Create a new Grupacija Poruka",
+        "createOrEditLabel": "Create or edit a Grupacija Poruka",
+        "search": "Search for Grupacija Poruka",
+        "notFound": "No Grupacija Porukas found"
+      },
+      "created": "A new Grupacija Poruka is created with identifier {{ param }}",
+      "updated": "A Grupacija Poruka is updated with identifier {{ param }}",
+      "deleted": "A Grupacija Poruka is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Grupacija Poruka {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupacija Poruka"
+      },
+      "datum": "Datum",
+      "poruka": "Poruka",
+      "chat": "Chat"
+    }
+  }
+}

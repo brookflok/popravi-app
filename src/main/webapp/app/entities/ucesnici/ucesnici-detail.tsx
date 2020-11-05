@@ -32,13 +32,18 @@ export const UcesniciDetail = (props: IUcesniciDetailProps) => {
           </dt>
           <dd>{ucesniciEntity.datum ? <TextFormat value={ucesniciEntity.datum} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
           <dt>
-            <Translate contentKey="popraviApp.ucesnici.chat">Chat</Translate>
-          </dt>
-          <dd>{ucesniciEntity.chat ? ucesniciEntity.chat.id : ''}</dd>
-          <dt>
             <Translate contentKey="popraviApp.ucesnici.dodatniInfoUser">Dodatni Info User</Translate>
           </dt>
-          <dd>{ucesniciEntity.dodatniInfoUser ? ucesniciEntity.dodatniInfoUser.id : ''}</dd>
+          <dd>
+            {ucesniciEntity.dodatniInfoUsers
+              ? ucesniciEntity.dodatniInfoUsers.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.id}</a>
+                    {ucesniciEntity.dodatniInfoUsers && i === ucesniciEntity.dodatniInfoUsers.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/ucesnici" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

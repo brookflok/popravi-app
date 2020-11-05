@@ -101,21 +101,6 @@ export const GalerijaUpdate = (props: IGalerijaUpdateProps) => {
                   value={isNew ? displayDefaultDateTime() : convertDateTimeFromServer(props.galerijaEntity.datum)}
                 />
               </AvGroup>
-              <AvGroup>
-                <Label for="galerija-artikl">
-                  <Translate contentKey="popraviApp.galerija.artikl">Artikl</Translate>
-                </Label>
-                <AvInput id="galerija-artikl" type="select" className="form-control" name="artikl.id">
-                  <option value="" key="0" />
-                  {artikls
-                    ? artikls.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.ime}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
               <Button tag={Link} id="cancel-save" to="/galerija" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

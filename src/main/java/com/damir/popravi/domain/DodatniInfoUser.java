@@ -57,13 +57,10 @@ public class DodatniInfoUser implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     private Set<Artikl> artikls = new HashSet<>();
 
-    @OneToMany(mappedBy = "dodatniInfoUser")
+    @ManyToMany(mappedBy = "dodatniInfoUsers")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    private Set<Ucesnici> ucesnicis = new HashSet<>();
-
-    @OneToOne(mappedBy = "dodatniInfoUser")
     @JsonIgnore
-    private Poruka poruka;
+    private Set<Ucesnici> ucesnicis = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -214,31 +211,18 @@ public class DodatniInfoUser implements Serializable {
 
     public DodatniInfoUser addUcesnici(Ucesnici ucesnici) {
         this.ucesnicis.add(ucesnici);
-        ucesnici.setDodatniInfoUser(this);
+        ucesnici.getDodatniInfoUsers().add(this);
         return this;
     }
 
     public DodatniInfoUser removeUcesnici(Ucesnici ucesnici) {
         this.ucesnicis.remove(ucesnici);
-        ucesnici.setDodatniInfoUser(null);
+        ucesnici.getDodatniInfoUsers().remove(this);
         return this;
     }
 
     public void setUcesnicis(Set<Ucesnici> ucesnicis) {
         this.ucesnicis = ucesnicis;
-    }
-
-    public Poruka getPoruka() {
-        return poruka;
-    }
-
-    public DodatniInfoUser poruka(Poruka poruka) {
-        this.poruka = poruka;
-        return this;
-    }
-
-    public void setPoruka(Poruka poruka) {
-        this.poruka = poruka;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

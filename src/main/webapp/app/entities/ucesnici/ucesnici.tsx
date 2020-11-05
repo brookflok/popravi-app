@@ -79,9 +79,6 @@ export const Ucesnici = (props: IUcesniciProps) => {
                   <Translate contentKey="popraviApp.ucesnici.datum">Datum</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="popraviApp.ucesnici.chat">Chat</Translate>
-                </th>
-                <th>
                   <Translate contentKey="popraviApp.ucesnici.dodatniInfoUser">Dodatni Info User</Translate>
                 </th>
                 <th />
@@ -96,13 +93,15 @@ export const Ucesnici = (props: IUcesniciProps) => {
                     </Button>
                   </td>
                   <td>{ucesnici.datum ? <TextFormat type="date" value={ucesnici.datum} format={APP_DATE_FORMAT} /> : null}</td>
-                  <td>{ucesnici.chat ? <Link to={`chat/${ucesnici.chat.id}`}>{ucesnici.chat.id}</Link> : ''}</td>
                   <td>
-                    {ucesnici.dodatniInfoUser ? (
-                      <Link to={`dodatni-info-user/${ucesnici.dodatniInfoUser.id}`}>{ucesnici.dodatniInfoUser.id}</Link>
-                    ) : (
-                      ''
-                    )}
+                    {ucesnici.dodatniInfoUsers
+                      ? ucesnici.dodatniInfoUsers.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`dodatni-info-user/${val.id}`}>{val.id}</Link>
+                            {j === ucesnici.dodatniInfoUsers.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
                   </td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">

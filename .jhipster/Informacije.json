@@ -20,8 +20,7 @@
       "otherEntityName": "artikl",
       "otherEntityRelationshipName": "informacije",
       "relationshipName": "artikl",
-      "otherEntityField": "id",
-      "ownerSide": true
+      "ownerSide": false
     }
   ],
   "changelogDate": "20201104095711",

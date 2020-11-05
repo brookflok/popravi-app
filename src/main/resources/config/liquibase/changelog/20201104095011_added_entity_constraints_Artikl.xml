@@ -26,6 +26,24 @@
                                  referencedColumnNames="id"
                                  referencedTableName="usluga"/>
 
+        <addForeignKeyConstraint baseColumnNames="galerija_id"
+                                 baseTableName="artikl"
+                                 constraintName="fk_artikl_galerija_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="galerija"/>
+
+        <addForeignKeyConstraint baseColumnNames="main_slika_id"
+                                 baseTableName="artikl"
+                                 constraintName="fk_artikl_main_slika_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="main_slika"/>
+
+        <addForeignKeyConstraint baseColumnNames="informacije_id"
+                                 baseTableName="artikl"
+                                 constraintName="fk_artikl_informacije_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="informacije"/>
+
         <addForeignKeyConstraint baseColumnNames="grupacija_pitanja_id"
                                  baseTableName="artikl"
                                  constraintName="fk_artikl_grupacija_pitanja_id"

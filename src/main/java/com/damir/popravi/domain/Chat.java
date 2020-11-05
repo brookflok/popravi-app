@@ -1,6 +1,5 @@
 package com.damir.popravi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -32,13 +31,17 @@ public class Chat implements Serializable {
     @Column(name = "postoji")
     private Boolean postoji;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private Ucesnici ucesnici;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private GrupacijaPoruka grupacijaPoruka;
+
     @ManyToOne
     @JsonIgnoreProperties(value = "chats", allowSetters = true)
     private Artikl artikl;
-
-    @OneToOne(mappedBy = "chat")
-    @JsonIgnore
-    private Ucesnici ucesnici;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -75,19 +78,6 @@ public class Chat implements Serializable {
         this.postoji = postoji;
     }
 
-    public Artikl getArtikl() {
-        return artikl;
-    }
-
-    public Chat artikl(Artikl artikl) {
-        this.artikl = artikl;
-        return this;
-    }
-
-    public void setArtikl(Artikl artikl) {
-        this.artikl = artikl;
-    }
-
     public Ucesnici getUcesnici() {
         return ucesnici;
     }
@@ -99,6 +89,32 @@ public class Chat implements Serializable {
 
     public void setUcesnici(Ucesnici ucesnici) {
         this.ucesnici = ucesnici;
+    }
+
+    public GrupacijaPoruka getGrupacijaPoruka() {
+        return grupacijaPoruka;
+    }
+
+    public Chat grupacijaPoruka(GrupacijaPoruka grupacijaPoruka) {
+        this.grupacijaPoruka = grupacijaPoruka;
+        return this;
+    }
+
+    public void setGrupacijaPoruka(GrupacijaPoruka grupacijaPoruka) {
+        this.grupacijaPoruka = grupacijaPoruka;
+    }
+
+    public Artikl getArtikl() {
+        return artikl;
+    }
+
+    public Chat artikl(Artikl artikl) {
+        this.artikl = artikl;
+        return this;
+    }
+
+    public void setArtikl(Artikl artikl) {
+        this.artikl = artikl;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

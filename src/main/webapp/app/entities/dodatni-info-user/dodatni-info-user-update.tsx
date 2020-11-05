@@ -13,8 +13,8 @@ import { IProfilnaSlika } from 'app/shared/model/profilna-slika.model';
 import { getEntities as getProfilnaSlikas } from 'app/entities/profilna-slika/profilna-slika.reducer';
 import { IUser } from 'app/shared/model/user.model';
 import { getUsers } from 'app/modules/administration/user-management/user-management.reducer';
-import { IPoruka } from 'app/shared/model/poruka.model';
-import { getEntities as getPorukas } from 'app/entities/poruka/poruka.reducer';
+import { IUcesnici } from 'app/shared/model/ucesnici.model';
+import { getEntities as getUcesnicis } from 'app/entities/ucesnici/ucesnici.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './dodatni-info-user.reducer';
 import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -26,10 +26,10 @@ export const DodatniInfoUserUpdate = (props: IDodatniInfoUserUpdateProps) => {
   const [lokacijaId, setLokacijaId] = useState('0');
   const [profilnaSlikaId, setProfilnaSlikaId] = useState('0');
   const [userId, setUserId] = useState('0');
-  const [porukaId, setPorukaId] = useState('0');
+  const [ucesniciId, setUcesniciId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
-  const { dodatniInfoUserEntity, lokacijas, profilnaSlikas, users, porukas, loading, updating } = props;
+  const { dodatniInfoUserEntity, lokacijas, profilnaSlikas, users, ucesnicis, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/dodatni-info-user');
@@ -45,7 +45,7 @@ export const DodatniInfoUserUpdate = (props: IDodatniInfoUserUpdateProps) => {
     props.getLokacijas();
     props.getProfilnaSlikas();
     props.getUsers();
-    props.getPorukas();
+    props.getUcesnicis();
   }, []);
 
   useEffect(() => {
@@ -192,7 +192,7 @@ const mapStateToProps = (storeState: IRootState) => ({
   lokacijas: storeState.lokacija.entities,
   profilnaSlikas: storeState.profilnaSlika.entities,
   users: storeState.userManagement.users,
-  porukas: storeState.poruka.entities,
+  ucesnicis: storeState.ucesnici.entities,
   dodatniInfoUserEntity: storeState.dodatniInfoUser.entity,
   loading: storeState.dodatniInfoUser.loading,
   updating: storeState.dodatniInfoUser.updating,
@@ -203,7 +203,7 @@ const mapDispatchToProps = {
   getLokacijas,
   getProfilnaSlikas,
   getUsers,
-  getPorukas,
+  getUcesnicis,
   getEntity,
   updateEntity,
   createEntity,

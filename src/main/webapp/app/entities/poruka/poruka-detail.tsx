@@ -44,13 +44,13 @@ export const PorukaDetail = (props: IPorukaDetailProps) => {
           </dt>
           <dd>{porukaEntity.postoji ? 'true' : 'false'}</dd>
           <dt>
-            <Translate contentKey="popraviApp.poruka.dodatniInfoUser">Dodatni Info User</Translate>
+            <Translate contentKey="popraviApp.poruka.dodatniinfouser">Dodatniinfouser</Translate>
           </dt>
-          <dd>{porukaEntity.dodatniInfoUser ? porukaEntity.dodatniInfoUser.id : ''}</dd>
+          <dd>{porukaEntity.dodatniinfouser ? porukaEntity.dodatniinfouser.id : ''}</dd>
           <dt>
-            <Translate contentKey="popraviApp.poruka.chat">Chat</Translate>
+            <Translate contentKey="popraviApp.poruka.grupacijaPoruka">Grupacija Poruka</Translate>
           </dt>
-          <dd>{porukaEntity.chat ? porukaEntity.chat.id : ''}</dd>
+          <dd>{porukaEntity.grupacijaPoruka ? porukaEntity.grupacijaPoruka.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/poruka" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

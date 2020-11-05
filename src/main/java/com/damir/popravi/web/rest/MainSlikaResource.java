@@ -92,10 +92,18 @@ public class MainSlikaResource {
     /**
      * {@code GET  /main-slikas} : get all the mainSlikas.
      *
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of mainSlikas in body.
      */
     @GetMapping("/main-slikas")
-    public List<MainSlika> getAllMainSlikas() {
+    public List<MainSlika> getAllMainSlikas(@RequestParam(required = false) String filter) {
+        if ("artikl-is-null".equals(filter)) {
+            log.debug("REST request to get all MainSlikas where artikl is null");
+            return StreamSupport
+                .stream(mainSlikaRepository.findAll().spliterator(), false)
+                .filter(mainSlika -> mainSlika.getArtikl() == null)
+                .collect(Collectors.toList());
+        }
         log.debug("REST request to get all MainSlikas");
         return mainSlikaRepository.findAll();
     }

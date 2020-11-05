@@ -16,18 +16,17 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
+      "relationshipType": "many-to-one",
       "otherEntityName": "dodatniInfoUser",
       "otherEntityRelationshipName": "poruka",
-      "relationshipName": "dodatniInfoUser",
-      "otherEntityField": "id",
-      "ownerSide": true
+      "relationshipName": "dodatniinfouser",
+      "otherEntityField": "id"
     },
     {
       "relationshipType": "many-to-one",
-      "otherEntityName": "chat",
+      "otherEntityName": "grupacijaPoruka",
       "otherEntityRelationshipName": "poruka",
-      "relationshipName": "chat",
+      "relationshipName": "grupacijaPoruka",
       "otherEntityField": "id"
     }
   ],

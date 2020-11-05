@@ -9,6 +9,8 @@ import javax.persistence.*;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A GrupacijaPitanja.
@@ -27,6 +29,10 @@ public class GrupacijaPitanja implements Serializable {
 
     @Column(name = "datum")
     private Instant datum;
+
+    @OneToMany(mappedBy = "grupacijaPitanja")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    private Set<JavnoPitanje> javnoPitanjes = new HashSet<>();
 
     @OneToOne(mappedBy = "grupacijaPitanja")
     @JsonIgnore
@@ -52,6 +58,31 @@ public class GrupacijaPitanja implements Serializable {
 
     public void setDatum(Instant datum) {
         this.datum = datum;
+    }
+
+    public Set<JavnoPitanje> getJavnoPitanjes() {
+        return javnoPitanjes;
+    }
+
+    public GrupacijaPitanja javnoPitanjes(Set<JavnoPitanje> javnoPitanjes) {
+        this.javnoPitanjes = javnoPitanjes;
+        return this;
+    }
+
+    public GrupacijaPitanja addJavnoPitanje(JavnoPitanje javnoPitanje) {
+        this.javnoPitanjes.add(javnoPitanje);
+        javnoPitanje.setGrupacijaPitanja(this);
+        return this;
+    }
+
+    public GrupacijaPitanja removeJavnoPitanje(JavnoPitanje javnoPitanje) {
+        this.javnoPitanjes.remove(javnoPitanje);
+        javnoPitanje.setGrupacijaPitanja(null);
+        return this;
+    }
+
+    public void setJavnoPitanjes(Set<JavnoPitanje> javnoPitanjes) {
+        this.javnoPitanjes = javnoPitanjes;
     }
 
     public Artikl getArtikl() {

@@ -52,9 +52,9 @@ export const JavnoPitanjeDetail = (props: IJavnoPitanjeDetailProps) => {
           </dt>
           <dd>{javnoPitanjeEntity.dodatniinfoUser ? javnoPitanjeEntity.dodatniinfoUser.id : ''}</dd>
           <dt>
-            <Translate contentKey="popraviApp.javnoPitanje.grupacijapitanja">Grupacijapitanja</Translate>
+            <Translate contentKey="popraviApp.javnoPitanje.grupacijaPitanja">Grupacija Pitanja</Translate>
           </dt>
-          <dd>{javnoPitanjeEntity.grupacijapitanja ? javnoPitanjeEntity.grupacijapitanja.id : ''}</dd>
+          <dd>{javnoPitanjeEntity.grupacijaPitanja ? javnoPitanjeEntity.grupacijaPitanja.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/javno-pitanje" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

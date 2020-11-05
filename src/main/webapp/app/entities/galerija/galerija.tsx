@@ -81,9 +81,6 @@ export const Galerija = (props: IGalerijaProps) => {
                 <th>
                   <Translate contentKey="popraviApp.galerija.datum">Datum</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="popraviApp.galerija.artikl">Artikl</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -97,7 +94,6 @@ export const Galerija = (props: IGalerijaProps) => {
                   </td>
                   <td>{galerija.ime}</td>
                   <td>{galerija.datum ? <TextFormat type="date" value={galerija.datum} format={APP_DATE_FORMAT} /> : null}</td>
-                  <td>{galerija.artikl ? <Link to={`artikl/${galerija.artikl.id}`}>{galerija.artikl.ime}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${galerija.id}`} color="info" size="sm">

@@ -92,10 +92,18 @@ public class GalerijaResource {
     /**
      * {@code GET  /galerijas} : get all the galerijas.
      *
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of galerijas in body.
      */
     @GetMapping("/galerijas")
-    public List<Galerija> getAllGalerijas() {
+    public List<Galerija> getAllGalerijas(@RequestParam(required = false) String filter) {
+        if ("artikl-is-null".equals(filter)) {
+            log.debug("REST request to get all Galerijas where artikl is null");
+            return StreamSupport
+                .stream(galerijaRepository.findAll().spliterator(), false)
+                .filter(galerija -> galerija.getArtikl() == null)
+                .collect(Collectors.toList());
+        }
         log.debug("REST request to get all Galerijas");
         return galerijaRepository.findAll();
     }

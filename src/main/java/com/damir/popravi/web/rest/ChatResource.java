@@ -92,18 +92,10 @@ public class ChatResource {
     /**
      * {@code GET  /chats} : get all the chats.
      *
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of chats in body.
      */
     @GetMapping("/chats")
-    public List<Chat> getAllChats(@RequestParam(required = false) String filter) {
-        if ("ucesnici-is-null".equals(filter)) {
-            log.debug("REST request to get all Chats where ucesnici is null");
-            return StreamSupport
-                .stream(chatRepository.findAll().spliterator(), false)
-                .filter(chat -> chat.getUcesnici() == null)
-                .collect(Collectors.toList());
-        }
+    public List<Chat> getAllChats() {
         log.debug("REST request to get all Chats");
         return chatRepository.findAll();
     }

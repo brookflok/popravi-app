@@ -8,6 +8,18 @@
     -->
     <changeSet id="20201104100511-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="ucesnici_id"
+                                 baseTableName="chat"
+                                 constraintName="fk_chat_ucesnici_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ucesnici"/>
+
+        <addForeignKeyConstraint baseColumnNames="grupacija_poruka_id"
+                                 baseTableName="chat"
+                                 constraintName="fk_chat_grupacija_poruka_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="grupacija_poruka"/>
+
         <addForeignKeyConstraint baseColumnNames="artikl_id"
                                  baseTableName="chat"
                                  constraintName="fk_chat_artikl_id"

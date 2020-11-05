@@ -32,6 +32,7 @@
     <include file="config/liquibase/changelog/20201104100411_added_entity_Poruka.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201104100511_added_entity_Chat.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201104134348_added_entity_GrupacijaPitanja.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20201105072757_added_entity_GrupacijaPoruka.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20201104094911_added_entity_constraints_DodatniInfoUser.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20201104095011_added_entity_constraints_Artikl.xml" relativeToChangelogFile="false"/>

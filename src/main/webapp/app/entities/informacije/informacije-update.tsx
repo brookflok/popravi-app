@@ -107,21 +107,6 @@ export const InformacijeUpdate = (props: IInformacijeUpdateProps) => {
                 </Label>
                 <AvField id="informacije-brojPregleda" type="string" className="form-control" name="brojPregleda" />
               </AvGroup>
-              <AvGroup>
-                <Label for="informacije-artikl">
-                  <Translate contentKey="popraviApp.informacije.artikl">Artikl</Translate>
-                </Label>
-                <AvInput id="informacije-artikl" type="select" className="form-control" name="artikl.id">
-                  <option value="" key="0" />
-                  {artikls
-                    ? artikls.map(otherEntity => (
-                        <option value={otherEntity.id} key={otherEntity.id}>
-                          {otherEntity.id}
-                        </option>
-                      ))
-                    : null}
-                </AvInput>
-              </AvGroup>
               <Button tag={Link} id="cancel-save" to="/informacije" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

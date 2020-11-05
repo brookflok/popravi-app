@@ -56,10 +56,6 @@ export const MainSlikaDetail = (props: IMainSlikaDetailProps) => {
             </span>
           </dt>
           <dd>{mainSlikaEntity.datum ? <TextFormat value={mainSlikaEntity.datum} type="date" format={APP_DATE_FORMAT} /> : null}</dd>
-          <dt>
-            <Translate contentKey="popraviApp.mainSlika.artikl">Artikl</Translate>
-          </dt>
-          <dd>{mainSlikaEntity.artikl ? mainSlikaEntity.artikl.ime : ''}</dd>
         </dl>
         <Button tag={Link} to="/main-slika" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

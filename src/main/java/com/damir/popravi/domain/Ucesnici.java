@@ -1,6 +1,6 @@
 package com.damir.popravi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -9,6 +9,8 @@ import javax.persistence.*;
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A Ucesnici.
@@ -28,13 +30,16 @@ public class Ucesnici implements Serializable {
     @Column(name = "datum")
     private Instant datum;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private Chat chat;
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JoinTable(name = "ucesnici_dodatni_info_user",
+               joinColumns = @JoinColumn(name = "ucesnici_id", referencedColumnName = "id"),
+               inverseJoinColumns = @JoinColumn(name = "dodatni_info_user_id", referencedColumnName = "id"))
+    private Set<DodatniInfoUser> dodatniInfoUsers = new HashSet<>();
 
-    @ManyToOne
-    @JsonIgnoreProperties(value = "ucesnicis", allowSetters = true)
-    private DodatniInfoUser dodatniInfoUser;
+    @OneToOne(mappedBy = "ucesnici")
+    @JsonIgnore
+    private Chat chat;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -58,6 +63,31 @@ public class Ucesnici implements Serializable {
         this.datum = datum;
     }
 
+    public Set<DodatniInfoUser> getDodatniInfoUsers() {
+        return dodatniInfoUsers;
+    }
+
+    public Ucesnici dodatniInfoUsers(Set<DodatniInfoUser> dodatniInfoUsers) {
+        this.dodatniInfoUsers = dodatniInfoUsers;
+        return this;
+    }
+
+    public Ucesnici addDodatniInfoUser(DodatniInfoUser dodatniInfoUser) {
+        this.dodatniInfoUsers.add(dodatniInfoUser);
+        dodatniInfoUser.getUcesnicis().add(this);
+        return this;
+    }
+
+    public Ucesnici removeDodatniInfoUser(DodatniInfoUser dodatniInfoUser) {
+        this.dodatniInfoUsers.remove(dodatniInfoUser);
+        dodatniInfoUser.getUcesnicis().remove(this);
+        return this;
+    }
+
+    public void setDodatniInfoUsers(Set<DodatniInfoUser> dodatniInfoUsers) {
+        this.dodatniInfoUsers = dodatniInfoUsers;
+    }
+
     public Chat getChat() {
         return chat;
     }
@@ -69,19 +99,6 @@ public class Ucesnici implements Serializable {
 
     public void setChat(Chat chat) {
         this.chat = chat;
-    }
-
-    public DodatniInfoUser getDodatniInfoUser() {
-        return dodatniInfoUser;
-    }
-
-    public Ucesnici dodatniInfoUser(DodatniInfoUser dodatniInfoUser) {
-        this.dodatniInfoUser = dodatniInfoUser;
-        return this;
-    }
-
-    public void setDodatniInfoUser(DodatniInfoUser dodatniInfoUser) {
-        this.dodatniInfoUser = dodatniInfoUser;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

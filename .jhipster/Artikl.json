@@ -49,9 +49,17 @@
     },
     {
       "relationshipType": "one-to-one",
-      "otherEntityName": "grupacijaPitanja",
+      "otherEntityName": "galerija",
       "otherEntityRelationshipName": "artikl",
-      "relationshipName": "grupacijaPitanja",
+      "relationshipName": "galerija",
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "mainSlika",
+      "otherEntityRelationshipName": "artikl",
+      "relationshipName": "mainSlika",
       "otherEntityField": "id",
       "ownerSide": true
     },
@@ -60,7 +68,16 @@
       "otherEntityName": "informacije",
       "otherEntityRelationshipName": "artikl",
       "relationshipName": "informacije",
-      "ownerSide": false
+      "otherEntityField": "id",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "grupacijaPitanja",
+      "otherEntityRelationshipName": "artikl",
+      "relationshipName": "grupacijaPitanja",
+      "otherEntityField": "id",
+      "ownerSide": true
     },
     {
       "relationshipType": "many-to-one",

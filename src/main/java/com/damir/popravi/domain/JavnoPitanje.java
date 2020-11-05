@@ -44,7 +44,7 @@ public class JavnoPitanje implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties(value = "javnoPitanjes", allowSetters = true)
-    private GrupacijaPitanja grupacijapitanja;
+    private GrupacijaPitanja grupacijaPitanja;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -120,17 +120,17 @@ public class JavnoPitanje implements Serializable {
         this.dodatniinfoUser = dodatniInfoUser;
     }
 
-    public GrupacijaPitanja getGrupacijapitanja() {
-        return grupacijapitanja;
+    public GrupacijaPitanja getGrupacijaPitanja() {
+        return grupacijaPitanja;
     }
 
-    public JavnoPitanje grupacijapitanja(GrupacijaPitanja grupacijaPitanja) {
-        this.grupacijapitanja = grupacijaPitanja;
+    public JavnoPitanje grupacijaPitanja(GrupacijaPitanja grupacijaPitanja) {
+        this.grupacijaPitanja = grupacijaPitanja;
         return this;
     }
 
-    public void setGrupacijapitanja(GrupacijaPitanja grupacijaPitanja) {
-        this.grupacijapitanja = grupacijaPitanja;
+    public void setGrupacijaPitanja(GrupacijaPitanja grupacijaPitanja) {
+        this.grupacijaPitanja = grupacijaPitanja;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
