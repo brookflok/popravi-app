@@ -1,14 +1,13 @@
 package com.damir.popravi.domain;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 /**
  * A Kategorija.
@@ -18,7 +17,6 @@ import java.util.Set;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "kategorija")
 public class Kategorija implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -28,8 +26,8 @@ public class Kategorija implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "kategorija")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy = "kategorija", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({ "kategorija" })
     private Set<Artikl> artikls = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -78,6 +76,7 @@ public class Kategorija implements Serializable {
     public void setArtikls(Set<Artikl> artikls) {
         this.artikls = artikls;
     }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override

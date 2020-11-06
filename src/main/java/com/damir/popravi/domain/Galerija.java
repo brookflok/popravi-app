@@ -1,16 +1,15 @@
 package com.damir.popravi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 /**
  * A Galerija.
@@ -20,7 +19,6 @@ import java.util.Set;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "galerija")
 public class Galerija implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -33,8 +31,8 @@ public class Galerija implements Serializable {
     @Column(name = "datum")
     private Instant datum;
 
-    @OneToMany(mappedBy = "galerija")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy = "galerija", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({ "galerija" })
     private Set<Slika> slikas = new HashSet<>();
 
     @OneToOne(mappedBy = "galerija")
@@ -113,6 +111,7 @@ public class Galerija implements Serializable {
     public void setArtikl(Artikl artikl) {
         this.artikl = artikl;
     }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override

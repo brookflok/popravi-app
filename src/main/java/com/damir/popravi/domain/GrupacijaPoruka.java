@@ -1,16 +1,15 @@
 package com.damir.popravi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 /**
  * A GrupacijaPoruka.
@@ -20,7 +19,6 @@ import java.util.Set;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "grupacijaporuka")
 public class GrupacijaPoruka implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -30,8 +28,8 @@ public class GrupacijaPoruka implements Serializable {
     @Column(name = "datum")
     private Instant datum;
 
-    @OneToMany(mappedBy = "grupacijaPoruka")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy = "grupacijaPoruka", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({ "grupacijaPoruka" })
     private Set<Poruka> porukas = new HashSet<>();
 
     @OneToOne(mappedBy = "grupacijaPoruka")
@@ -97,6 +95,7 @@ public class GrupacijaPoruka implements Serializable {
     public void setChat(Chat chat) {
         this.chat = chat;
     }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override

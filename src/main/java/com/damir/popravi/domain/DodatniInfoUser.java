@@ -1,15 +1,14 @@
 package com.damir.popravi.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 /**
  * A DodatniInfoUser.
@@ -19,7 +18,6 @@ import java.util.Set;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @org.springframework.data.elasticsearch.annotations.Document(indexName = "dodatniinfouser")
 public class DodatniInfoUser implements Serializable {
-
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -53,8 +51,8 @@ public class DodatniInfoUser implements Serializable {
     @JoinColumn(unique = true)
     private User user;
 
-    @OneToMany(mappedBy = "dodatniinfouser")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @OneToMany(mappedBy = "dodatniinfouser", fetch = FetchType.EAGER)
+    @JsonIgnoreProperties({ "dodatniinfouser" })
     private Set<Artikl> artikls = new HashSet<>();
 
     @ManyToMany(mappedBy = "dodatniInfoUsers")
@@ -224,6 +222,7 @@ public class DodatniInfoUser implements Serializable {
     public void setUcesnicis(Set<Ucesnici> ucesnicis) {
         this.ucesnicis = ucesnicis;
     }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
