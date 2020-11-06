@@ -1,0 +1,24 @@
+{
+  "popraviApp": {
+    "kategorija": {
+      "home": {
+        "title": "Kategorijas",
+        "createLabel": "Create a new Kategorija",
+        "createOrEditLabel": "Create or edit a Kategorija",
+        "search": "Search for Kategorija",
+        "notFound": "No Kategorijas found"
+      },
+      "created": "A new Kategorija is created with identifier {{ param }}",
+      "updated": "A Kategorija is updated with identifier {{ param }}",
+      "deleted": "A Kategorija is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Kategorija {{ id }}?"
+      },
+      "detail": {
+        "title": "Kategorija"
+      },
+      "name": "Name",
+      "artikl": "Artikl"
+    }
+  }
+}

@@ -26,6 +26,7 @@
         "chat": "Chat",
         "grupacijaPitanja": "Grupacija Pitanja",
         "grupacijaPoruka": "Grupacija Poruka",
+        "kategorija": "Kategorija",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

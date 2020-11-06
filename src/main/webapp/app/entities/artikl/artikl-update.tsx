@@ -23,6 +23,8 @@ import { IGrupacijaPitanja } from 'app/shared/model/grupacija-pitanja.model';
 import { getEntities as getGrupacijaPitanjas } from 'app/entities/grupacija-pitanja/grupacija-pitanja.reducer';
 import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
 import { getEntities as getDodatniInfoUsers } from 'app/entities/dodatni-info-user/dodatni-info-user.reducer';
+import { IKategorija } from 'app/shared/model/kategorija.model';
+import { getEntities as getKategorijas } from 'app/entities/kategorija/kategorija.reducer';
 import { getEntity, updateEntity, createEntity, reset } from './artikl.reducer';
 import { IArtikl } from 'app/shared/model/artikl.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -39,6 +41,7 @@ export const ArtiklUpdate = (props: IArtiklUpdateProps) => {
   const [informacijeId, setInformacijeId] = useState('0');
   const [grupacijaPitanjaId, setGrupacijaPitanjaId] = useState('0');
   const [dodatniinfouserId, setDodatniinfouserId] = useState('0');
+  const [kategorijaId, setKategorijaId] = useState('0');
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.id);
 
   const {
@@ -51,6 +54,7 @@ export const ArtiklUpdate = (props: IArtiklUpdateProps) => {
     informacijes,
     grupacijaPitanjas,
     dodatniInfoUsers,
+    kategorijas,
     loading,
     updating,
   } = props;
@@ -74,6 +78,7 @@ export const ArtiklUpdate = (props: IArtiklUpdateProps) => {
     props.getInformacijes();
     props.getGrupacijaPitanjas();
     props.getDodatniInfoUsers();
+    props.getKategorijas();
   }, []);
 
   useEffect(() => {
@@ -270,6 +275,21 @@ export const ArtiklUpdate = (props: IArtiklUpdateProps) => {
                     : null}
                 </AvInput>
               </AvGroup>
+              <AvGroup>
+                <Label for="artikl-kategorija">
+                  <Translate contentKey="popraviApp.artikl.kategorija">Kategorija</Translate>
+                </Label>
+                <AvInput id="artikl-kategorija" type="select" className="form-control" name="kategorija.id">
+                  <option value="" key="0" />
+                  {kategorijas
+                    ? kategorijas.map(otherEntity => (
+                        <option value={otherEntity.id} key={otherEntity.id}>
+                          {otherEntity.id}
+                        </option>
+                      ))
+                    : null}
+                </AvInput>
+              </AvGroup>
               <Button tag={Link} id="cancel-save" to="/artikl" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
@@ -300,6 +320,7 @@ const mapStateToProps = (storeState: IRootState) => ({
   informacijes: storeState.informacije.entities,
   grupacijaPitanjas: storeState.grupacijaPitanja.entities,
   dodatniInfoUsers: storeState.dodatniInfoUser.entities,
+  kategorijas: storeState.kategorija.entities,
   artiklEntity: storeState.artikl.entity,
   loading: storeState.artikl.loading,
   updating: storeState.artikl.updating,
@@ -315,6 +336,7 @@ const mapDispatchToProps = {
   getInformacijes,
   getGrupacijaPitanjas,
   getDodatniInfoUsers,
+  getKategorijas,
   getEntity,
   updateEntity,
   createEntity,

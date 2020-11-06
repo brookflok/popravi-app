@@ -1,0 +1,24 @@
+{
+  "popraviApp": {
+    "kategorija": {
+      "home": {
+        "title": "Kategorijas",
+        "createLabel": "Kreiraj novi Kategorija",
+        "createOrEditLabel": "Kreirajte ili izmenite Kategorija",
+        "search": "Potražite Kategorija",
+        "notFound": "No Kategorijas found"
+      },
+      "created": "Kreiran je novi Kategorija pod nazivom {{ param }}",
+      "updated": "Kategorija pod nazivom {{ param }} je ažuriran",
+      "deleted": "Kategorija pod nazivom {{ param }} je obrisan",
+      "delete": {
+        "question": "Da li ste sigurni da želite da obrišete Kategorija pod nazivom {{ id }}?"
+      },
+      "detail": {
+        "title": "Kategorija"
+      },
+      "name": "Name",
+      "artikl": "Artikl"
+    }
+  }
+}

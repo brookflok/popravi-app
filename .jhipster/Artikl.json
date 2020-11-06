@@ -85,6 +85,13 @@
       "otherEntityRelationshipName": "artikl",
       "relationshipName": "dodatniinfouser",
       "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "kategorija",
+      "otherEntityRelationshipName": "artikl",
+      "relationshipName": "kategorija",
+      "otherEntityField": "id"
     }
   ],
   "changelogDate": "20201104095011",

@@ -71,6 +71,10 @@ public class Artikl implements Serializable {
     @JsonIgnoreProperties(value = "artikls", allowSetters = true)
     private DodatniInfoUser dodatniinfouser;
 
+    @ManyToOne
+    @JsonIgnoreProperties(value = "artikls", allowSetters = true)
+    private Kategorija kategorija;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
         return id;
@@ -247,6 +251,19 @@ public class Artikl implements Serializable {
 
     public void setDodatniinfouser(DodatniInfoUser dodatniInfoUser) {
         this.dodatniinfouser = dodatniInfoUser;
+    }
+
+    public Kategorija getKategorija() {
+        return kategorija;
+    }
+
+    public Artikl kategorija(Kategorija kategorija) {
+        this.kategorija = kategorija;
+        return this;
+    }
+
+    public void setKategorija(Kategorija kategorija) {
+        this.kategorija = kategorija;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 

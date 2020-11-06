@@ -1,0 +1,28 @@
+{
+  "name": "Kategorija",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "artikl",
+      "otherEntityRelationshipName": "kategorija",
+      "relationshipName": "artikl"
+    }
+  ],
+  "changelogDate": "20201106084145",
+  "entityTableName": "kategorija",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

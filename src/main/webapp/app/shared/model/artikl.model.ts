@@ -6,6 +6,7 @@ import { IMainSlika } from 'app/shared/model/main-slika.model';
 import { IInformacije } from 'app/shared/model/informacije.model';
 import { IGrupacijaPitanja } from 'app/shared/model/grupacija-pitanja.model';
 import { IDodatniInfoUser } from 'app/shared/model/dodatni-info-user.model';
+import { IKategorija } from 'app/shared/model/kategorija.model';
 
 export interface IArtikl {
   id?: number;
@@ -22,6 +23,7 @@ export interface IArtikl {
   informacije?: IInformacije;
   grupacijaPitanja?: IGrupacijaPitanja;
   dodatniinfouser?: IDodatniInfoUser;
+  kategorija?: IKategorija;
 }
 
 export const defaultValue: Readonly<IArtikl> = {

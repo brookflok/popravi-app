@@ -56,5 +56,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="dodatni_info_user"/>
 
+        <addForeignKeyConstraint baseColumnNames="kategorija_id"
+                                 baseTableName="artikl"
+                                 constraintName="fk_artikl_kategorija_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="kategorija"/>
+
     </changeSet>
 </databaseChangeLog>

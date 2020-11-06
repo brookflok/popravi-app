@@ -87,6 +87,10 @@ export const ArtiklDetail = (props: IArtiklDetailProps) => {
             <Translate contentKey="popraviApp.artikl.dodatniinfouser">Dodatniinfouser</Translate>
           </dt>
           <dd>{artiklEntity.dodatniinfouser ? artiklEntity.dodatniinfouser.id : ''}</dd>
+          <dt>
+            <Translate contentKey="popraviApp.artikl.kategorija">Kategorija</Translate>
+          </dt>
+          <dd>{artiklEntity.kategorija ? artiklEntity.kategorija.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/artikl" replace color="info">
           <FontAwesomeIcon icon="arrow-left" />{' '}

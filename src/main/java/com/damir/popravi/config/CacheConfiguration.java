@@ -72,6 +72,8 @@ public class CacheConfiguration {
             createCache(cm, com.damir.popravi.domain.GrupacijaPoruka.class.getName());
             createCache(cm, com.damir.popravi.domain.GrupacijaPoruka.class.getName() + ".porukas");
             createCache(cm, com.damir.popravi.domain.GrupacijaPitanja.class.getName() + ".javnoPitanjes");
+            createCache(cm, com.damir.popravi.domain.Kategorija.class.getName());
+            createCache(cm, com.damir.popravi.domain.Kategorija.class.getName() + ".artikls");
             // jhipster-needle-ehcache-add-entry
         };
     }

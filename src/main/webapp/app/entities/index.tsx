@@ -23,6 +23,7 @@ import Poruka from './poruka';
 import Chat from './chat';
 import GrupacijaPitanja from './grupacija-pitanja';
 import GrupacijaPoruka from './grupacija-poruka';
+import Kategorija from './kategorija';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -48,6 +49,7 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}chat`} component={Chat} />
       <ErrorBoundaryRoute path={`${match.url}grupacija-pitanja`} component={GrupacijaPitanja} />
       <ErrorBoundaryRoute path={`${match.url}grupacija-poruka`} component={GrupacijaPoruka} />
+      <ErrorBoundaryRoute path={`${match.url}kategorija`} component={Kategorija} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

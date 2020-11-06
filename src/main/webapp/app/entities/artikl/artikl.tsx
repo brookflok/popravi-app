@@ -114,6 +114,9 @@ export const Artikl = (props: IArtiklProps) => {
                 <th>
                   <Translate contentKey="popraviApp.artikl.dodatniinfouser">Dodatniinfouser</Translate>
                 </th>
+                <th>
+                  <Translate contentKey="popraviApp.artikl.kategorija">Kategorija</Translate>
+                </th>
                 <th />
               </tr>
             </thead>
@@ -150,6 +153,7 @@ export const Artikl = (props: IArtiklProps) => {
                       ''
                     )}
                   </td>
+                  <td>{artikl.kategorija ? <Link to={`kategorija/${artikl.kategorija.id}`}>{artikl.kategorija.id}</Link> : ''}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`${match.url}/${artikl.id}`} color="info" size="sm">
