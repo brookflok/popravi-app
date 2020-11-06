@@ -101,6 +101,9 @@ datum Instant
 entity GrupacijaPitanja{
 	datum Instant
 }
+entity Kategorija{
+    name String,
+}
 
 relationship ManyToOne {
 	Kanton{entitet} to Entiteti,
@@ -127,6 +130,7 @@ relationship OneToMany{
     GrupacijaPitanja to JavnoPitanje
     GrupacijaPoruka to Poruka
     Galerija to Slika
+    Kategorija to Artikl
 }
 
 relationship OneToOne{
